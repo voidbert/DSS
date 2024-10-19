@@ -13,6 +13,17 @@
 \usepackage{pdfpages}
 \usepackage{setspace}
 
+\makeatletter
+\renewcommand\section[1]{
+    \newpage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \@startsection{section}{1}{\z@}{0px}{50px}{\normalfont\Huge\bfseries}{#1}
+    \vspace*{\fill}
+    \newpage
+}
+\makeatother
+
 \title{\textbf{Desenvolvimento de Sistemas de Software \\ \large Trabalho Prático -- Fase I}}
 \date{19 de outubro 2024}
 \author{
@@ -58,5 +69,11 @@
         A104541    & A100612
     \end{tabular}
 \end{center}
+
+\section{Modelo de Domínio}
+
+\section{Casos de Uso}
+
+\section{Anexos}
 
 \end{document}
