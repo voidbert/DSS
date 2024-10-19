@@ -72,6 +72,147 @@
 
 \section{Modelo de Domínio}
 
+\begingroup
+    \newgeometry{left=1cm,bottom=1cm,right=1cm,top=1cm}
+    \begin{landscape}
+        \thispagestyle{empty}
+
+        \begin{figure}
+            \centering
+            \includegraphics[scale=0.44]{Imagens/Modelos/ModeloDominio.eps}
+            \caption{Modelo de Domínio. É recomendado que a sua leitura tenha início na entidade
+                Unidade Curricular.}
+        \end{figure}
+    \end{landscape}
+\endgroup
+
+\subsection{Restrições nas relações}
+
+A linguagem de modelação UML não permite expressar restrições nas relações, ou seja, não permite
+especificar que dois objetos A e B apenas se podem relacionar caso se verifique uma dada condição,
+como, por exemplo, A se relacionar com um outro objeto C. Esta secção do relatório pretende expor
+onde, no modelo de domínio construído, se verificam estas situações.
+
+\begin{longtable}{|>{\centering}m{2.5cm}
+                  |>{\centering}m{2.5cm}
+                  |>{\centering}m{2.5cm}
+                  |m{8cm}|}
+    \hline
+    \textbf{Entidade} & \textbf{Relação} & \textbf{Entidade} & \textbf{Condição necessária} \\
+    \hline
+    \endfirsthead
+
+    \hline
+    \textbf{Entidade} & \textbf{Relação} & \textbf{Entidade} & \textbf{Condição necessária} \\
+    \hline
+    \endhead
+
+    Aluno              &
+    inscrito em        &
+    Unidade Curricular &
+    Aluno está inscrito no Curso ao qual a Unidade Curricular pertence. \\
+
+    \hline
+    Unidade Curricular &
+    organizada em      &
+    Grupo de Trabalho  &
+    Todos os Alunos que constituem o Grupo de Trabalho estão inscritos na Unidade Curricular. \\
+
+    \hline
+    Grupo de Trabalho &
+    constituído       &
+    Aluno             &
+    Existe uma Unidade Curricular na qual todos os Alunos que constituem o Grupo de Trabalho se
+    encontram inscritos. \\
+
+    \hline
+    Aluno          &
+    matriculado em &
+    Ano de Curso   &
+    O Ano de Curso pertence ao conjunto de anos nos quais o Curso em que o Aluno está inscrito se
+    divide. \\
+
+    \hline
+    Unidade Curricular &
+    lecionada em       &
+    Semestre           &
+    O Curso ao qual a Unidade Curricular pertence contém o Ano de Curso do qual o Semestre faz
+    parte. \\
+
+    \hline
+    UC Opcional   &
+    alternativa a &
+    UC Opcional   &
+    As duas Unidades Curriculares fazem parte do mesmo Curso. \\
+
+    \hline
+    Unidade Curricular          &
+    possui                      &
+    Preferência de Distribuição &
+    A Preferência de Distribuição foi definida pelo Docente que rege a Unidade Curricular. \\
+
+    \hline
+    Docente            &
+    rege               &
+    Unidade Curricular &
+    Docente leciona pelo menos um Turno associado à Unidade Curricular. \\
+
+    \hline
+    Docente                     &
+    define                      &
+    Preferência de Distribuição &
+    Docente rege pelo menos uma Unidade Curricular. \\
+
+    \hline
+    Unidade Curricular           &
+    define                       &
+    Limite de Inscrições Prático &
+    Pelo menos um Turno Prático associado à Unidade Curricular possui o Limite de Inscrições. \\
+
+    \hline
+    \newpage
+    Turno                &
+    possui               &
+    Limite de Inscrições &
+    Limite de Inscrições não excede a Capacidade da Sala na qual o Turno é lecionado. \\
+
+    \hline
+    Turno Prático                &
+    possui                       &
+    Limite de Inscrições Prático &
+    Limite de Inscrições Prático definido pela Unidade Curricular associada ao Turno. \\
+
+    \hline
+    Turno Teórico                &
+    possui                       &
+    Limite de Inscrições Teórico &
+    Limite de Inscrições Teórico é a Capacidade da Sala na qual o Turno é lecionado. \\
+
+    \hline
+    Diretor de Curso &
+    constrói         &
+    Horário          &
+    Horário atribuído a Aluno inscrito em Curso dirigido pelo Diretor de Curso. \\
+
+    \hline
+    Aluno com Estatuto  &
+    tem preferência por &
+    Horário             &
+    Horário constituído por Turnos de Unidades Curriculares nas quais o Aluno se encontra
+    inscrito. \\
+
+    \hline
+    Horário     &
+    atribuído a &
+    Aluno       &
+    Horário constituído por Turnos de Unidades Curriculares nas quais o Aluno se encontra
+    inscrito. \\
+
+    \hline
+    \caption{Restrições nas relações do modelo de domínio.}
+\end{longtable}
+
+
 \section{Casos de Uso}
 
 \section{Anexos}
