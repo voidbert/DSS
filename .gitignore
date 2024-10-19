@@ -1,0 +1,9 @@
+# Bad code editors
+.vscode
+
+# Visual Paradigm
+*.vpp.bak_[0-9a-f][0-9a-f][0-9a-f][0-9a-f]
+*.vpp.lck
+
+# LaTeX compilation
+*-eps-converted-to.pdf
