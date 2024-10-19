@@ -212,8 +212,55 @@ onde, no modelo de domínio construído, se verificam estas situações.
     \caption{Restrições nas relações do modelo de domínio.}
 \end{longtable}
 
-
 \section{Casos de Uso}
+
+\subsection{Diagramas de Casos de Uso}
+
+A identificação de casos de uso foi feita com base nos cenários em anexo
+(\ref{use-cases} \nameref{use-cases}), resultando num modelo de casos de uso representado abaixo em
+vários diagramas. Optou-se por uma representação em vários diagramas, para estes serem pequenos e
+facilmente legíveis.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/Modelos/UseCasesGeral.eps}
+    \caption{Diagrama de casos de uso geral.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/Modelos/UseCasesConsultarHorario.eps}
+    \caption{Diagrama de casos de uso -- Consultar horário.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/Modelos/UseCasesImportarDados.eps}
+    \caption{Diagrama de casos de uso -- Importar dados.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/Modelos/UseCasesGerirHorarios.eps}
+    \caption{Diagrama de casos de uso -- Gerir horários.}
+\end{figure}
+
+Note-se que há vários possíveis casos de uso que não foram considerados, nomeadamente casos de
+uso relativos a operações CRUD de entidades como Alunos, Unidades Curriculares e Preferências de
+UCs. A título de exemplo, o diretor de curso pode ter necessidade de adicionar novos alunos (este
+\emph{use case} já se encontra definido), consultar os dados de um aluno existente, modificar os
+dados de um aluno (por exemplo, por se encontrarem incorretos), ou remover um aluno do seu curso
+(por exemplo, porque esse aluno pediu transferência de curso).
+
+No entanto, como foi utilizada uma abordagem de desenvolvimento iterativa e incremental, nesta
+primeira iteração apenas se pretende desenvolver um produto mínimo viável. Considerou-se que, nesta
+iteração, o diretor de curso apenas seria capaz de importar dados em \emph{bulk}, sendo incapaz de
+os consultar ou corrigir, mas capaz de adicionar novos alunos, caso surgissem novas inscrições após
+o início do semestre. Ademais, considerou-se que a modificação manual de horários estaria
+disponível, uma vez que esta é necessária para definir os horários dos alunos com estatuto e
+corrigir problemas nos horários gerados automaticamente. Assim, a maior parte das operações CRUD
+apenas serão consideradas em fases seguintes de desenvolvimento.
+
 
 \section{Anexos}
 
