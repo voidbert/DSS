@@ -76,4 +76,44 @@
 
 \section{Anexos}
 
+\includepdf[pages=1,pagecommand=\subsection{Enunciado do Trabalho}\thispagestyle{empty}]
+    {../Enunciado.pdf}
+\includepdf[pages=2-]{../Enunciado.pdf}
+
+\subsection{Cenários}
+\label{use-cases}
+
+\textbf{O Diretor de Curso}
+
+Após ter obtido a lista de alunos inscritos às UC do curso, através da Intranet, o diretor de curso
+acedeu à aplicação de gestão de turnos e, depois de se ter autenticado, importou a lista de alunos
+para o sistema. Como já anteriormente tinha importado a lista de UC e os seus horários, ficou em
+condições de iniciar a geração dos horários dos alunos. Antes de o fazer, no entanto, definiu as
+preferências que tinha recebidos dos docentes de algumas UC.
+
+Uma das UC pediu que os alunos repetentes fossem colocados em turnos distintos dos alunos de
+primeira inscrição para poder aplicar um método de ensino diferenciado. Uma outra enviou os grupos
+de trabalho e pediu que os elementos de cada grupo ficassem no mesmo turno PL. Ainda uma outra,
+pediu que os alunos fossem distribuídos pelos turnos de modo que ficassem agrupados por proximidade
+da média de curso (uma forma de procurar ter turmas mais homogéneas). Finalmente, várias UC
+definiram tamanhos máximos para os turnos TP/PL, diferentes do valor por omissão usado no curso.
+
+Após configurar as preferências das UC, o diretor de curso pediu ao sistema uma primeira alocação
+dos alunos aos turnos. O sistema realizou essa alocação, mas foi incapaz de colocar 45 alunos, por
+não conseguir respeitar todas as preferências sem evitar conflitos nos seus horários.
+
+O diretor de curso procedeu então à alocação manual desses alunos aos turnos disponíveis. Em alguns
+casos o sistema avisou-o de conflitos nos horários dos alunos (ou no cumprimento das preferências
+das UC). Na impossibilidade de evitar alguns desses conflitos, o diretor de curso optou por dar
+prioridade aos alunos de primeira inscrição, fazendo a distribuição manual de modo a evitar
+conflitos a esses alunos.
+
+Após terminar a distribuição, o diretor de curso publicou os horários dos alunos.
+
+\textbf{Os alunos}
+
+A Maria recebeu uma notificação por email de que o seu horário tinha sido publicado. Acedeu à sua
+versão da aplicação de gestão de turnos, consultou o horário e aproveitou para o exportar para a
+sua agenda.
+
 \end{document}
