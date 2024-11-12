@@ -34,6 +34,7 @@
 
 \newcommand\flow[1]{
     Fluxo normal &
+    \vspace{-0.9cm}
     \singlespacing
     \begin{enumerate}[wide=0pt]
         #1
@@ -52,34 +53,37 @@
 }
 
 \newenvironment{usecase}[5]{
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|>{\centering\arraybackslash\bf}m{3cm}|m{13cm}|}
-            \hline
-            Caso de uso & \textbf{#1} \\
+    \begin{longtable}{|>{\centering\arraybackslash\bf}m{3cm}|m{13cm}|}
+        \multicolumn{2}{c}{\ldots Continua \ldots} \\
+        \endfoot
+        \endlastfoot
 
-            \hline
-            Descrição & #2 \\
+        \hline
+        Caso de uso & \textbf{#1} \\
 
-            \hline
-            Cenários & #3 \\
+        \hline
+        Descrição & #2 \\
 
-            \hline
-            Pré-condição &
-            \begin{condition}
-                #4
-            \end{condition} \\
+        \hline
+        Cenários & #3 \\
 
-            \hline
-            Pós-condição &
-            \begin{condition}
-                #5
-            \end{condition} \\
+        \hline
+        Pré-condição &
+        \vspace{-0.8cm}
+        \begin{condition}
+            #4
+        \end{condition} \\
 
-            \hline
+        \hline
+        Pós-condição &
+        \vspace{-0.8cm}
+        \begin{condition}
+            #5
+        \end{condition} \\
+
+        \hline
 }{
-    \end{tabular}
-\end{table}
+\end{longtable}
 }
 
 \title{\textbf{Desenvolvimento de Sistemas de Software \\ \large Trabalho Prático -- Fase I}}
@@ -368,12 +372,13 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     {Alunos}
     {
         \item Ator tem sessão iniciada;
-        \item O horário do ator está disponível para consulta (já foi publicado).
+        \item O horário do ator está disponível para consulta.
     }
     {\item O horário atribuído ao ator é-lhe apresentado.}
 
     \flow{
         \item Ator solicita a consulta do seu horário.
+        \item Sistema consulta número de aluno do ator.
         \item Sistema apresenta o horário atribuído ao ator.
     }
 \end{usecase}
@@ -384,13 +389,14 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     {Alunos}
     {
         \item Ator tem sessão iniciada;
-        \item O horário do ator está disponível para consulta (já foi publicado).
+        \item O horário do ator está disponível para consulta.
     }
     {\item É gerado um ficheiro com o horário do ator.}
 
     \flow{
         \item Ator solicita a exportação do seu horário para um ficheiro.
         \item Ator indica onde esse ficheiro deve ser gravado.
+        \item Sistema consulta número de aluno do ator.
         \item Sistema exporta o horário do ator para o ficheiro pedido.
         \item Sistema informa ator de sucesso na operação de exportação.
     }
@@ -400,7 +406,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     {Reiniciar semestre}
     {Ator elimina todos os dados associados ao curso que dirige, para os importar novamente.}
     {Diretor de curso}
-    {\item Ator tem sessão iniciada;}
+    {\item Ator tem sessão iniciada.}
     {
         \item Não há dados de UCs, turnos, alunos, inscrições, preferências de UCs e horários
             associados ao curso dirigido pelo ator.
@@ -408,6 +414,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
 
     \flow{
         \item Ator solicita a eliminação de todos os dados relacionados com o curso que dirige.
+        \item Sistema consulta o nome do curso dirigido pelo ator.
         \item Sistema elimina todos os dados de UCs, turnos, alunos, inscrições, preferências de UCs
             e horários associados ao curso dirigido pelo ator.
         \item Sistema informa ator de sucesso na operação.
@@ -429,6 +436,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
 
     \flow{
         \item Ator solicita a importação de um ficheiro com Unidades Curriculares e os seus turnos.
+        \item Sistema consulta o nome do curso dirigido pelo ator.
         \item Sistema confirma que não existem Unidades Curriculares e turnos no curso dirigido pelo
             ator.
         \item Sistema pede o ficheiro com os dados.
@@ -440,20 +448,20 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item Sistema informa ator de sucesso na operação de importação.
     }
 
-    \otherflow{Fluxo alternativo 1}{[existem UCs e turnos do curso que o ator dirige] (passo 2)}{
-        \item[2.1.] Sistema pergunta se o ator deseja sobrescrever os dados existentes.
-        \item[2.2.] Ator responde que sim.
-        \item[2.3.] Regressa a 3.
+    \otherflow{Fluxo alternativo 1}{[existem UCs e turnos do curso que o ator dirige] (passo 3)}{
+        \item[3.1.] Sistema pergunta se o ator deseja sobrescrever os dados existentes.
+        \item[3.2.] Ator responde que sim.
+        \item[3.3.] Regressa a 4.
     }
 
-    \otherflow{Fluxo de exceção 2}{[ator responde que não] (passo 2.2)}{
-        \item[2.2.1.] Sistema aborta a importação de dados, informando o ator.
+    \otherflow{Fluxo de exceção 2}{[ator responde que não] (passo 3.2)}{
+        \item[3.2.1.] Sistema aborta a importação de dados, informando o ator.
     }
 
     \otherflow{Fluxo de exceção 3}
-        {[dados inválidos ou incompatíveis com dados já no sistema] (passo 5)}{
+        {[dados inválidos ou incompatíveis com dados já no sistema] (passo 6)}{
 
-        \item[5.1.] Sistema aborta a importação de dados, informando o ator.
+        \item[6.1.] Sistema aborta a importação de dados, informando o ator.
     }
 \end{usecase}
 
@@ -475,6 +483,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
 
     \flow{
         \item Ator solicita a importação de um ficheiro com alunos e as suas inscrições em UCs.
+        \item Sistema consulta o nome do curso dirigido pelo ator.
         \item Sistema confirma que não existem alunos e inscrições no curso dirigido pelo ator.
         \item Sistema pede o ficheiro com os dados.
         \item Ator fornece o ficheiro com os dados.
@@ -487,23 +496,25 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     }
 
     \otherflow{Fluxo alternativo 1}
-        {[existem alunos e inscrições em UCs do curso que o ator dirige] (passo 2)}{
+        {[existem alunos e inscrições para o curso que o ator dirige] (passo 3)}{
 
-        \item[2.1.] Sistema pergunta se o ator deseja sobrescrever os dados existentes.
-        \item[2.2.] Ator responde que sim.
-        \item[2.3.] Regressa a 3.
+        \item[3.1.] Sistema pergunta se o ator deseja sobrescrever os dados existentes.
+        \item[3.2.] Ator responde que sim.
+        \item[3.3.] Regressa a 4.
     }
 
-    \otherflow{Fluxo de exceção 2}{[ator responde que não] (passo 2.2)}{
-        \item[2.2.1.] Sistema aborta a importação de dados, informando o ator.
+    \otherflow{Fluxo de exceção 2}{[ator responde que não] (passo 3.2)}{
+        \item[3.2.1.] Sistema aborta a importação de dados, informando o ator.
     }
 
     \otherflow{Fluxo de exceção 3}
-        {[dados inválidos ou incompatíveis com dados já no sistema] (passo 5)}{
+        {[dados inválidos ou incompatíveis com dados já no sistema] (passo 6)}{
 
-        \item[5.1.] Sistema aborta a importação de dados, informando o ator.
+        \item[6.1.] Sistema aborta a importação de dados, informando o ator.
     }
 \end{usecase}
+
+\pagebreak
 
 \begin{usecase}
     {Definir preferências de uma UC}
@@ -520,6 +531,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
 
     \flow{
         \item Ator indica que deseja definir as preferências de uma UC.
+        \item Sistema consulta o nome do curso dirigido pelo ator.
         \item Sistema apresenta a lista de Unidades Curriculares no curso dirigido pelo ator.
         \item Sistema pede ao ator que selecione uma Unidade Curricular.
         \item Ator seleciona uma Unidade Curricular.
@@ -532,20 +544,20 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item Sistema substitui as preferências da UC pelas fornecidas.
     }
 
-    \otherflow{Fluxo alternativo 1}{[existem preferências para a UC selecionada] (passo 5)}{
-        \item[5.1.] Sistema pergunta se o ator deseja sobrescrever os dados existentes.
-        \item[5.2.] Ator responde que sim.
-        \item[5.3.] Regressa a 6.
+    \otherflow{Fluxo alternativo 1}{[existem preferências para a UC selecionada] (passo 6)}{
+        \item[6.1.] Sistema pergunta se o ator deseja sobrescrever os dados existentes.
+        \item[6.2.] Ator responde que sim.
+        \item[6.3.] Regressa a 7.
     }
 
-    \otherflow{Fluxo de exceção 2}{[ator responde que não] (passo 5.2)}{
-        \item[5.2.1.] Sistema aborta a importação de preferências, informando o ator.
+    \otherflow{Fluxo de exceção 2}{[ator responde que não] (passo 6.2)}{
+        \item[6.2.1.] Sistema aborta a importação de preferências, informando o ator.
     }
 
     \otherflow{Fluxo de exceção 3}
-        {[dados inválidos ou incompatíveis com dados já no sistema] (passo 8)}{
+        {[dados inválidos ou incompatíveis com dados já no sistema] (passo 9)}{
 
-        \item[8.1.] Sistema aborta a importação de preferências, informando o ator.
+        \item[9.1.] Sistema aborta a importação de preferências, informando o ator.
     }
 \end{usecase}
 
@@ -564,17 +576,18 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     }
 
     \flow{
-        \item Ator solicita a adição um novo aluno.
+        \item Ator solicita a adição de um novo aluno.
         \item Sistema pede informação sobre o aluno: número de aluno, nome, endereço eletrónico,
             média de curso (se aplicável), se este tem estatuto, e a que este se deve.
         \item Ator insere a informação do aluno pedida.
-        \item Sistema verifica que não tem registo desse aluno.
-        \item Sistema apresenta lista de Unidades Curriculares do curso que o ator dirige.
+        \item Sistema verifica que não tem registo de um aluno com o mesmo número.
+        \item Sistema consulta o nome do curso dirigido pelo ator.
+        \item Sistema obtém e apresenta lista de Unidades Curriculares do curso que o ator dirige.
         \item Sistema pede lista de Unidades Curriculares nas quais o aluno se encontra inscrito.
         \item Ator indica lista de Unidades Curriculares.
-        \item Sistema gera uma palavra-passe e um horário vazio para o aluno.
-        \item Sistema regista aluno como inscrito no curso dirigido pelo ator, e as UCs em que se
-            encontra inscrito.
+        \item Sistema regista aluno com uma palavra-passe automaticamente gerada e um horário
+            vazio.
+        \item Sistema regista as UCs em que o aluno se encontra inscrito.
     }
 
     \otherflow{Fluxo de exceção 1}
@@ -609,21 +622,22 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
 
     \flow{
         \item Ator solicita a geração automática de horários.
+        \item Sistema consulta o nome do curso dirigido pelo ator.
         \item Sistema gera horários, inteligentemente atribuindo turnos aos alunos do curso
             dirigido pelo ator, de modo a respeitar a pós-condição.
+        \item Sistema procura violações da pós-condição nos horários gerados.
         \item Sistema armazena os horários gerados, ainda como não disponíveis para consulta pelos
             alunos.
         \item Sistema informa ator de sucesso na geração de horários.
     }
 
     \otherflow{Fluxo de exceção 1}
-        {[não foi encontrada solução, em tempo útil, que respeite a pós-condição] (passo 2)}{
+        {[não foi encontrada solução, em tempo útil, que respeite a pós-condição] (passo 3)}{
 
-        \item[2.1.] Sistema armazena os horários gerados (apesar de imperfeitos), ainda como não
+        \item[3.1.] Sistema armazena os horários gerados (apesar de imperfeitos), ainda como não
             disponíveis para consulta pelos alunos.
-        \item[2.2.] Sistema procura violações da pós-condição nos horários gerados.
-        \item[2.3.] Sistema informa ator de insucesso na geração de horários, e apresenta as
-            violações encotradas ao ator.
+        \item[3.2.] Sistema informa ator de insucesso na geração de horários, e apresenta as
+            violações encontradas ao ator.
     }
 \end{usecase}
 
@@ -637,8 +651,8 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item Existem alunos e inscrições no curso dirigido pelo ator.
     }
     {
-        \item Horário do aluno passa a ser constituído pelos turnos indicados pelo ator.
-        \item Os horário modificado é constituído pelos turnos que o aluno precisa de frequentar:
+        \item Horário do aluno passa a ser constituído pelos turnos indicados pelo ator;
+        \item O horário modificado é constituído pelos turnos que o aluno precisa de frequentar;
         \item O horário modificado não contém sobreposições de turnos;
         \item O horário modificado não causa desrespeito pelos limites de inscrições nos turnos;
         \item O horário modificado não causa desrespeito pelas preferências de distribuição dos
@@ -649,7 +663,9 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item Ator solicita a modificação do horário de um aluno.
         \item Sistema pede o número do aluno.
         \item Ator providencia número do aluno.
-        \item Sistema procura horário de aluno com o número providenciado.
+        \item Sistema consulta o nome do curso dirigido pelo ator.
+        \item Sistema verifica que o aluno está inscrito no curso dirigido pelo ator.
+        \item Sistema obtém horário do aluno.
         \item Sistema apresenta lista de turnos nos quais o aluno se encontra inscrito.
         \item Ator modifica lista apresentada pelo sistema.
         \item Sistema verifica que o horário do aluno respeita a pós-condição.
@@ -657,13 +673,13 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item Sistema informa ator de sucesso na operação.
     }
 
-    \otherflow{Fluxo de exceção 1}{[aluno não encontrado no curso dirigido pelo ator] (passo 4)}{
-        \item[4.1.] Sistema informa que o aluno não foi encontrado e cancela a operação.
+    \otherflow{Fluxo de exceção 1}{[aluno não encontrado no curso dirigido pelo ator] (passo 5)}{
+        \item[5.1.] Sistema informa que o aluno não foi encontrado e cancela a operação.
     }
 
-    \otherflow{Fluxo de exceção 2}{[horário não respeita a pós-condição] (passo 7)}{
-        \item[7.1.] Sistema armazena horário modificado (apesar de imperfeito).
-        \item[7.2.] Sistema informa o ator da pós-condição violada, mas que o horário foi
+    \otherflow{Fluxo de exceção 2}{[horário não respeita a pós-condição] (passo 9)}{
+        \item[9.1.] Sistema armazena horário modificado (apesar de imperfeito).
+        \item[9.2.] Sistema informa o ator da pós-condição violada, mas que o horário foi
             armazenado.
     }
 \end{usecase}
@@ -672,31 +688,27 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     {Publicar horários}
     {Ator torna visíveis para os alunos os horários que construiu.}
     {Diretor de curso}
-    {
-        \item Ator tem sessão iniciada;
-        \item Existem alunos e inscrições no curso dirigido pelo ator.
-    }
+    {\item Ator tem sessão iniciada e existem alunos e inscrições no curso dirigido pelo ator.}
     {
         \item Os horários construídos pelo ator são registados como disponíveis para consulta pelos
-            alunos;
-        \item Os alunos inscritos no curso dirigido pelo ator são informados por correio eletrónico
-            dos novos horários.
+            alunos e os alunos inscritos no curso dirigido pelo ator são informados por correio
+            eletrónico dos novos horários.
     }
 
     \flow{
         \item Ator solicita a publicação dos horários que construiu.
+        \item Sistema consulta o nome do curso dirigido pelo ator.
         \item Sistema regista que os horários dos alunos inscritos no curso dirigido pelo ator podem
             ser consultados pelos mesmos.
         \item Sistema envia mensagens de correio eletrónico aos alunos cujos horários foram
             publicados, informando-os de tal, e contendo as suas palavras-passe.
     }
 
-    \otherflow{Fluxo de exceção 1}{[pelo menos um e-mail não conseguiu ser enviado] (passo 3)}{
-        \item[3.1.] Sistema informa quais as mensagens de correio eletrónico que não puderam ser
+    \otherflow{Fluxo de exceção 1}{[pelo menos um e-mail não conseguiu ser enviado] (passo 4)}{
+        \item[4.1.] Sistema informa quais as mensagens de correio eletrónico que não puderam ser
             enviadas.
     }
 \end{usecase}
-
 
 \section{Anexos}
 
