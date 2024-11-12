@@ -34,6 +34,7 @@
 
 \newcommand\flow[1]{
     Fluxo normal &
+    \vspace{-0.9cm}
     \singlespacing
     \begin{enumerate}[wide=0pt]
         #1
@@ -52,34 +53,37 @@
 }
 
 \newenvironment{usecase}[5]{
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|>{\centering\arraybackslash\bf}m{3cm}|m{13cm}|}
-            \hline
-            Caso de uso & \textbf{#1} \\
+    \begin{longtable}{|>{\centering\arraybackslash\bf}m{3cm}|m{13cm}|}
+        \multicolumn{2}{c}{\ldots Continua \ldots} \\
+        \endfoot
+        \endlastfoot
 
-            \hline
-            Descrição & #2 \\
+        \hline
+        Caso de uso & \textbf{#1} \\
 
-            \hline
-            Cenários & #3 \\
+        \hline
+        Descrição & #2 \\
 
-            \hline
-            Pré-condição &
-            \begin{condition}
-                #4
-            \end{condition} \\
+        \hline
+        Cenários & #3 \\
 
-            \hline
-            Pós-condição &
-            \begin{condition}
-                #5
-            \end{condition} \\
+        \hline
+        Pré-condição &
+        \vspace{-0.8cm}
+        \begin{condition}
+            #4
+        \end{condition} \\
 
-            \hline
+        \hline
+        Pós-condição &
+        \vspace{-0.8cm}
+        \begin{condition}
+            #5
+        \end{condition} \\
+
+        \hline
 }{
-    \end{tabular}
-\end{table}
+\end{longtable}
 }
 
 \title{\textbf{Desenvolvimento de Sistemas de Software \\ \large Trabalho Prático -- Fase I}}
@@ -366,7 +370,10 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     {Visualizar horário}
     {Ator consulta os turnos nos quais se encontra inscrito.}
     {Alunos}
-    {\item Ator tem sessão iniciada e o seu horário está disponível para consulta.}
+    {
+        \item Ator tem sessão iniciada;
+        \item O horário do ator está disponível para consulta.
+    }
     {\item O horário atribuído ao ator é-lhe apresentado.}
 
     \flow{
@@ -380,7 +387,10 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     {Exportar horário}
     {Ator gera um ficheiro com os turnos do seu horário.}
     {Alunos}
-    {\item Ator tem sessão iniciada e o seu horário está disponível para consulta.}
+    {
+        \item Ator tem sessão iniciada;
+        \item O horário do ator está disponível para consulta.
+    }
     {\item É gerado um ficheiro com o horário do ator.}
 
     \flow{
@@ -396,7 +406,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     {Reiniciar semestre}
     {Ator elimina todos os dados associados ao curso que dirige, para os importar novamente.}
     {Diretor de curso}
-    {\item Ator tem sessão iniciada;}
+    {\item Ator tem sessão iniciada.}
     {
         \item Não há dados de UCs, turnos, alunos, inscrições, preferências de UCs e horários
             associados ao curso dirigido pelo ator.
@@ -412,7 +422,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
 \end{usecase}
 
 \begin{usecase}
-    {Importar lista de Unidades Curriculares e turnos}
+    {Importar Unidades Curriculares e turnos}
     {
         Ator carrega para o sistema um ficheiro com a lista de Unidades Curriculares e turnos do
         curso que dirige.
@@ -456,13 +466,16 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
 \end{usecase}
 
 \begin{usecase}
-    {Importar lista de alunos e inscrições}
+    {Importar alunos e inscrições}
     {
         Ator carrega para o sistema um ficheiro com a lista de alunos do curso que dirige, e em que
         Unidades Curriculares estes se encontram inscritos.
     }
     {Diretor de curso}
-    {\item Ator tem sessão iniciada e existem UCs e turnos no curso dirigido pelo ator.}
+    {
+        \item Ator tem sessão iniciada;
+        \item Existem UCs e turnos do curso dirigido pelo ator.
+    }
     {
         \item Dados que o sistema tem sobre alunos e inscrições do curso dirigido pelo ator são os
             do ficheiro fornecido.
@@ -491,7 +504,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     }
 
     \otherflow{Fluxo de exceção 2}{[ator responde que não] (passo 3.2)}{
-        \item[3.2.1.] Sistema informa que a operação de importação foi cancelada.
+        \item[3.2.1.] Sistema aborta a importação de dados, informando o ator.
     }
 
     \otherflow{Fluxo de exceção 3}
@@ -500,6 +513,8 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item[6.1.] Sistema aborta a importação de dados, informando o ator.
     }
 \end{usecase}
+
+\pagebreak
 
 \begin{usecase}
     {Definir preferências de uma UC}
@@ -622,7 +637,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item[3.1.] Sistema armazena os horários gerados (apesar de imperfeitos), ainda como não
             disponíveis para consulta pelos alunos.
         \item[3.2.] Sistema informa ator de insucesso na geração de horários, e apresenta as
-            violações encotradas ao ator.
+            violações encontradas ao ator.
     }
 \end{usecase}
 
@@ -694,7 +709,6 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
             enviadas.
     }
 \end{usecase}
-
 
 \section{Anexos}
 
