@@ -16,7 +16,31 @@
 
 package dss.HorariosLN.SubSistemaUtilizadores;
 
-@FunctionalInterface
-interface Mailer {
-    public boolean send(String destination, String subject, String message);
+class Mailer {
+    public Mailer() {}
+
+    public boolean enviar(String destino, String assunto, String mensagem) {
+        return true; // Mailer de stub (para não enviarmos mails a ninguém sem querer)
+    }
+
+    public boolean enviarCredenciais(Utilizador utilizador) {
+        String email    = utilizador.getEmail();
+        String password = utilizador.getPassword();
+        String mensagem = "A sua password é " + password;
+
+        boolean sucesso = this.enviar(email, "Password para horários", mensagem);
+        return sucesso;
+    }
+
+    public Object clone() {
+        return new Mailer();
+    }
+
+    public boolean equals(Object o) {
+        return o != null && this.getClass() == o.getClass();
+    }
+
+    public String toString() {
+        return "Mailer()";
+    }
 }

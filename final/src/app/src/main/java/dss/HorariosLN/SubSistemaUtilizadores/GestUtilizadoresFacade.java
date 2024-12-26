@@ -29,9 +29,7 @@ public class GestUtilizadoresFacade implements IGestUtilizadores {
     public GestUtilizadoresFacade() {
         this.sessaoIniciada = null;
         this.utilizadores   = UtilizadorDAO.getInstance();
-
-        // Mailer de stub (para não enviarmos mails a ninguém sem querer)
-        this.mailer = (email, subject, message) -> true;
+        this.mailer         = new Mailer();
     }
 
     public void iniciarSessao(String email, String password) throws UtilizadoresException {
@@ -59,28 +57,20 @@ public class GestUtilizadoresFacade implements IGestUtilizadores {
     public String obterNumeroAlunoAutenticado() throws UtilizadoresException {
         if (sessaoIniciada == null)
             throw new UtilizadoresException("Não há sessão iniciada");
-
-        String res = null;
-        if (this.sessaoIniciada instanceof UtilizadorAluno) {
-            UtilizadorAluno utilizador = (UtilizadorAluno) this.sessaoIniciada;
-            res                        = utilizador.getNumero();
-        } else {
+        if (!(sessaoIniciada instanceof UtilizadorAluno))
             throw new UtilizadoresException("Sessão iniciada não é de aluno");
-        }
+
+        String res = ((UtilizadorAluno) this.sessaoIniciada).getNumero();
         return res;
     }
 
     public String obterIdCursoDiretorAutenticado() throws UtilizadoresException {
         if (sessaoIniciada == null)
             throw new UtilizadoresException("Não há sessão iniciada");
+        if (!(sessaoIniciada instanceof UtilizadorDiretorDeCurso))
+            throw new UtilizadoresException("Sessão iniciada não é de diretor de curso");
 
-        String res = null;
-        if (this.sessaoIniciada instanceof UtilizadorDiretorDeCurso) {
-            UtilizadorDiretorDeCurso utilizador = (UtilizadorDiretorDeCurso) this.sessaoIniciada;
-            res                                 = utilizador.getIdCurso();
-        } else {
-            throw new UtilizadoresException("Sessão iniciada não é de aluno");
-        }
+        String res = ((UtilizadorDiretorDeCurso) this.sessaoIniciada).getIdCurso();
         return res;
     }
 
@@ -105,13 +95,10 @@ public class GestUtilizadoresFacade implements IGestUtilizadores {
             String     email      = UtilizadorAluno.gerarEmail(numero);
             Utilizador utilizador = this.utilizadores.get(email);
 
-            if (utilizador == null || !(utilizador instanceof UtilizadorAluno)) {
+            if (utilizador == null) {
                 falhas.add(email);
             } else {
-                String password = ((UtilizadorAluno) utilizador).getPassword();
-                String mensagem = "A tua password é " + password;
-
-                boolean sucesso = this.mailer.send(email, "Password para horários", mensagem);
+                boolean sucesso = this.mailer.enviarCredenciais(utilizador);
                 if (!sucesso)
                     falhas.add(email);
             }
