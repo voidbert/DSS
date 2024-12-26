@@ -1,0 +1,244 @@
+---
+
+# Copyright 2024 Carolina Pereira, Diogo Costa, Humberto Gomes, Sara Lopes
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# GENERAL SETTINGS
+
+BasedOnStyle: LLVM
+Language:     Java
+Standard:     Latest
+
+# ALIGNMENT
+
+AlignAfterOpenBracket:  Align
+AlignArrayOfStructures: Left
+AlignEscapedNewlines:   Right
+AlignOperands:          Align
+AlignTrailingComments:
+  Kind:           Always
+  OverEmptyLines: 1
+QualifierAlignment:     Leave
+
+AlignConsecutiveAssignments:
+  Enabled:          true
+  AcrossEmptyLines: false
+  AcrossComments:   true
+  AlignCompound:    true
+  PadOperators:     true
+AlignConsecutiveBitFields:
+  Enabled:          true
+  AcrossEmptyLines: false
+  AcrossComments:   true
+AlignConsecutiveDeclarations:
+  Enabled:               true
+  AcrossEmptyLines:      false
+  AcrossComments:        true
+AlignConsecutiveMacros:
+  Enabled:          true
+  AcrossEmptyLines: false
+  AcrossComments:   true
+
+# ARGUMENTS & PARAMETERS
+
+AllowAllArgumentsOnNextLine:               false
+AllowAllParametersOfDeclarationOnNextLine: false
+BinPackArguments:                          false
+BinPackParameters:                         false
+
+# COMMENTS
+
+ReflowComments:               false
+SpacesBeforeTrailingComments: 1
+SpacesInLineCommentPrefix:
+  Minimum:  1
+  Maximum: -1
+
+# CURLY BRACES
+
+BraceWrapping:
+  AfterCaseLabel:        false
+  AfterClass:            false
+  AfterControlStatement: Never
+  AfterEnum:             false
+  AfterFunction:         false
+  AfterNamespace:        false
+  AfterStruct:           false
+  AfterUnion:            false
+  AfterExternBlock:      false
+  BeforeCatch:           false
+  BeforeElse:            false
+  BeforeLambdaBody:      false
+  BeforeWhile:           false
+  IndentBraces:          false
+  SplitEmptyFunction:    false
+  SplitEmptyRecord:      false
+  SplitEmptyNamespace:   false
+
+BreakBeforeBraces: Attach
+InsertBraces:      false
+RemoveBracesLLVM:  false
+
+# FORMATTER PENALTIES
+
+PenaltyBreakAssignment:               2
+PenaltyBreakBeforeFirstCallParameter: 19
+PenaltyBreakComment:                  300
+PenaltyBreakFirstLessLess:            120
+PenaltyBreakOpenParenthesis:          0
+PenaltyBreakString:                   1000
+PenaltyBreakTemplateDeclaration:      10
+PenaltyExcessCharacter:               1000000
+PenaltyIndentedWhitespace:            0
+PenaltyReturnTypeOnItsOwnLine:        60
+
+# HEADER FILES
+
+SortIncludes:          CaseInsensitive
+SortUsingDeclarations: Lexicographic
+SortJavaStaticImport:  After
+IncludeBlocks:         Regroup
+IncludeCategories:
+  - Regex:           '^<'
+    Priority:        0
+    SortPriority:    0
+    CaseSensitive:   false
+  - Regex:           '^"'
+    Priority:        1
+    SortPriority:    1
+    CaseSensitive:   false
+
+IncludeIsMainRegex:       ''
+IncludeIsMainSourceRegex: ''
+
+JavaImportGroups: [java, org.example]
+
+# INDENTATION
+
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth:           4
+IndentWidth:                       4
+PPIndentWidth:                     4
+TabWidth:                          4
+UseTab:                            Never
+
+IndentAccessModifiers:         false
+IndentCaseBlocks:              false
+IndentCaseLabels:              true
+IndentExternBlock:             Indent
+IndentGotoLabels:              true
+IndentPPDirectives:            BeforeHash
+IndentRequiresClause:          true
+IndentWrappedFunctionNames:    true
+LambdaBodyIndentation:         Signature
+NamespaceIndentation:          None
+RequiresExpressionIndentation: OuterScope
+
+# LINE BREAKING
+
+AlwaysBreakAfterReturnType:        None
+AlwaysBreakBeforeMultilineStrings: false
+BreakAfterAttributes:              Always
+BreakAfterJavaFieldAnnotations:    true
+BreakBeforeBinaryOperators:        None
+BreakBeforeConceptDeclarations:    Always
+BreakBeforeInlineASMColon:         OnlyMultiline
+BreakBeforeTernaryOperators:       true
+BreakConstructorInitializers:      AfterColon
+BreakInheritanceList:              AfterColon
+BreakStringLiterals:               false
+EmptyLineAfterAccessModifier:      Never
+EmptyLineBeforeAccessModifier:     Always
+PackConstructorInitializers:       NextLine
+RequiresClausePosition:            OwnLine
+SeparateDefinitionBlocks:          Always
+
+# LINE PROPERTIES
+
+ColumnLimit: 100
+LineEnding:  LF
+
+KeepEmptyLinesAtTheStartOfBlocks: true
+KeepEmptyLinesAtEOF:              false
+MaxEmptyLinesToKeep:              1
+InsertNewlineAtEOF:               true
+
+# MACROS
+
+AttributeMacros:              []
+ForEachMacros:                []
+IfMacros:                     []
+NamespaceMacros:              []
+StatementAttributeLikeMacros: []
+StatementMacros:              []
+TypenameMacros:               []
+WhitespaceSensitiveMacros:    []
+
+# MISCELANEOUS
+
+CompactNamespaces:    false
+DisableFormat:        false
+FixNamespaceComments: false
+InsertTrailingCommas: None
+IntegerLiteralSeparator:
+  Binary: 4
+  BinaryMinDigits: 9
+  Decimal: 3
+  DecimalMinDigits: 7
+  Hex: -1
+
+RemoveParentheses:    Leave
+RemoveSemicolon:      true
+
+# SINGLE-LINE BLOCKS AND STATEMENTS
+
+AllowShortBlocksOnASingleLine:       Empty
+AllowShortCaseLabelsOnASingleLine:   false
+AllowShortEnumsOnASingleLine:        false
+AllowShortFunctionsOnASingleLine:    Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine:      All
+AllowShortLoopsOnASingleLine:        false
+
+# SPACING
+
+DerivePointerAlignment:       false
+PointerAlignment:             Right
+ReferenceAlignment:           Pointer
+SpaceAroundPointerQualifiers: Default
+
+BitFieldColonSpacing:              Both
+Cpp11BracedListStyle:              false
+SpaceAfterCStyleCast:              true
+SpaceAfterLogicalNot:              false
+SpaceAfterTemplateKeyword:         false
+SpaceBeforeAssignmentOperators:    true
+SpaceBeforeCaseColon:              false
+SpaceBeforeCpp11BracedList:        true
+SpaceBeforeCtorInitializerColon:   true
+SpaceBeforeInheritanceColon:       true
+SpaceBeforeParens:                 ControlStatements
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeSquareBrackets:         false
+SpaceInEmptyBlock:                 false
+
+SpacesInAngles:            Never
+SpacesInContainerLiterals: true
+SpacesInSquareBrackets:    false
+SpacesInParensOptions:
+  InConditionalStatements: false
+  InCStyleCasts:           false
+  InEmptyParentheses:      false
+  Other:                   false
+...
