@@ -24,6 +24,8 @@ import dss.HorariosUI.View;
 public class Program {
     public static void main(String[] args) throws Exception {
         IHorariosLN horarios = new HorariosLNFacade();
+
+
         Controller controller = new Controller(horarios);
         View view = new View(controller);
 
