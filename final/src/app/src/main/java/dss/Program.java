@@ -16,18 +16,17 @@
 
 package dss;
 
-import java.util.Arrays;
-import java.util.List;
-
 import dss.HorariosLN.HorariosLNFacade;
 import dss.HorariosLN.IHorariosLN;
+import dss.HorariosUI.Controller;
+import dss.HorariosUI.View;
 
 public class Program {
     public static void main(String[] args) throws Exception {
         IHorariosLN horarios = new HorariosLNFacade();
-        horarios.importarUCs("/home/voidbert/DSS/data/ucs.json", "LEI");
-        horarios.importarAlunos("/home/voidbert/DSS/data/alunos.json", "LEI");
-        horarios.gerarHorarios("LEI");
-        System.out.println(horarios.procurarSobreposicoes("LEI"));
+        Controller controller = new Controller(horarios);
+        View view = new View(controller);
+
+        view.run();
     }
 }
