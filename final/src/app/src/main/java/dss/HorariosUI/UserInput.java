@@ -1,7 +1,5 @@
 package dss.HorariosUI;
 
-import java.time.DateTimeException;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -32,6 +30,17 @@ public class UserInput {
                 System.err.println(error);
         } while (ret == null);
         return convert.apply(ret);
+    }
+
+    public int readInt(String prompt, String error, Predicate<Integer> validate) {
+        return (Integer) this.read(prompt, error, s -> {
+            try {
+                int i = Integer.parseInt(s);
+                return validate.test(i);
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }, s -> Integer.parseInt(s));
     }
 
     public String readString(String prompt) {
