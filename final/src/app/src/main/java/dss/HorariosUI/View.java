@@ -1,5 +1,7 @@
 package dss.HorariosUI;
 
+import java.util.NoSuchElementException;
+
 import dss.HorariosLN.LNException;
 
 public class View {
@@ -23,6 +25,14 @@ public class View {
     }
 
     public void run() {
-        iniciarSessao();
+        boolean[]   exitRequest = { false }; // Array wrapper to allow for lambda modification
+        MenuEntry[] entries = {new MenuEntry("Iniciar Sessão", i -> {this.iniciarSessao();}),
+                            new MenuEntry("Sair", i -> { exitRequest[0] = true;})};
+
+        try {
+            do {
+                new Menu(entries).run();
+            } while (!exitRequest[0]);
+        } catch (NoSuchElementException e) {} // System.in closed
     }
 }
