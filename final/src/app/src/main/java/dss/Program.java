@@ -16,26 +16,17 @@
 
 package dss;
 
-import java.util.Arrays;
-import java.util.List;
-
 import dss.HorariosLN.HorariosLNFacade;
 import dss.HorariosLN.IHorariosLN;
+import dss.HorariosUI.Controller;
+import dss.HorariosUI.View;
 
 public class Program {
     public static void main(String[] args) throws Exception {
         IHorariosLN horarios = new HorariosLNFacade();
-        horarios.iniciarSessao("dc@dc.pt", "atuapass");
-        System.out.println(horarios.obterIdCursoDiretorAutenticado());
-        horarios.terminarSessao();
-        horarios.iniciarSessao("a104348@alunos.uminho.pt", "passdealuno");
-        System.out.println(horarios.obterNumeroAlunoAutenticado());
+        Controller controller = new Controller(horarios);
+        View view = new View(controller);
 
-        List<String> alunos = Arrays.asList("a100", "a200", "a600");
-        horarios.gerarCredenciaisDeAlunos(alunos);
-
-        horarios.eliminarCredenciaisDeAlunos(Arrays.asList("a500"));
-
-        System.out.println(horarios.notificarAlunos(Arrays.asList("a100")));
+        view.run();
     }
 }
