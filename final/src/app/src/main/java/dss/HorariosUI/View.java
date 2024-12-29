@@ -16,6 +16,7 @@ public class View {
 
         try {
             this.controller.iniciarSessao(email, password);
+            System.out.println("Sessão iniciada com sucesso!");
         } catch (LNException e) {
             System.err.println(e.getMessage());
         }
