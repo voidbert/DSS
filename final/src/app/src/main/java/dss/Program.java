@@ -18,17 +18,19 @@ package dss;
 
 import dss.HorariosLN.HorariosLNFacade;
 import dss.HorariosLN.IHorariosLN;
-import dss.HorariosUI.Controller;
+import dss.HorariosUI.IniciarSessaoController;
+import dss.HorariosUI.IniciarSessaoView;
 import dss.HorariosUI.View;
 
 public class Program {
     public static void main(String[] args) throws Exception {
         IHorariosLN horarios = new HorariosLNFacade();
 
+        IniciarSessaoController controlador = new IniciarSessaoController(horarios);
+        View nextView = new IniciarSessaoView(controlador);
 
-        Controller controller = new Controller(horarios);
-        View view = new View(controller);
-
-        view.run();
+        do {
+            nextView = nextView.run();
+        } while (nextView != null);
     }
 }
