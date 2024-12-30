@@ -1,0 +1,1790 @@
+{
+  "Fundamentos de Comunicação de Dados": {
+    "nome": "Fundamentos de Comunicação de Dados",
+    "praticos": {
+      "TP2": {
+        "nome": "TP2",
+        "dia": 4,
+        "comeco": "13:00",
+        "fim": "15:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP1": {
+        "nome": "TP1",
+        "dia": 1,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP3": {
+        "nome": "TP3",
+        "dia": 1,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP4": {
+        "nome": "TP4",
+        "dia": 4,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP5": {
+        "nome": "TP5",
+        "dia": 5,
+        "comeco": "16:30",
+        "fim": "18:30",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 1,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S300"
+      },
+      "T2": {
+        "nome": "T2",
+        "dia": 3,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Computação Paralela": {
+    "nome": "Computação Paralela",
+    "praticos": {
+      "PL8": {
+        "nome": "PL8",
+        "dia": 3,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL9": {
+        "nome": "PL9",
+        "dia": 1,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 2,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 2,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL5": {
+        "nome": "PL5",
+        "dia": 4,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 2,
+        "comeco": "13:00",
+        "fim": "15:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL7": {
+        "nome": "PL7",
+        "dia": 2,
+        "comeco": "13:00",
+        "fim": "15:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 2,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL6": {
+        "nome": "PL6",
+        "dia": 2,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 2,
+        "comeco": "15:00",
+        "fim": "16:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Comunicações por Computador": {
+    "nome": "Comunicações por Computador",
+    "praticos": {
+      "PL5": {
+        "nome": "PL5",
+        "dia": 2,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 4,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 2,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL7": {
+        "nome": "PL7",
+        "dia": 2,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 4,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL6": {
+        "nome": "PL6",
+        "dia": 5,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T2": {
+        "nome": "T2",
+        "dia": 5,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S300"
+      },
+      "T1": {
+        "nome": "T1",
+        "dia": 4,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Métricas em Machine Learning": {
+    "nome": "Métricas em Machine Learning",
+    "praticos": {
+      "PL1": {
+        "nome": "PL1",
+        "dia": 4,
+        "comeco": "09:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {}
+  },
+  "Tópicos de Matemática Discreta": {
+    "nome": "Tópicos de Matemática Discreta",
+    "praticos": {
+      "TP5": {
+        "nome": "TP5",
+        "dia": 4,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP1": {
+        "nome": "TP1",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP2": {
+        "nome": "TP2",
+        "dia": 3,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP4": {
+        "nome": "TP4",
+        "dia": 4,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP3": {
+        "nome": "TP3",
+        "dia": 4,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {
+      "T2": {
+        "nome": "T2",
+        "dia": 1,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S300"
+      },
+      "T1": {
+        "nome": "T1",
+        "dia": 1,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Democracia Plena, Responsabilidade e Estado de Direito": {
+    "nome": "Democracia Plena, Responsabilidade e Estado de Direito",
+    "praticos": {},
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Tópicos de Astronomia e Cosmologia": {
+    "nome": "Tópicos de Astronomia e Cosmologia",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {}
+  },
+  "Desporto e Saúde": {
+    "nome": "Desporto e Saúde",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {}
+  },
+  "Laboratórios de Informática III": {
+    "nome": "Laboratórios de Informática III",
+    "praticos": {
+      "PL3": {
+        "nome": "PL3",
+        "dia": 3,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL5": {
+        "nome": "PL5",
+        "dia": 3,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL7": {
+        "nome": "PL7",
+        "dia": 3,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 3,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 4,
+        "comeco": "15:30",
+        "fim": "17:30",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 4,
+        "comeco": "15:30",
+        "fim": "17:30",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL9": {
+        "nome": "PL9",
+        "dia": 2,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL11": {
+        "nome": "PL11",
+        "dia": 2,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL10": {
+        "nome": "PL10",
+        "dia": 4,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL12": {
+        "nome": "PL12",
+        "dia": 4,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL8": {
+        "nome": "PL8",
+        "dia": 5,
+        "comeco": "17:00",
+        "fim": "19:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL6": {
+        "nome": "PL6",
+        "dia": 5,
+        "comeco": "17:00",
+        "fim": "19:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {}
+  },
+  "Sustentabilidade Ambiental, Social e Económica": {
+    "nome": "Sustentabilidade Ambiental, Social e Económica",
+    "praticos": {},
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Substâncias que Mudaram o Mundo": {
+    "nome": "Substâncias que Mudaram o Mundo",
+    "praticos": {},
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Sistemas Distribuídos": {
+    "nome": "Sistemas Distribuídos",
+    "praticos": {
+      "PL7": {
+        "nome": "PL7",
+        "dia": 2,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL5": {
+        "nome": "PL5",
+        "dia": 4,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 4,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL6": {
+        "nome": "PL6",
+        "dia": 2,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 4,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 5,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 5,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 2,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Inteligência Artificial": {
+    "nome": "Inteligência Artificial",
+    "praticos": {
+      "PL6": {
+        "nome": "PL6",
+        "dia": 1,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 1,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 1,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 2,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 1,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL5": {
+        "nome": "PL5",
+        "dia": 1,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 1,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Programação Funcional": {
+    "nome": "Programação Funcional",
+    "praticos": {
+      "TP3": {
+        "nome": "TP3",
+        "dia": 1,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP1": {
+        "nome": "TP1",
+        "dia": 5,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP4": {
+        "nome": "TP4",
+        "dia": 5,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP5": {
+        "nome": "TP5",
+        "dia": 4,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP6": {
+        "nome": "TP6",
+        "dia": 5,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP2": {
+        "nome": "TP2",
+        "dia": 5,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP7": {
+        "nome": "TP7",
+        "dia": 4,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 3,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S300"
+      },
+      "T2": {
+        "nome": "T2",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Temas de Direito da Igualdade e Não Discriminação": {
+    "nome": "Temas de Direito da Igualdade e Não Discriminação",
+    "praticos": {},
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Educação, Cidadania e Direitos Humanos": {
+    "nome": "Educação, Cidadania e Direitos Humanos",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {}
+  },
+  "Matemática das Coisas": {
+    "nome": "Matemática das Coisas",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {}
+  },
+  "Métodos Formais em Engenharia de Software": {
+    "nome": "Métodos Formais em Engenharia de Software",
+    "praticos": {
+      "TP4": {
+        "nome": "TP4",
+        "dia": 1,
+        "comeco": "11:00",
+        "fim": "12:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP2": {
+        "nome": "TP2",
+        "dia": 1,
+        "comeco": "11:00",
+        "fim": "12:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP3": {
+        "nome": "TP3",
+        "dia": 1,
+        "comeco": "15:00",
+        "fim": "16:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP1": {
+        "nome": "TP1",
+        "dia": 1,
+        "comeco": "15:00",
+        "fim": "16:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP5": {
+        "nome": "TP5",
+        "dia": 1,
+        "comeco": "17:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 1,
+        "comeco": "13:00",
+        "fim": "15:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Cálculo para Engenharia": {
+    "nome": "Cálculo para Engenharia",
+    "praticos": {
+      "TP5": {
+        "nome": "TP5",
+        "dia": 1,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP3": {
+        "nome": "TP3",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP1": {
+        "nome": "TP1",
+        "dia": 5,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP2": {
+        "nome": "TP2",
+        "dia": 3,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP6": {
+        "nome": "TP6",
+        "dia": 1,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP4": {
+        "nome": "TP4",
+        "dia": 3,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 1,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S300"
+      },
+      "T2": {
+        "nome": "T2",
+        "dia": 5,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Cálculo de Programas": {
+    "nome": "Cálculo de Programas",
+    "praticos": {
+      "TP4": {
+        "nome": "TP4",
+        "dia": 3,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP3": {
+        "nome": "TP3",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP2": {
+        "nome": "TP2",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP1": {
+        "nome": "TP1",
+        "dia": 1,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP5": {
+        "nome": "TP5",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 5,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S300"
+      },
+      "T2": {
+        "nome": "T2",
+        "dia": 4,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Álgebra Linear para Engenharia": {
+    "nome": "Álgebra Linear para Engenharia",
+    "praticos": {
+      "TP4": {
+        "nome": "TP4",
+        "dia": 4,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP3": {
+        "nome": "TP3",
+        "dia": 5,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP5": {
+        "nome": "TP5",
+        "dia": 5,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP2": {
+        "nome": "TP2",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP1": {
+        "nome": "TP1",
+        "dia": 3,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP6": {
+        "nome": "TP6",
+        "dia": 4,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 4,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S300"
+      },
+      "T2": {
+        "nome": "T2",
+        "dia": 3,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Dados e Aprendizagem Automática": {
+    "nome": "Dados e Aprendizagem Automática",
+    "praticos": {
+      "PL2": {
+        "nome": "PL2",
+        "dia": 3,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL7": {
+        "nome": "PL7",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 4,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL6": {
+        "nome": "PL6",
+        "dia": 4,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 4,
+        "comeco": "15:00",
+        "fim": "17:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL5": {
+        "nome": "PL5",
+        "dia": 4,
+        "comeco": "15:00",
+        "fim": "17:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T": {
+        "nome": "T",
+        "dia": 4,
+        "comeco": "10:00",
+        "fim": "11:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Laboratórios de Informática IV": {
+    "nome": "Laboratórios de Informática IV",
+    "praticos": {
+      "OT3": {
+        "nome": "OT3",
+        "dia": 3,
+        "comeco": "13:30",
+        "fim": "14:30",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "OT2": {
+        "nome": "OT2",
+        "dia": 2,
+        "comeco": "14:00",
+        "fim": "15:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "OT5": {
+        "nome": "OT5",
+        "dia": 3,
+        "comeco": "14:30",
+        "fim": "15:30",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "OT4": {
+        "nome": "OT4",
+        "dia": 2,
+        "comeco": "15:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 3,
+        "comeco": "17:30",
+        "fim": "19:30",
+        "sala": "S300"
+      }
+    }
+  },
+  "Requisitos e Arquiteturas de Software": {
+    "nome": "Requisitos e Arquiteturas de Software",
+    "praticos": {
+      "PL5": {
+        "nome": "PL5",
+        "dia": 2,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL7": {
+        "nome": "PL7",
+        "dia": 2,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 2,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 2,
+        "comeco": "13:00",
+        "fim": "15:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL8": {
+        "nome": "PL8",
+        "dia": 2,
+        "comeco": "13:00",
+        "fim": "15:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 2,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL6": {
+        "nome": "PL6",
+        "dia": 2,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 2,
+        "comeco": "09:00",
+        "fim": "10:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Literacia Fotográfica da Física à Mensagem": {
+    "nome": "Literacia Fotográfica da Física à Mensagem",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {}
+  },
+  "Física Moderna": {
+    "nome": "Física Moderna",
+    "praticos": {
+      "TP4": {
+        "nome": "TP4",
+        "dia": 4,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP2": {
+        "nome": "TP2",
+        "dia": 4,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP3": {
+        "nome": "TP3",
+        "dia": 1,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP1": {
+        "nome": "TP1",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 2,
+        "comeco": "15:00",
+        "fim": "17:00",
+        "sala": "S300"
+      },
+      "T2": {
+        "nome": "T2",
+        "dia": 4,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Laboratórios de Informática I": {
+    "nome": "Laboratórios de Informática I",
+    "praticos": {
+      "PL5": {
+        "nome": "PL5",
+        "dia": 2,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL8": {
+        "nome": "PL8",
+        "dia": 2,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 2,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 2,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL6": {
+        "nome": "PL6",
+        "dia": 2,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL7": {
+        "nome": "PL7",
+        "dia": 2,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 2,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 2,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {}
+  },
+  "Cidadania Digital": {
+    "nome": "Cidadania Digital",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {}
+  },
+  "Bilinguismo": {
+    "nome": "Bilinguismo",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {}
+  },
+  "Estatística Aplicada": {
+    "nome": "Estatística Aplicada",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 1,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP5": {
+        "nome": "TP5",
+        "dia": 3,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP2": {
+        "nome": "TP2",
+        "dia": 3,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP3": {
+        "nome": "TP3",
+        "dia": 1,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP4": {
+        "nome": "TP4",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {
+      "T2": {
+        "nome": "T2",
+        "dia": 1,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S300"
+      },
+      "T1": {
+        "nome": "T1",
+        "dia": 3,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Direito Laboral": {
+    "nome": "Direito Laboral",
+    "praticos": {},
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Inglês Académico": {
+    "nome": "Inglês Académico",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {}
+  },
+  "Introdução à Língua e Cultura Russa": {
+    "nome": "Introdução à Língua e Cultura Russa",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 2,
+        "comeco": "18:00",
+        "fim": "20:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {}
+  },
+  "Algoritmos e Complexidade": {
+    "nome": "Algoritmos e Complexidade",
+    "praticos": {
+      "TP1": {
+        "nome": "TP1",
+        "dia": 4,
+        "comeco": "13:00",
+        "fim": "15:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP2": {
+        "nome": "TP2",
+        "dia": 1,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP5": {
+        "nome": "TP5",
+        "dia": 1,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP4": {
+        "nome": "TP4",
+        "dia": 2,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      },
+      "TP3": {
+        "nome": "TP3",
+        "dia": 4,
+        "comeco": "16:00",
+        "fim": "18:00",
+        "sala": "S100",
+        "capacidade": 100
+      }
+    },
+    "teoricos": {
+      "T2": {
+        "nome": "T2",
+        "dia": 2,
+        "comeco": "13:00",
+        "fim": "15:00",
+        "sala": "S300"
+      },
+      "T1": {
+        "nome": "T1",
+        "dia": 5,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Arquitetura de Computadores": {
+    "nome": "Arquitetura de Computadores",
+    "praticos": {
+      "PL6": {
+        "nome": "PL6",
+        "dia": 4,
+        "comeco": "13:30",
+        "fim": "15:30",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL5": {
+        "nome": "PL5",
+        "dia": 4,
+        "comeco": "13:30",
+        "fim": "15:30",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 3,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 3,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 4,
+        "comeco": "15:30",
+        "fim": "17:30",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 4,
+        "comeco": "15:30",
+        "fim": "17:30",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL7": {
+        "nome": "PL7",
+        "dia": 5,
+        "comeco": "16:30",
+        "fim": "18:30",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 2,
+        "comeco": "13:00",
+        "fim": "15:00",
+        "sala": "S300"
+      },
+      "T2": {
+        "nome": "T2",
+        "dia": 5,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Engenharia de Serviços em Rede": {
+    "nome": "Engenharia de Serviços em Rede",
+    "praticos": {
+      "PL5": {
+        "nome": "PL5",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL8": {
+        "nome": "PL8",
+        "dia": 3,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 4,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 4,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 4,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL6": {
+        "nome": "PL6",
+        "dia": 4,
+        "comeco": "15:00",
+        "fim": "17:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL7": {
+        "nome": "PL7",
+        "dia": 4,
+        "comeco": "15:00",
+        "fim": "17:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 4,
+        "comeco": "15:00",
+        "fim": "17:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 4,
+        "comeco": "14:00",
+        "fim": "15:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Aplicações e Serviços de Computação em Nuvem": {
+    "nome": "Aplicações e Serviços de Computação em Nuvem",
+    "praticos": {
+      "PL7": {
+        "nome": "PL7",
+        "dia": 1,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL8": {
+        "nome": "PL8",
+        "dia": 1,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 1,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 1,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL5": {
+        "nome": "PL5",
+        "dia": 1,
+        "comeco": "10:00",
+        "fim": "12:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL6": {
+        "nome": "PL6",
+        "dia": 1,
+        "comeco": "15:00",
+        "fim": "17:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL4": {
+        "nome": "PL4",
+        "dia": 1,
+        "comeco": "15:00",
+        "fim": "17:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 1,
+        "comeco": "15:00",
+        "fim": "17:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 1,
+        "comeco": "09:00",
+        "fim": "10:00",
+        "sala": "S300"
+      }
+    }
+  },
+  "Desenvolvimento de Sistemas de Software": {
+    "nome": "Desenvolvimento de Sistemas de Software",
+    "praticos": {
+      "PL4": {
+        "nome": "PL4",
+        "dia": 1,
+        "comeco": "09:00",
+        "fim": "11:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL3": {
+        "nome": "PL3",
+        "dia": 1,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL5": {
+        "nome": "PL5",
+        "dia": 1,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL1": {
+        "nome": "PL1",
+        "dia": 2,
+        "comeco": "11:00",
+        "fim": "13:00",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL2": {
+        "nome": "PL2",
+        "dia": 5,
+        "comeco": "13:30",
+        "fim": "15:30",
+        "sala": "S80",
+        "capacidade": 80
+      },
+      "PL6": {
+        "nome": "PL6",
+        "dia": 1,
+        "comeco": "14:00",
+        "fim": "16:00",
+        "sala": "S80",
+        "capacidade": 80
+      }
+    },
+    "teoricos": {
+      "T1": {
+        "nome": "T1",
+        "dia": 3,
+        "comeco": "15:30",
+        "fim": "17:30",
+        "sala": "S300"
+      }
+    }
+  }
+}
