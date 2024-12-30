@@ -1,15 +1,20 @@
 package dss.HorariosUI;
 
 import java.util.Arrays;
+import java.util.Scanner;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /** An options menu for the application. */
 public class Menu {
     /** Entries in this menu. */
     private MenuEntry[] entries;
+    private Scanner scanner;
 
-    /** Creates a new empty menu. */
+    /** Creates a new empty menu that can read from standard input. */
     public Menu() {
         this.entries = new MenuEntry[0];
+        this.scanner = new Scanner(System.in);
     }
 
     /**
@@ -17,8 +22,9 @@ public class Menu {
      *
      * @param entries Entries in the menu.
      */
-    public Menu(MenuEntry[] entries) {
+    public Menu(MenuEntry[] entries, Scanner scanner) {
         this.setEntries(entries);
+        this.setScanner(scanner);
     }
 
     /**
@@ -28,6 +34,7 @@ public class Menu {
      */
     public Menu(Menu menu) {
         this.entries = menu.getEntries();
+        this.scanner = menu.getScanner();
     }
 
     /**
@@ -39,6 +46,10 @@ public class Menu {
         return Arrays.stream(this.entries).map(MenuEntry::clone).toArray(MenuEntry[]::new);
     }
 
+    public Scanner getScanner() {
+        return this.scanner;
+    }
+
     /**
      * Sets this menu's entries.
      *
@@ -48,10 +59,12 @@ public class Menu {
         this.entries = Arrays.stream(entries).map(MenuEntry::clone).toArray(MenuEntry[]::new);
     }
 
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
     /** Runs this menu. */
     public void run() {
-        UserInput input = new UserInput();
-
         System.out.println("\nChoose an option ...\n");
         for (int i = 0; i < this.entries.length; ++i) {
             System.out.println(String.format("  %d -> %s", i + 1, entries[i].getText()));
@@ -59,11 +72,43 @@ public class Menu {
         System.out.println("");
 
         int option =
-                input.readInt(
+                this.readInt(
                         "Option > ",
                         String.format("Must be an integer betwewn 1 and %d!", this.entries.length),
                         i -> i > 0 && i <= this.entries.length);
         this.entries[option - 1].getHandler().accept(option - 1);
+    }
+
+    public Object read(String                   prompt,
+                       String                   error,
+                       Predicate<String>        validate,
+                       Function<String, Object> convert) {
+
+        String ret = null;
+        do {
+            System.out.print(prompt);
+            String line = scanner.nextLine();
+            if (validate.test(line))
+                ret = line;
+            else if (error != null)
+                System.err.println(error);
+        } while (ret == null);
+        return convert.apply(ret);
+    }
+
+    public int readInt(String prompt, String error, Predicate<Integer> validate) {
+        return (Integer) this.read(prompt, error, s -> {
+            try {
+                int i = Integer.parseInt(s);
+                return validate.test(i);
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }, s -> Integer.parseInt(s));
+    }
+
+    public String readString(String prompt) {
+        return (String) this.read(prompt, null, s -> true, s -> s);
     }
 
     /**
