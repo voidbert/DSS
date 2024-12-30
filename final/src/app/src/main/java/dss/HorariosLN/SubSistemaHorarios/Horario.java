@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Carolina Pereira, Diogo Costa, Humberto Gomes, Sara Lopes
+ * Copyright 2024 Ana Cerqueira, Humberto Gomes, João Torres, José Lopes, José Matos
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,31 +14,8 @@
  * limitations under the License.
  */
 
-plugins {
-    java
-    application
-}
+package dss.HorariosLN.SubSistemaHorarios;
 
-repositories {
-    mavenCentral()
-}
+import java.util.Collection;
 
-dependencies {
-    implementation("com.google.code.gson:gson:2.11.0")
-    implementation("org.apache.commons:commons-lang3:3.17.0")
-    implementation("org.mariadb.jdbc:mariadb-java-client:3.5.1")
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-application {
-    mainClass = "dss.Program"
-}
-
-tasks.named<JavaExec>("run") {
-    standardInput = System.`in`
-}
+public class Horario {}

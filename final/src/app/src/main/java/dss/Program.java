@@ -25,17 +25,8 @@ import dss.HorariosLN.IHorariosLN;
 public class Program {
     public static void main(String[] args) throws Exception {
         IHorariosLN horarios = new HorariosLNFacade();
-        horarios.iniciarSessao("dc@dc.pt", "atuapass");
-        System.out.println(horarios.obterIdCursoDiretorAutenticado());
-        horarios.terminarSessao();
-        horarios.iniciarSessao("a104348@alunos.uminho.pt", "passdealuno");
-        System.out.println(horarios.obterNumeroAlunoAutenticado());
-
-        List<String> alunos = Arrays.asList("a100", "a200", "a600");
-        horarios.gerarCredenciaisDeAlunos(alunos);
-
-        horarios.eliminarCredenciaisDeAlunos(Arrays.asList("a500"));
-
-        System.out.println(horarios.notificarAlunos(Arrays.asList("a100")));
+        System.out.println(horarios.verificarCursoTemUCs("LEI"));
+        horarios.importarUCs("/home/voidbert/DSS/data/ucs.json", "LEI");
+        horarios.importarAlunos("/home/voidbert/DSS/data/alunos.json", "LEI");
     }
 }
