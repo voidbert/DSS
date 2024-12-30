@@ -22,12 +22,10 @@ public class IniciarSessaoView implements View {
         try {
             this.controlador.iniciarSessao(email, password);
             System.out.println("Sessão iniciada com sucesso!");
-            /* Ask Controller for right view!! */
-            this.nextView = new AlunoView(new AlunoController(this.controlador.getModelo()));
+            this.nextView = controlador.nextView();
         } catch (LNException e) {
             System.err.println(e.getMessage());
         }
-
     }
 
     private void terminarSessao() {
