@@ -14,9 +14,9 @@ public class AlunoView implements View{
 
     private void visualizarHorario() {
         try {
-            this.controlador.visualizarHorario();
+            System.out.println(this.controlador.obterHorario());
         } catch (LNException e){
-            System.err.println(e);
+            System.err.println(e.getMessage());
         }
     }
 
