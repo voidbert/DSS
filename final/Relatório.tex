@@ -384,25 +384,6 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
 \end{usecase}
 
 \begin{usecase}
-    {Exportar horário}
-    {Ator gera um ficheiro com os turnos do seu horário.}
-    {Alunos}
-    {
-        \item Ator tem sessão iniciada;
-        \item O horário do ator está disponível para consulta.
-    }
-    {\item É gerado um ficheiro com o horário do ator.}
-
-    \flow{
-        \item Ator solicita a exportação do seu horário para um ficheiro.
-        \item Ator indica onde esse ficheiro deve ser gravado.
-        \item Sistema consulta número de aluno do ator.
-        \item Sistema exporta o horário do ator para o ficheiro pedido.
-        \item Sistema informa ator de sucesso na operação de exportação.
-    }
-\end{usecase}
-
-\begin{usecase}
     {Reiniciar semestre}
     {Ator elimina todos os dados associados ao curso que dirige, para os importar novamente.}
     {Diretor de curso}
@@ -415,11 +396,15 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     \flow{
         \item Ator solicita a eliminação de todos os dados relacionados com o curso que dirige.
         \item Sistema consulta o nome do curso dirigido pelo ator.
+        \item Sistema consulta todos os alunos associados ao curso, e elimina as suas credenciais de
+            autenticação.
         \item Sistema elimina todos os dados de UCs, turnos, alunos, inscrições, preferências de UCs
             e horários associados ao curso dirigido pelo ator.
         \item Sistema informa ator de sucesso na operação.
     }
 \end{usecase}
+
+\pagebreak
 
 \begin{usecase}
     {Importar Unidades Curriculares e turnos}
@@ -441,7 +426,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
             ator.
         \item Sistema pede o ficheiro com os dados.
         \item Ator fornece o ficheiro com os dados.
-        \item Sistema confirma que os dados no ficheiro são válidos, e compatíveis com os dados já
+        \item Sistema confirma que os dados no ficheiro são válidos e compatíveis com os dados
             presentes no sistema.
         \item Sistema substitui os dados que tem sobre UCs e turnos do curso dirigido pelo ator
             pelos dados no ficheiro fornecido.
@@ -489,7 +474,6 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item Ator fornece o ficheiro com os dados.
         \item Sistema confirma que os dados no ficheiro são válidos, e compatíveis com os dados
             presentes no sistema.
-        \item Sistema gera uma palavra-passe e um horário vazio para cada aluno importado.
         \item Sistema substitui os dados que tem sobre alunos e inscrições do curso dirigido ator
             pelos dados no ficheiro fornecido.
         \item Sistema informa ator de sucesso na operação de importação.
@@ -513,8 +497,6 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item[6.1.] Sistema aborta a importação de dados, informando o ator.
     }
 \end{usecase}
-
-\pagebreak
 
 \begin{usecase}
     {Definir preferências de uma UC}
@@ -577,16 +559,14 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
 
     \flow{
         \item Ator solicita a adição de um novo aluno.
-        \item Sistema pede informação sobre o aluno: número de aluno, nome, endereço eletrónico, e a
-            sua média de curso (se aplicável).
+        \item Sistema pede número do aluno.
         \item Ator insere a informação do aluno pedida.
         \item Sistema verifica que não tem registo de um aluno com o mesmo número.
         \item Sistema consulta o nome do curso dirigido pelo ator.
         \item Sistema obtém e apresenta lista de Unidades Curriculares do curso que o ator dirige.
         \item Sistema pede lista de Unidades Curriculares nas quais o aluno se encontra inscrito.
         \item Ator indica lista de Unidades Curriculares.
-        \item Sistema regista aluno com uma palavra-passe automaticamente gerada e um horário
-            vazio.
+        \item Sistema regista aluno no curso dirigido pelo ator.
         \item Sistema regista as UCs em que o aluno se encontra inscrito.
     }
 
@@ -623,9 +603,9 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item Sistema gera horários, inteligentemente atribuindo turnos aos alunos do curso
             dirigido pelo ator, de modo a respeitar a pós-condição e a minimizar o número de
             sobreposições.
-        \item Sistema procura e informa ator de sobreposições nos horários gerados.
         \item Sistema armazena os horários gerados, ainda como não disponíveis para consulta pelos
             alunos.
+        \item Sistema procura e informa ator de sobreposições nos horários gerados.
         \item Sistema informa ator de sucesso na geração de horários.
     }
 
@@ -647,7 +627,8 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     }
     {
         \item Horário do aluno passa a ser constituído pelos turnos indicados pelo ator;
-        \item O horário modificado é constituído pelos turnos que o aluno precisa de frequentar;
+        \item O horário modificado é constituído por turnos de UCs que o aluno precisa de
+            frequentar;
     }
 
     \flow{
@@ -659,7 +640,7 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
         \item Sistema obtém horário do aluno.
         \item Sistema apresenta lista de turnos nos quais o aluno se encontra inscrito.
         \item Ator modifica lista apresentada pelo sistema.
-        \item Sistema verifica que o horário do aluno inclui exatamente os turnos que o aluno deve
+        \item  Sistema verifica que o horário do aluno não inclui turnos de UCs que o aluno não deva
             frequentar.
         \item Sistema armazena horário modificado.
         \item Sistema informa ator de sucesso na operação.
@@ -678,20 +659,22 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
 
 \begin{usecase}
     {Publicar horários}
-    {Ator torna visíveis para os alunos os horários que construiu.}
+    {
+        Ator gera credenciais para os alunos inscritos no curso que dirige possam aceder aos seus
+        horários.
+    }
     {Diretor de curso}
     {\item Ator tem sessão iniciada e existem alunos e inscrições no curso dirigido pelo ator.}
     {
-        \item Os horários construídos pelo ator são registados como disponíveis para consulta pelos
-            alunos e os alunos inscritos no curso dirigido pelo ator são informados por correio
-            eletrónico dos novos horários.
+        \item Os alunos inscritos no curso dirigido pelo ator tem credenciais atribuídas e são
+            informados por correio eletrónico dos novos horários.
     }
 
     \flow{
         \item Ator solicita a publicação dos horários que construiu.
         \item Sistema consulta o nome do curso dirigido pelo ator.
-        \item Sistema regista que os horários dos alunos inscritos no curso dirigido pelo ator podem
-            ser consultados pelos mesmos.
+        \item Sistema obtém alunos do curso dirigido pelo ator e gera as suas credenciais de
+            autenticação.
         \item Sistema envia mensagens de correio eletrónico aos alunos cujos horários foram
             publicados, informando-os de tal, e contendo as suas palavras-passe.
     }
