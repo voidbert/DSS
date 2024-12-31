@@ -45,8 +45,8 @@ public class GestHorariosFacade implements IGestHorarios {
         this.salas  = SalaDAO.getInstance();
     }
 
-    public Horario obterHorario(String numeroAluno) {
-        throw new UnsupportedOperationException();
+    public Horario obterHorario(String numeroAluno) throws HorariosException {
+        throw new HorariosException("Not yet implemented!");
     }
 
     public boolean verificarExistenciaAluno(String numeroAluno) {

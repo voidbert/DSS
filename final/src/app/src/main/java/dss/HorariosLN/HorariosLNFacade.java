@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import dss.HorariosLN.SubSistemaHorarios.GestHorariosFacade;
 import dss.HorariosLN.SubSistemaHorarios.Horario;
+import dss.HorariosLN.SubSistemaHorarios.HorariosException;
 import dss.HorariosLN.SubSistemaHorarios.IGestHorarios;
 import dss.HorariosLN.SubSistemaUtilizadores.GestUtilizadoresFacade;
 import dss.HorariosLN.SubSistemaUtilizadores.IGestUtilizadores;
