@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.Set;
 
 import dss.HorariosLN.SubSistemaHorarios.GestHorariosFacade;
-import dss.HorariosLN.SubSistemaHorarios.Horario;
 import dss.HorariosLN.SubSistemaHorarios.IGestHorarios;
 import dss.HorariosLN.SubSistemaHorarios.Sobreposicao;
 import dss.HorariosLN.SubSistemaUtilizadores.GestUtilizadoresFacade;
@@ -54,16 +53,16 @@ public class HorariosLNFacade implements IHorariosLN {
         return res;
     }
 
-    public void eliminarCredenciaisDeAlunos(Collection<String> alunos) {
+    public void eliminarCredenciaisDeAlunos(Set<String> alunos) {
         this.ssUtilizadores.eliminarCredenciaisDeAlunos(alunos);
     }
 
-    public void gerarCredenciaisDeAlunos(Collection<String> alunos) {
+    public void gerarCredenciaisDeAlunos(Set<String> alunos) {
         this.ssUtilizadores.gerarCredenciaisDeAlunos(alunos);
     }
 
-    public Collection<String> notificarAlunos(Collection<String> alunos) {
-        Collection<String> res = this.ssUtilizadores.notificarAlunos(alunos);
+    public Set<String> notificarAlunos(Set<String> alunos) {
+        Set<String> res = this.ssUtilizadores.notificarAlunos(alunos);
         return res;
     }
 

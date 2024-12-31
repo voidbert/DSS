@@ -20,18 +20,17 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-import dss.HorariosLN.SubSistemaHorarios.Horario;
 import dss.HorariosLN.SubSistemaHorarios.Sobreposicao;
 
 public interface IHorariosLN {
     // Sub sistema de utilizadores
-    public void               iniciarSessao(String email, String password) throws LNException;
-    public void               terminarSessao() throws LNException;
-    public String             obterNumeroAlunoAutenticado() throws LNException;
-    public String             obterIdCursoDiretorAutenticado() throws LNException;
-    public void               eliminarCredenciaisDeAlunos(Collection<String> alunos);
-    public void               gerarCredenciaisDeAlunos(Collection<String> alunos);
-    public Collection<String> notificarAlunos(Collection<String> alunos);
+    public void        iniciarSessao(String email, String password) throws LNException;
+    public void        terminarSessao() throws LNException;
+    public String      obterNumeroAlunoAutenticado() throws LNException;
+    public String      obterIdCursoDiretorAutenticado() throws LNException;
+    public void        eliminarCredenciaisDeAlunos(Set<String> alunos);
+    public void        gerarCredenciaisDeAlunos(Set<String> alunos);
+    public Set<String> notificarAlunos(Set<String> alunos);
 
     // Sub sistema de horários
     public Map<String, Set<String>> obterHorario(String numeroAluno) throws LNException;

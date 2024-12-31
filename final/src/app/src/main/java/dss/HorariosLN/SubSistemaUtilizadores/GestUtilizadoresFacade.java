@@ -16,8 +16,8 @@
 
 package dss.HorariosLN.SubSistemaUtilizadores;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import dss.HorariosDL.UtilizadorDAO;
 
@@ -74,14 +74,14 @@ public class GestUtilizadoresFacade implements IGestUtilizadores {
         return res;
     }
 
-    public void eliminarCredenciaisDeAlunos(Collection<String> alunos) {
+    public void eliminarCredenciaisDeAlunos(Set<String> alunos) {
         for (String numero : alunos) {
             String email = UtilizadorAluno.gerarEmail(numero);
             this.utilizadores.remove(email);
         }
     }
 
-    public void gerarCredenciaisDeAlunos(Collection<String> alunos) {
+    public void gerarCredenciaisDeAlunos(Set<String> alunos) {
         for (String numero : alunos) {
             UtilizadorAluno aluno = new UtilizadorAluno(numero);
             String          email = aluno.getEmail();
@@ -89,8 +89,8 @@ public class GestUtilizadoresFacade implements IGestUtilizadores {
         }
     }
 
-    public Collection<String> notificarAlunos(Collection<String> alunos) {
-        Collection<String> falhas = new ArrayList<String>();
+    public Set<String> notificarAlunos(Set<String> alunos) {
+        Set<String> falhas = new HashSet<String>();
         for (String numero : alunos) {
             String     email      = UtilizadorAluno.gerarEmail(numero);
             Utilizador utilizador = this.utilizadores.get(email);

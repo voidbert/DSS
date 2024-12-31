@@ -16,14 +16,14 @@
 
 package dss.HorariosLN.SubSistemaUtilizadores;
 
-import java.util.Collection;
+import java.util.Set;
 
 public interface IGestUtilizadores {
-    public void   iniciarSessao(String email, String password) throws UtilizadoresException;
-    public void   terminarSessao() throws UtilizadoresException;
-    public String obterNumeroAlunoAutenticado() throws UtilizadoresException;
-    public String obterIdCursoDiretorAutenticado() throws UtilizadoresException;
-    public void   eliminarCredenciaisDeAlunos(Collection<String> alunos);
-    public void   gerarCredenciaisDeAlunos(Collection<String> alunos);
-    public Collection<String> notificarAlunos(Collection<String> alunos);
+    public void        iniciarSessao(String email, String password) throws UtilizadoresException;
+    public void        terminarSessao() throws UtilizadoresException;
+    public String      obterNumeroAlunoAutenticado() throws UtilizadoresException;
+    public String      obterIdCursoDiretorAutenticado() throws UtilizadoresException;
+    public void        eliminarCredenciaisDeAlunos(Set<String> alunos);
+    public void        gerarCredenciaisDeAlunos(Set<String> alunos);
+    public Set<String> notificarAlunos(Set<String> alunos);
 }
