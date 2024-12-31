@@ -25,8 +25,9 @@ import dss.HorariosLN.IHorariosLN;
 public class Program {
     public static void main(String[] args) throws Exception {
         IHorariosLN horarios = new HorariosLNFacade();
-        System.out.println(horarios.verificarCursoTemUCs("LEI"));
         horarios.importarUCs("/home/voidbert/DSS/data/ucs.json", "LEI");
         horarios.importarAlunos("/home/voidbert/DSS/data/alunos.json", "LEI");
+        horarios.gerarHorarios("LEI");
+        System.out.println(horarios.procurarSobreposicoes("LEI"));
     }
 }

@@ -17,10 +17,14 @@
 package dss.HorariosLN;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 import dss.HorariosLN.SubSistemaHorarios.Horario;
+import dss.HorariosLN.SubSistemaHorarios.Sobreposicao;
 
 public interface IHorariosLN {
+    // Sub sistema de utilizadores
     public void               iniciarSessao(String email, String password) throws LNException;
     public void               terminarSessao() throws LNException;
     public String             obterNumeroAlunoAutenticado() throws LNException;
@@ -29,21 +33,25 @@ public interface IHorariosLN {
     public void               gerarCredenciaisDeAlunos(Collection<String> alunos);
     public Collection<String> notificarAlunos(Collection<String> alunos);
 
-    public Horario obterHorario(String numeroAluno) throws LNException;
-    public boolean verificarExistenciaAluno(String numeroAluno);
+    // Sub sistema de horários
+    public Map<String, Set<String>> obterHorario(String numeroAluno) throws LNException;
+    public boolean                  verificarExistenciaAluno(String numeroAluno);
     public boolean verificarSeAlunoInscritoEmCurso(String numeroAluno, String idCurso)
         throws LNException;
-    public Collection<String> obterAlunosDeCurso(String idCurso) throws LNException;
-    public void               eliminarDadosCurso(String idCurso) throws LNException;
-    public boolean            verificarCursoTemUCs(String idCurso) throws LNException;
-    public void importarUCs(String caminhoFicheiro, String idCurso) throws LNException;
-    public Collection<String> obterUCsDeCurso(String idCurso) throws LNException;
-    public boolean            verificarCursoTemAlunos(String idCurso) throws LNException;
-    public void importarAlunos(String caminhoFicheiro, String idCurso) throws LNException;
-    public void registarAluno(String idCurso, String numeroAluno) throws LNException;
-    public void registarUCsDeAluno(String numeroAluno, Collection<String> nomeUCs)
+    public Set<String> obterAlunosDeCurso(String idCurso) throws LNException;
+    public void        eliminarDadosCurso(String idCurso) throws LNException;
+    public boolean     verificarCursoTemUCs(String idCurso) throws LNException;
+    public void        importarUCs(String caminhoFicheiro, String idCurso) throws LNException;
+    public Set<String> obterUCsDeCurso(String idCurso) throws LNException;
+    public boolean     verificarCursoTemAlunos(String idCurso) throws LNException;
+    public void        importarAlunos(String caminhoFicheiro, String idCurso) throws LNException;
+    public void        registarAluno(String idCurso, String numeroAluno) throws LNException;
+    public void registarUCsDeAluno(String numeroAluno, Set<String> nomeUCs) throws LNException;
+    public void gerarHorarios(String idCurso) throws LNException;
+    public Collection<Sobreposicao> procurarSobreposicoes(String idCurso) throws LNException;
+    public boolean validarHorario(String numeroAluno, Map<String, Set<String>> horario)
         throws LNException;
-    public boolean verificarUCTemPreferencias(String idCurso, String nomeUC) throws LNException;
-    public void    importarPreferenciasUC(String caminhoFicheiro, String idCurso, String nomeUC)
-        throws LNException;
+    public void armazenarHorario(String                   idCurso,
+                                 String                   numeroAluno,
+                                 Map<String, Set<String>> horario) throws LNException;
 }

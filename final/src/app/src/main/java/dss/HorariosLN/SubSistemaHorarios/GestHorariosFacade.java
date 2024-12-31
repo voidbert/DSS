@@ -17,11 +17,15 @@
 package dss.HorariosLN.SubSistemaHorarios;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -45,8 +49,14 @@ public class GestHorariosFacade implements IGestHorarios {
         this.salas  = SalaDAO.getInstance();
     }
 
-    public Horario obterHorario(String numeroAluno) {
-        throw new UnsupportedOperationException();
+    public Map<String, Set<String>> obterHorario(String numeroAluno) throws HorariosException {
+        Aluno aluno = this.alunos.get(numeroAluno);
+        if (aluno == null)
+            throw new HorariosException("Aluno não existe");
+
+        Horario                  horario = aluno.getHorario();
+        Map<String, Set<String>> turnos  = horario.getNomesDeTurnos();
+        return turnos;
     }
 
     public boolean verificarExistenciaAluno(String numeroAluno) {
@@ -65,17 +75,16 @@ public class GestHorariosFacade implements IGestHorarios {
         return res;
     }
 
-    public Collection<String> obterAlunosDeCurso(String idCurso) throws HorariosException {
+    public Set<String> obterAlunosDeCurso(String idCurso) throws HorariosException {
         Curso curso = this.cursos.get(idCurso);
         if (curso == null)
             throw new HorariosException("Curso não existe");
 
-        Collection<String> numeros = curso.getAlunos();
+        Set<String> numeros = curso.getNumerosDeAlunos();
         return numeros;
     }
 
     public void eliminarDadosCurso(String idCurso) throws HorariosException {
-        // TODO - apagar mais coisas
         this.eliminarAlunosDeCurso(idCurso);
         this.eliminarUCsDeCurso(idCurso);
     }
@@ -85,7 +94,7 @@ public class GestHorariosFacade implements IGestHorarios {
         if (curso == null)
             throw new HorariosException("Curso não existe");
 
-        Collection<String> alunosCurso = curso.getAlunos();
+        Collection<String> alunosCurso = curso.getNumerosDeAlunos();
         curso.removerAlunos();
         this.cursos.put(idCurso, curso);
 
@@ -98,7 +107,7 @@ public class GestHorariosFacade implements IGestHorarios {
         if (curso == null)
             throw new HorariosException("Curso não existe");
 
-        Collection<String> ucsCurso = curso.getUCs();
+        Set<String> ucsCurso = curso.getNomesDeUCs();
         curso.removerUCs();
         this.cursos.put(idCurso, curso);
 
@@ -118,10 +127,7 @@ public class GestHorariosFacade implements IGestHorarios {
 
     public void importarUCs(String caminhoFicheiro, String idCurso) throws HorariosException {
         this.eliminarDadosCurso(idCurso);
-
-        Curso curso = this.cursos.get(idCurso);
-        if (curso == null)
-            throw new HorariosException("Curso não existe");
+        Curso curso = this.cursos.get(idCurso); // Já sabemos que o curso não é null
 
         Map<String, Sala>        readOnlySalas = Collections.unmodifiableMap(this.salas);
         Map<String, UC>          novasUCs      = new HashMap<String, UC>();
@@ -133,20 +139,35 @@ public class GestHorariosFacade implements IGestHorarios {
             UC          uc      = new UC(element, readOnlySalas);
 
             novasUCs.put(nome, uc);
-            curso.adicionarUC(nome);
+            curso.adicionarUC(uc);
         }
 
         this.ucs.putAll(novasUCs);
         this.cursos.put(idCurso, curso);
     }
 
-    public Collection<String> obterUCsDeCurso(String idCurso) throws HorariosException {
+    public Set<String> obterUCsDeCurso(String idCurso) throws HorariosException {
         Curso curso = this.cursos.get(idCurso);
         if (curso == null)
             throw new HorariosException("Curso não existe");
 
-        Collection<String> nomes = curso.getUCs();
+        Set<String> nomes = curso.getNomesDeUCs();
         return nomes;
+    }
+
+    public Set<String> obterTurnosDeUC(String nomeUC) throws HorariosException {
+        UC uc = this.ucs.get(nomeUC);
+        if (uc == null)
+            throw new HorariosException("UC não existe");
+
+        Map<String, Turno> praticos      = uc.getPraticos();
+        Set<String>        nomesPraticos = praticos.keySet();
+
+        Map<String, Turno> teoricos      = uc.getTeoricos();
+        Set<String>        nomesTeoricos = teoricos.keySet();
+
+        nomesPraticos.addAll(nomesTeoricos);
+        return nomesPraticos;
     }
 
     public boolean verificarCursoTemAlunos(String idCurso) throws HorariosException {
@@ -159,7 +180,6 @@ public class GestHorariosFacade implements IGestHorarios {
     }
 
     public void importarAlunos(String caminhoFicheiro, String idCurso) throws HorariosException {
-        // TODO - apagar mais coisas
         this.eliminarAlunosDeCurso(idCurso);
 
         Curso curso = this.cursos.get(idCurso);
@@ -176,7 +196,7 @@ public class GestHorariosFacade implements IGestHorarios {
             Aluno       aluno   = new Aluno(element, readOnlyUCs);
 
             novosAlunos.put(numero, aluno);
-            curso.adicionarAluno(numero);
+            curso.adicionarAluno(aluno);
         }
 
         this.alunos.putAll(novosAlunos);
@@ -190,19 +210,108 @@ public class GestHorariosFacade implements IGestHorarios {
 
         Aluno aluno = new Aluno(numeroAluno);
         this.alunos.put(numeroAluno, aluno);
-        curso.adicionarAluno(numeroAluno);
+        curso.adicionarAluno(aluno);
         this.cursos.put(idCurso, curso);
     }
 
-    // TODO - pensar como fazer isto
-    public void registarUCsDeAluno(String numeroAluno, Collection<String> nomeUCs) {}
+    public void registarUCsDeAluno(String numeroAluno, Set<String> nomeUCs)
+        throws HorariosException {
 
-    public boolean verificarUCTemPreferencias(String idCurso, String nomeUC) {
-        throw new UnsupportedOperationException();
+        Aluno aluno = this.alunos.get(numeroAluno);
+        if (aluno == null)
+            throw new HorariosException("Aluno não existe");
+
+        Set<UC> ucs = new HashSet<UC>();
+        for (String nome : nomeUCs) {
+            UC uc = this.ucs.get(nomeUCs);
+            if (uc == null)
+                throw new HorariosException("UC " + nome + " não existe");
+
+            ucs.add(uc);
+        }
+
+        aluno.setUCs(ucs);
+        this.alunos.put(numeroAluno, aluno);
     }
 
-    // Dá para fazer isto a tempo?
-    public void importarPreferenciasUC(String caminhoFicheiro, String idCurso, String nomeUC) {}
+    public void gerarHorarios(String idCurso) throws HorariosException {
+        Collection<String> nomesUCs = this.obterUCsDeCurso(idCurso);
+        GeradorDeHorarios  gerador  = new GeradorDeHorarios(nomesUCs);
+
+        Curso             curso = this.cursos.get(idCurso); // Já sabemos que o curso não é null
+        Collection<Aluno> valoresAlunos = curso.getAlunos();
+
+        for (Aluno aluno : valoresAlunos)
+            gerador.adicionarAluno(aluno);
+
+        Map<String, UC> readOnlyUCs = Collections.unmodifiableMap(this.ucs);
+
+        try {
+            Map<String, Horario>            horarios = gerador.run(readOnlyUCs);
+            Set<Map.Entry<String, Horario>> entradas = horarios.entrySet();
+
+            for (Map.Entry<String, Horario> entrada : entradas) {
+                String  numero  = entrada.getKey();
+                Horario horario = entrada.getValue();
+
+                Aluno aluno = this.alunos.get(numero);
+                aluno.setHorario(horario);
+                this.alunos.put(numero, aluno);
+            }
+        } catch (IOException e) {
+            throw new HorariosException(e.getMessage());
+        } catch (InterruptedException e) {
+            throw new HorariosException(e.getMessage());
+        } finally {
+            this.cursos.put(idCurso, curso);
+        }
+    }
+
+    public Collection<Sobreposicao> procurarSobreposicoes(String idCurso) throws HorariosException {
+        Curso curso = this.cursos.get(idCurso);
+        if (curso == null)
+            throw new HorariosException("Curso não existe");
+
+        Set<Aluno>               alunos = curso.getAlunos();
+        Collection<Sobreposicao> ret    = new ArrayList<Sobreposicao>();
+        for (Aluno aluno : alunos) {
+            Collection<Sobreposicao> sa = aluno.procurarSobreposicoes();
+            ret.addAll(sa);
+        }
+
+        return ret;
+    }
+
+    public boolean validarHorario(String numeroAluno, Map<String, Set<String>> horario)
+        throws HorariosException {
+
+        Aluno aluno = this.alunos.get(numeroAluno);
+        if (aluno == null)
+            throw new HorariosException("Aluno não existe");
+
+        Horario horarioObj = new Horario(horario);
+        boolean res        = horarioObj.validar(aluno);
+        return res;
+    }
+
+    public void armazenarHorario(String                   idCurso,
+                                 String                   numeroAluno,
+                                 Map<String, Set<String>> horario) throws HorariosException {
+
+        Aluno aluno = this.alunos.get(numeroAluno);
+        if (aluno == null)
+            throw new HorariosException("Aluno não existe");
+
+        Horario horarioObj = new Horario(horario);
+        aluno.setHorario(horarioObj);
+        this.alunos.put(numeroAluno, aluno);
+
+        Curso curso = this.cursos.get(idCurso);
+        if (curso == null)
+            throw new HorariosException("Curso não existe");
+
+        this.cursos.put(idCurso, curso);
+    }
 
     private Map<String, JsonElement> lerJson(String caminhoFicheiro) throws HorariosException {
         try {

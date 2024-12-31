@@ -37,10 +37,17 @@ public class Sala {
         return this.capacidade;
     }
 
+    @Override
+    public int hashCode() {
+        return this.nome.hashCode();
+    }
+
+    @Override
     public Object clone() {
         return new Sala(this);
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -51,6 +58,7 @@ public class Sala {
         return this.nome.equals(sala.getNome()) && this.capacidade == sala.getCapacidade();
     }
 
+    @Override
     public String toString() {
         return String.format("Sala(nome=%s, capacidade=%d)", this.nome, this.capacidade);
     }

@@ -20,7 +20,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import dss.HorariosLN.SubSistemaHorarios.Curso;
 
@@ -68,7 +69,7 @@ public class CursoDAO extends AbstractDAO<Curso> {
                 statement.executeUpdate();
             }
 
-            Collection<String> alunos = value.getAlunos();
+            Set<String> alunos = value.getNumerosDeAlunos();
             for (String aluno : alunos) {
                 try (PreparedStatement statement = this.connection.prepareStatement(
                          "INSERT INTO cursoAlunos(curso, aluno) VALUES (?, ?)")) {
@@ -79,7 +80,7 @@ public class CursoDAO extends AbstractDAO<Curso> {
                 }
             }
 
-            Collection<String> ucs = value.getUCs();
+            Set<String> ucs = value.getNomesDeUCs();
             for (String uc : ucs) {
                 try (PreparedStatement statement = this.connection.prepareStatement(
                          "INSERT INTO cursoUcs(curso, uc) VALUES (?, ?)")) {
@@ -106,27 +107,28 @@ public class CursoDAO extends AbstractDAO<Curso> {
 
     @Override
     protected Curso decodeTuple(ResultSet result) throws SQLException {
-        String id  = result.getString(1);
-        Curso  ret = new Curso(id);
+        String id = result.getString(1);
 
+        Set<String> alunos = new HashSet<String>();
         try (PreparedStatement statement =
                  this.connection.prepareStatement("SELECT aluno FROM cursoAlunos WHERE curso=?")) {
 
             statement.setString(1, id);
             ResultSet set = statement.executeQuery();
             while (set.next())
-                ret.adicionarAluno(set.getString(1));
+                alunos.add(set.getString(1));
         }
 
+        Set<String> ucs = new HashSet<String>();
         try (PreparedStatement statement =
                  this.connection.prepareStatement("SELECT uc FROM cursoUcs WHERE curso=?")) {
 
             statement.setString(1, id);
             ResultSet set = statement.executeQuery();
             while (set.next())
-                ret.adicionarUC(set.getString(1));
+                ucs.add(set.getString(1));
         }
 
-        return ret;
+        return new Curso(id, alunos, ucs);
     }
 }

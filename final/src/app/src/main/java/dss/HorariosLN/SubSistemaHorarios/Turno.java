@@ -22,6 +22,7 @@ import java.util.Map;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dss.HorariosDL.SalaDAO;
 
 public abstract class Turno {
     private String    nome;
@@ -29,12 +30,17 @@ public abstract class Turno {
     private LocalTime comeco, fim;
     private String    sala;
 
+    // Só para DAOs
     protected Turno(String nome, DayOfWeek dia, LocalTime comeco, LocalTime fim, String sala) {
         this.nome   = nome;
         this.dia    = dia;
         this.comeco = comeco;
         this.fim    = fim;
         this.sala   = sala;
+    }
+
+    protected Turno(String nome, DayOfWeek dia, LocalTime comeco, LocalTime fim, Sala sala) {
+        this(nome, dia, comeco, fim, sala.getNome());
     }
 
     protected Turno(JsonElement json, Map<String, Sala> salaChecker) throws HorariosException {
@@ -106,11 +112,27 @@ public abstract class Turno {
         return this.fim;
     }
 
-    public String getSala() {
+    public Sala getSala() {
+        SalaDAO dao = SalaDAO.getInstance();
+        Sala    ret = dao.get(this.sala);
+        return ret;
+    }
+
+    public String getNomeDeSala() {
         return this.sala;
     }
 
+    public boolean sobrepoe(Turno turno) {
+        return this.dia.equals(turno.getDia()) && this.comeco.isBefore(turno.getFim()) &&
+            turno.getComeco().isBefore(this.fim);
+    }
+
     public abstract int getCapacidade();
+
+    @Override
+    public int hashCode() {
+        return this.nome.hashCode();
+    }
 
     @Override
     public abstract Object clone();

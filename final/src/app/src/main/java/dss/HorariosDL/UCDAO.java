@@ -88,7 +88,7 @@ public class UCDAO extends AbstractDAO<UC> {
                     statement.setInt(3, turno.getDia().getValue());
                     statement.setString(4, turno.getComeco().toString());
                     statement.setString(5, turno.getFim().toString());
-                    statement.setString(6, turno.getSala());
+                    statement.setString(6, turno.getNomeDeSala());
                     statement.setInt(7, turno.getCapacidadeDefinida());
                     statement.executeUpdate();
                 }
@@ -107,7 +107,7 @@ public class UCDAO extends AbstractDAO<UC> {
                     statement.setInt(3, turno.getDia().getValue());
                     statement.setString(4, turno.getComeco().toString());
                     statement.setString(5, turno.getFim().toString());
-                    statement.setString(6, turno.getSala());
+                    statement.setString(6, turno.getNomeDeSala());
                     statement.executeUpdate();
                 }
             }

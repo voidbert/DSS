@@ -20,10 +20,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import dss.HorariosLN.SubSistemaHorarios.Aluno;
+import dss.HorariosLN.SubSistemaHorarios.Horario;
 
 public class AlunoDAO extends AbstractDAO<Aluno> {
     private static AlunoDAO instance = null;
@@ -69,7 +72,7 @@ public class AlunoDAO extends AbstractDAO<Aluno> {
                 statement.executeUpdate();
             }
 
-            Collection<String> ucs = value.getUCs();
+            Set<String> ucs = value.getNomesDeUCs();
             for (String uc : ucs) {
                 try (PreparedStatement statement = this.connection.prepareStatement(
                          "INSERT INTO alunoUcs(aluno, uc) VALUES (?, ?)")) {
@@ -77,6 +80,20 @@ public class AlunoDAO extends AbstractDAO<Aluno> {
                     statement.setString(1, value.getNumero());
                     statement.setString(2, uc);
                     statement.executeUpdate();
+                }
+            }
+
+            Map<String, Set<String>> turnos = value.getHorario().getNomesDeTurnos();
+            for (String uc : turnos.keySet()) {
+                for (String turno : turnos.get(uc)) {
+                    try (PreparedStatement statement = this.connection.prepareStatement(
+                             "INSERT INTO horarios(aluno, uc, turno) VALUES (?, ?, ?)")) {
+
+                        statement.setString(1, value.getNumero());
+                        statement.setString(2, uc);
+                        statement.setString(3, turno);
+                        statement.executeUpdate();
+                    }
                 }
             }
 
@@ -97,9 +114,8 @@ public class AlunoDAO extends AbstractDAO<Aluno> {
     @Override
     protected Aluno decodeTuple(ResultSet result) throws SQLException {
         String numero = result.getString(1);
-        Aluno  ret    = new Aluno(numero);
 
-        Collection<String> ucs = new HashSet<String>();
+        Set<String> ucs = new HashSet<String>();
         try (PreparedStatement statement =
                  this.connection.prepareStatement("SELECT uc FROM alunoUcs WHERE aluno=?")) {
 
@@ -109,7 +125,26 @@ public class AlunoDAO extends AbstractDAO<Aluno> {
                 ucs.add(set.getString(1));
         }
 
-        ret.setUCs(ucs);
-        return ret;
+        Map<String, Set<String>> turnos = new HashMap<String, Set<String>>();
+        try (PreparedStatement statement =
+                 this.connection.prepareStatement("SELECT uc, turno FROM horarios WHERE aluno=?")) {
+
+            statement.setString(1, numero);
+            ResultSet set = statement.executeQuery();
+            while (set.next()) {
+                String uc    = set.getString(1);
+                String turno = set.getString(2);
+
+                Set<String> turnosUC = turnos.get(uc);
+                if (turnosUC == null) {
+                    turnosUC = new HashSet<String>();
+                    turnos.put(uc, turnosUC);
+                }
+
+                turnosUC.add(turno);
+            }
+        }
+
+        return new Aluno(numero, ucs, new Horario(turnos));
     }
 }

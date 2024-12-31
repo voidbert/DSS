@@ -16,16 +16,17 @@
 
 package dss.HorariosLN.SubSistemaHorarios;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import dss.HorariosDL.AlunoDAO;
 import dss.HorariosDL.UCDAO;
 
 public class Curso {
-    private String             id;
-    private Collection<String> alunos;
-    private Collection<String> ucs;
+    private String      id;
+    private Set<String> alunos;
+    private Set<String> ucs;
 
     public Curso(String id) {
         this.id     = id;
@@ -33,13 +34,20 @@ public class Curso {
         this.ucs    = new HashSet<String>();
     }
 
-    public Curso(Curso curso) {
-        this(curso.getId());
-        this.alunos = curso.getAlunos();
-        this.ucs    = curso.getUCs();
+    public Curso(String id, Set<String> alunos, Set<String> ucs) {
+        this.id     = id;
+        this.alunos = new HashSet<String>(alunos);
+        this.ucs    = new HashSet<String>(ucs);
     }
 
-    public void adicionarAluno(String numero) {
+    public Curso(Curso curso) {
+        this(curso.getId());
+        this.alunos = curso.getNumerosDeAlunos();
+        this.ucs    = curso.getNomesDeUCs();
+    }
+
+    public void adicionarAluno(Aluno aluno) {
+        String numero = aluno.getNumero();
         this.alunos.add(numero);
     }
 
@@ -57,7 +65,8 @@ public class Curso {
         return res;
     }
 
-    public void adicionarUC(String nome) {
+    public void adicionarUC(UC uc) {
+        String nome = uc.getNome();
         this.ucs.add(nome);
     }
 
@@ -74,18 +83,35 @@ public class Curso {
         return this.id;
     }
 
-    public Collection<String> getAlunos() {
+    public Set<Aluno> getAlunos() {
+        AlunoDAO dao = AlunoDAO.getInstance();
+        return this.alunos.stream().map(numero -> dao.get(numero)).collect(Collectors.toSet());
+    }
+
+    public Set<String> getNumerosDeAlunos() {
         return new HashSet<String>(this.alunos);
     }
 
-    public Collection<String> getUCs() {
+    public Set<UC> getUCs() {
+        UCDAO dao = UCDAO.getInstance();
+        return this.ucs.stream().map(nome -> dao.get(nome)).collect(Collectors.toSet());
+    }
+
+    public Set<String> getNomesDeUCs() {
         return new HashSet<String>(this.ucs);
     }
 
+    @Override
+    public int hashCode() {
+        return this.id.hashCode();
+    }
+
+    @Override
     public Object clone() {
         return new Curso(this);
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -97,6 +123,7 @@ public class Curso {
             this.ucs.equals(curso.getUCs());
     }
 
+    @Override
     public String toString() {
         return String.format("Curso(id=%s, alunos=%s, ucs=%s)",
                              this.id,

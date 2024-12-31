@@ -17,10 +17,13 @@
 package dss.HorariosLN;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 import dss.HorariosLN.SubSistemaHorarios.GestHorariosFacade;
 import dss.HorariosLN.SubSistemaHorarios.Horario;
 import dss.HorariosLN.SubSistemaHorarios.IGestHorarios;
+import dss.HorariosLN.SubSistemaHorarios.Sobreposicao;
 import dss.HorariosLN.SubSistemaUtilizadores.GestUtilizadoresFacade;
 import dss.HorariosLN.SubSistemaUtilizadores.IGestUtilizadores;
 
@@ -64,8 +67,8 @@ public class HorariosLNFacade implements IHorariosLN {
         return res;
     }
 
-    public Horario obterHorario(String numeroAluno) throws LNException {
-        Horario res = this.ssHorarios.obterHorario(numeroAluno);
+    public Map<String, Set<String>> obterHorario(String numeroAluno) throws LNException {
+        Map<String, Set<String>> res = this.ssHorarios.obterHorario(numeroAluno);
         return res;
     }
 
@@ -80,8 +83,8 @@ public class HorariosLNFacade implements IHorariosLN {
         return res;
     }
 
-    public Collection<String> obterAlunosDeCurso(String idCurso) throws LNException {
-        Collection<String> res = this.ssHorarios.obterAlunosDeCurso(idCurso);
+    public Set<String> obterAlunosDeCurso(String idCurso) throws LNException {
+        Set<String> res = this.ssHorarios.obterAlunosDeCurso(idCurso);
         return res;
     }
 
@@ -98,8 +101,8 @@ public class HorariosLNFacade implements IHorariosLN {
         this.ssHorarios.importarUCs(caminhoFicheiro, idCurso);
     }
 
-    public Collection<String> obterUCsDeCurso(String idCurso) throws LNException {
-        Collection<String> res = this.ssHorarios.obterUCsDeCurso(idCurso);
+    public Set<String> obterUCsDeCurso(String idCurso) throws LNException {
+        Set<String> res = this.ssHorarios.obterUCsDeCurso(idCurso);
         return res;
     }
 
@@ -116,18 +119,29 @@ public class HorariosLNFacade implements IHorariosLN {
         this.ssHorarios.registarAluno(idCurso, numeroAluno);
     }
 
-    public void registarUCsDeAluno(String numeroAluno, Collection<String> nomeUCs)
-        throws LNException {
+    public void registarUCsDeAluno(String numeroAluno, Set<String> nomeUCs) throws LNException {
         this.ssHorarios.registarUCsDeAluno(numeroAluno, nomeUCs);
     }
 
-    public boolean verificarUCTemPreferencias(String idCurso, String nomeUC) throws LNException {
-        boolean res = this.ssHorarios.verificarUCTemPreferencias(idCurso, nomeUC);
+    public void gerarHorarios(String idCurso) throws LNException {
+        this.ssHorarios.gerarHorarios(idCurso);
+    }
+
+    public Collection<Sobreposicao> procurarSobreposicoes(String idCurso) throws LNException {
+        Collection<Sobreposicao> res = this.ssHorarios.procurarSobreposicoes(idCurso);
         return res;
     }
 
-    public void importarPreferenciasUC(String caminhoFicheiro, String idCurso, String nomeUC)
+    public boolean validarHorario(String numeroAluno, Map<String, Set<String>> horario)
         throws LNException {
-        this.ssHorarios.importarPreferenciasUC(caminhoFicheiro, idCurso, nomeUC);
+
+        boolean res = this.ssHorarios.validarHorario(numeroAluno, horario);
+        return res;
+    }
+
+    public void armazenarHorario(String                   idCurso,
+                                 String                   numeroAluno,
+                                 Map<String, Set<String>> horario) throws LNException {
+        this.ssHorarios.armazenarHorario(idCurso, numeroAluno, horario);
     }
 }

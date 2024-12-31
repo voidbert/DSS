@@ -104,10 +104,25 @@ public class UC {
             Collectors.toMap(e -> e.getKey(), e -> (Turno) e.getValue().clone()));
     }
 
+    public Turno getTurno(String nome) {
+        Turno ret = this.praticos.get(nome);
+        if (ret == null)
+            ret = this.teoricos.get(nome);
+
+        return (Turno) ret.clone();
+    }
+
+    @Override
+    public int hashCode() {
+        return this.nome.hashCode();
+    }
+
+    @Override
     public Object clone() {
         return new UC(this);
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -118,6 +133,7 @@ public class UC {
         return this.nome.equals(uc.getNome());
     }
 
+    @Override
     public String toString() {
         return String.format("UC(nome=%s, praticos=%s, teoricos=%s)",
                              this.nome,

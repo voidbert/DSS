@@ -22,11 +22,11 @@ import java.util.Map;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import dss.HorariosDL.SalaDAO;
 
 public class TurnoPratico extends Turno {
     private int capacidade;
 
+    // Só para DAOs
     public TurnoPratico(String    nome,
                         DayOfWeek dia,
                         LocalTime comeco,
@@ -38,12 +38,22 @@ public class TurnoPratico extends Turno {
         this.capacidade = capacidade;
     }
 
+    public TurnoPratico(String    nome,
+                        DayOfWeek dia,
+                        LocalTime comeco,
+                        LocalTime fim,
+                        Sala      sala,
+                        int       capacidade) {
+
+        this(nome, dia, comeco, fim, sala.getNome(), capacidade);
+    }
+
     public TurnoPratico(TurnoPratico turno) {
         this(turno.getNome(),
              turno.getDia(),
              turno.getComeco(),
              turno.getFim(),
-             turno.getSala(),
+             turno.getNomeDeSala(),
              turno.getCapacidadeDefinida());
     }
 
@@ -71,7 +81,8 @@ public class TurnoPratico extends Turno {
 
     @Override
     public int getCapacidade() {
-        int capacidadeDaSala = SalaDAO.getInstance().get(this.getSala()).getCapacidade();
+        Sala salaObj          = this.getSala();
+        int  capacidadeDaSala = salaObj.getCapacidade();
         return Math.min(this.capacidade, capacidadeDaSala);
     }
 
@@ -99,7 +110,7 @@ public class TurnoPratico extends Turno {
             this.getDia().toString(),
             this.getComeco().toString(),
             this.getFim().toString(),
-            this.getSala(),
+            this.getNomeDeSala(),
             this.capacidade);
     }
 }

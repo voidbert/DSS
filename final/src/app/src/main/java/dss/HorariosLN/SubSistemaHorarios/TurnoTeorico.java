@@ -21,11 +21,15 @@ import java.time.LocalTime;
 import java.util.Map;
 
 import com.google.gson.JsonElement;
-import dss.HorariosDL.SalaDAO;
 
 public class TurnoTeorico extends Turno {
+    // Só para DAOs
     public TurnoTeorico(String nome, DayOfWeek dia, LocalTime comeco, LocalTime fim, String sala) {
         super(nome, dia, comeco, fim, sala);
+    }
+
+    public TurnoTeorico(String nome, DayOfWeek dia, LocalTime comeco, LocalTime fim, Sala sala) {
+        this(nome, dia, comeco, fim, sala.getNome());
     }
 
     public TurnoTeorico(JsonElement json, Map<String, Sala> salaChecker) throws HorariosException {
@@ -33,12 +37,18 @@ public class TurnoTeorico extends Turno {
     }
 
     public TurnoTeorico(TurnoTeorico turno) {
-        this(turno.getNome(), turno.getDia(), turno.getComeco(), turno.getFim(), turno.getSala());
+        this(turno.getNome(),
+             turno.getDia(),
+             turno.getComeco(),
+             turno.getFim(),
+             turno.getNomeDeSala());
     }
 
     @Override
     public int getCapacidade() {
-        return SalaDAO.getInstance().get(this.getSala()).getCapacidade();
+        Sala salaObj = this.getSala();
+        int  ret     = salaObj.getCapacidade();
+        return ret;
     }
 
     @Override
@@ -58,6 +68,6 @@ public class TurnoTeorico extends Turno {
                              this.getDia().toString(),
                              this.getComeco().toString(),
                              this.getFim().toString(),
-                             this.getSala());
+                             this.getSala().toString());
     }
 }

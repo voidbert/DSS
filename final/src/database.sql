@@ -24,7 +24,7 @@ CREATE TABLE salas(
 
 CREATE TABLE turnos(
     uc         VARCHAR(75) NOT NULL,
-    nome       VARCHAR(75) NOT NULL,
+    nome       VARCHAR(20) NOT NULL,
     tipo       CHAR(1)     NOT NULL,
     dia        INT         NOT NULL,
     comeco     VARCHAR(10) NOT NULL,
@@ -36,6 +36,16 @@ CREATE TABLE turnos(
     FOREIGN KEY (uc)   REFERENCES ucs (nome)   ON DELETE CASCADE,
     FOREIGN KEY (sala) REFERENCES salas (nome) ON DELETE CASCADE,
     CONSTRAINT chkTipo CHECK (tipo in ('T', 'P'))
+);
+
+CREATE TABLE horarios(
+    aluno VARCHAR(10) NOT NULL,
+    uc    VARCHAR(75) NOT NULL,
+    turno VARCHAR(20) NOT NULL,
+
+    PRIMARY KEY (aluno, uc, turno),
+    FOREIGN KEY (aluno)     REFERENCES alunos (numero)   ON DELETE CASCADE,
+    FOREIGN KEY (uc, turno) REFERENCES turnos (uc, nome) ON DELETE CASCADE
 );
 
 CREATE TABLE alunoUcs(

@@ -17,24 +17,29 @@
 package dss.HorariosLN.SubSistemaHorarios;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 public interface IGestHorarios {
-    public Horario obterHorario(String numeroAluno) throws HorariosException;
-    public boolean verificarExistenciaAluno(String numeroAluno);
+    public Map<String, Set<String>> obterHorario(String numeroAluno) throws HorariosException;
+    public boolean                  verificarExistenciaAluno(String numeroAluno);
     public boolean verificarSeAlunoInscritoEmCurso(String numeroAluno, String idCurso)
         throws HorariosException;
-    public Collection<String> obterAlunosDeCurso(String idCurso) throws HorariosException;
-    public void               eliminarDadosCurso(String idCurso) throws HorariosException;
-    public boolean            verificarCursoTemUCs(String idCurso) throws HorariosException;
-    public void importarUCs(String caminhoFicheiro, String idCurso) throws HorariosException;
-    public Collection<String> obterUCsDeCurso(String idCurso) throws HorariosException;
-    public boolean            verificarCursoTemAlunos(String idCurso) throws HorariosException;
+    public Set<String> obterAlunosDeCurso(String idCurso) throws HorariosException;
+    public void        eliminarDadosCurso(String idCurso) throws HorariosException;
+    public boolean     verificarCursoTemUCs(String idCurso) throws HorariosException;
+    public void        importarUCs(String caminhoFicheiro, String idCurso) throws HorariosException;
+    public Set<String> obterUCsDeCurso(String idCurso) throws HorariosException;
+    public boolean     verificarCursoTemAlunos(String idCurso) throws HorariosException;
     public void importarAlunos(String caminhoFicheiro, String idCurso) throws HorariosException;
     public void registarAluno(String idCurso, String numeroAluno) throws HorariosException;
-    public void registarUCsDeAluno(String numeroAluno, Collection<String> nomeUCs)
+    public void registarUCsDeAluno(String numeroAluno, Set<String> nomeUCs)
         throws HorariosException;
-    public boolean verificarUCTemPreferencias(String idCurso, String nomeUC)
+    public void                     gerarHorarios(String idCurso) throws HorariosException;
+    public Collection<Sobreposicao> procurarSobreposicoes(String idCurso) throws HorariosException;
+    public boolean validarHorario(String numeroAluno, Map<String, Set<String>> horario)
         throws HorariosException;
-    public void importarPreferenciasUC(String caminhoFicheiro, String idCurso, String nomeUC)
-        throws HorariosException;
+    public void armazenarHorario(String                   idCurso,
+                                 String                   numeroAluno,
+                                 Map<String, Set<String>> horario) throws HorariosException;
 }
