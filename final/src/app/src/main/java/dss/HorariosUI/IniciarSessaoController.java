@@ -13,7 +13,7 @@ public class IniciarSessaoController extends Controller {
     }
 
     public void terminarSessao() throws LNException {
-        this.terminarSessao();
+        this.getModelo().terminarSessao();
     }
 
     public View nextView() {
