@@ -1,16 +1,33 @@
 package dss.HorariosUI;
 
+import java.util.Collection;
+
 import dss.HorariosLN.IHorariosLN;
+import dss.HorariosLN.LNException;
 
 public class DiretorCursoController extends Controller {
     public DiretorCursoController(IHorariosLN modelo) {
         super(modelo);
     }
 
-    public void reiniciarSemestre() {
+    public void reiniciarSemestre() throws LNException{
+        String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
+        Collection<String> alunos = this.getModelo().obterAlunosDeCurso(idCurso);
+
+        this.getModelo().eliminarCredenciaisDeAlunos(alunos);
+        this.getModelo().eliminarDadosCurso(idCurso);
     }
 
-    public void importarUnidadesCurricularesTurnos() {
+    public void verificarCursoTemUCs() throws LNException{
+        String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
+        if (this.getModelo().verificarCursoTemUCs(idCurso)) {
+            throw new LNException();
+        }
+    }
+
+    public void importarUnidadesCurricularesTurnos(String caminhoFicheiro) throws LNException{
+        String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
+        this.getModelo().importarUCs(caminhoFicheiro, idCurso);
     }
 
     public void importarAlunosEInscricoes() {

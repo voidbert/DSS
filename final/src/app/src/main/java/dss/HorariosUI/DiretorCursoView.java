@@ -3,6 +3,8 @@ package dss.HorariosUI;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import dss.HorariosLN.LNException;
+
 public class DiretorCursoView implements View{
     private DiretorCursoController controlador;
 
@@ -11,11 +13,39 @@ public class DiretorCursoView implements View{
     }
 
     private void reiniciarSemestre() {
-        this.controlador.reiniciarSemestre();
+        try {
+            this.controlador.reiniciarSemestre();
+            System.out.println("Dados associados ao curso eliminados com sucesso!");
+        } catch (LNException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void importarUnidadesCurricularesTurnos() {
-        this.controlador.importarUnidadesCurricularesTurnos();
+        try {
+            this.controlador.verificarCursoTemUCs();
+        } catch (LNException e) {
+            boolean[] sobrescreverDados = { false };
+            MenuEntry[] entries = {new MenuEntry("Sobrescrever Dados Existentes", i -> { sobrescreverDados[0] = true; }),
+                                new MenuEntry("Abortar Importação de Dados", i -> { })};
+
+            new Menu(entries, new Scanner(System.in)).run();
+
+            if (sobrescreverDados[0] == false) {
+                System.out.println("Importação de dados abortada...");
+                return;
+            }
+        }
+
+        Menu menu = new Menu();
+        String caminho = menu.readString("Caminho para o ficheiro de dados : ");
+
+        try {
+            this.controlador.importarUnidadesCurricularesTurnos(caminho);
+            System.out.println("A importação de dados foi realizada com sucesso!");
+        } catch (LNException e) {
+            System.out.println("Importanção de dados abortada...");
+        }
     }
 
     private void importarAlunosEInscricoes() {
