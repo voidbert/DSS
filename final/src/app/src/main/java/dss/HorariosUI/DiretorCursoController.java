@@ -7,6 +7,7 @@ import java.util.Set;
 import dss.HorariosLN.IHorariosLN;
 import dss.HorariosLN.LNException;
 import dss.HorariosLN.SubSistemaHorarios.Horario;
+import dss.HorariosLN.SubSistemaHorarios.Sobreposicao;
 
 public class DiretorCursoController extends Controller {
     public DiretorCursoController(IHorariosLN modelo) {
@@ -44,23 +45,40 @@ public class DiretorCursoController extends Controller {
     public void adicionarAluno() {
     }
 
-    public void gerarHorariosAutomaticamente() throws LNException {
+    public Collection<Sobreposicao> gerarHorariosAutomaticamente() throws LNException {
         String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
-        throw new LNException("Not implemented yet");
+        this.getModelo().gerarHorarios(idCurso);
+        return this.getModelo().procurarSobreposicoes(idCurso);
+    }
 
+    public void armazenarHorarios() throws LNException {
+        String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
+        Set<String> alunos = this.getModelo().obterAlunosDeCurso(idCurso);
+
+        for (String aluno : alunos) {
+            Map<String, Set<String>> horario = this.getModelo().obterHorario(aluno);
+            this.getModelo().armazenarHorario(idCurso, aluno, horario);
+        }
     }
 
     public Map<String, Set<String>> obterHorarioAluno(String numAluno) throws LNException {
         String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
 
-        if (!this.getModelo().verificarSeAlunoInscritoEmCurso(numAluno, idCurso)) {
+        if (this.getModelo().verificarSeAlunoInscritoEmCurso(numAluno, idCurso)) {
+            /* TODO - Atualizar para UIException */
             throw new LNException("Aluno não se encontra inscrito num curso");
         }
 
         return this.getModelo().obterHorario(numAluno);
     }
 
-    public void modificarHorario() {
+    public void atualizarHorario(String numAluno, Map<String, Set<String>> horario) throws LNException {
+        if (!this.getModelo().validarHorario(numAluno, horario)) {
+            /* TODO - Atualizar para UIException */
+            throw new LNException("Horario modificado não é válido");
+        }
+        String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
+        this.getModelo().armazenarHorario(idCurso, numAluno, horario);
     }
 
     public Collection<String> publicarHorarios() throws LNException {

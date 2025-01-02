@@ -1,11 +1,15 @@
 package dss.HorariosUI;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
+
 import dss.HorariosLN.LNException;
+import dss.HorariosLN.SubSistemaHorarios.Sobreposicao;
 
 public class DiretorCursoView implements View{
     private DiretorCursoController controlador;
@@ -19,7 +23,7 @@ public class DiretorCursoView implements View{
             this.controlador.reiniciarSemestre();
             System.out.println("Dados associados ao curso eliminados com sucesso!");
         } catch (LNException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -46,7 +50,7 @@ public class DiretorCursoView implements View{
             this.controlador.importarUnidadesCurricularesTurnos(caminho);
             System.out.println("A importação de dados foi realizada com sucesso!");
         } catch (LNException e) {
-            System.out.println("Importanção de dados abortada...");
+            System.err.println("Importanção de dados abortada...");
         }
     }
 
@@ -54,7 +58,7 @@ public class DiretorCursoView implements View{
         try {
             this.controlador.importarAlunosEInscricoes();
         } catch (LNException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -68,30 +72,78 @@ public class DiretorCursoView implements View{
 
     private void gerarHorariosAutomaticamente() {
         try {
-            this.controlador.gerarHorariosAutomaticamente();
+            System.out.println("Im here!");
+            Collection<Sobreposicao> sobreposicoes = this.controlador.gerarHorariosAutomaticamente();
+
+            if (sobreposicoes.size() < 1) {
+                System.out.println("Foram detetadas sobreposições nos horários gerados :");
+
+                for (Sobreposicao sobreposicao : sobreposicoes) {
+                    System.out.println(sobreposicao.toString());
+                }
+            }
+
+            this.controlador.armazenarHorarios();
         } catch (LNException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
     private void modificarHorario() {
         Menu menu = new Menu();
-        String numAluno = menu.readString("Número do aluno com horário para ser modificado :");
+        String numAluno = menu.readString("Número do aluno com horário para ser modificado : ");
 
         try {
             Map<String, Set<String>> horario = this.controlador.obterHorarioAluno(numAluno);
-            System.out.println(horario);
+
+            List<MenuEntry> UCEntries = new ArrayList<>();
+            String[] UC = { null };
+
+            /* Preparar menu que permite a alteração de turnos */
+            MenuEntry[] turnosEntries = {
+                new MenuEntry("Adicionar Turno", i -> {
+                    String novoTurno = menu.readString("Insira turno a ser adicionado :");
+                    horario.get(UC[0]).add(novoTurno);
+                }),
+                new MenuEntry("Remover Turno", i -> {
+                    String turnoARemover = menu.readString("Insira turno a ser removido :");
+                    horario.get(UC[0]).remove(turnoARemover);
+                }),
+                new MenuEntry("Cancelar Operação", i -> { })
+            };
+
+            Menu turnosMenu = new Menu(turnosEntries, new Scanner(System.in));
+            /* */
+
+            for (String key : horario.keySet()) {
+                UCEntries.add(new MenuEntry(key, i -> {
+                    System.out.println("Turnos associados à UC " + key + " :\n" + horario.get(key).toString());
+                    UC[0] = key;
+                    turnosMenu.run();
+                }));
+            }
+            boolean[] sair = { false };
+            UCEntries.add(new MenuEntry("Adicionar UC", i -> {
+                String novaUC = menu.readString("Insira UC a adicionar :");
+                horario.put(novaUC, null);
+            }));
+            UCEntries.add(new MenuEntry("Concluir Operação", i -> { sair[0] = true; }));
+
+            MenuEntry[] UCEntriesArray = new MenuEntry[UCEntries.size()];
+            for (int i = 0; i < UCEntries.size(); i++) {
+                UCEntriesArray[i] = UCEntries.get(i);
+            }
+
+            Menu UCMenu = new Menu(UCEntriesArray, new Scanner(System.in));
+
+            do {
+                UCMenu.run();
+            } while (!sair[0]);
+
+            this.controlador.atualizarHorario(numAluno, horario);
         } catch (LNException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
-
-        // Apresentar a lista de turnos do aluno;
-        // Pedir por modificação;
-
-        // Verficiar e guardar o horário;
-        // Informar acerca do sucesso da operação;
-
-        this.controlador.modificarHorario();
     }
 
     private void publicarHorarios() {
@@ -106,7 +158,7 @@ public class DiretorCursoView implements View{
                 System.out.println(email);
             }
         } catch (LNException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
