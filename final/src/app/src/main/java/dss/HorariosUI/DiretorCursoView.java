@@ -1,9 +1,12 @@
 package dss.HorariosUI;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import dss.HorariosLN.LNException;
+import dss.HorariosLN.SubSistemaHorarios.Horario;
 
 public class DiretorCursoView implements View{
     private DiretorCursoController controlador;
@@ -49,7 +52,11 @@ public class DiretorCursoView implements View{
     }
 
     private void importarAlunosEInscricoes() {
-        this.controlador.importarAlunosEInscricoes();
+        try {
+            this.controlador.importarAlunosEInscricoes();
+        } catch (LNException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void definirPreferenciasUC() {
@@ -61,15 +68,47 @@ public class DiretorCursoView implements View{
     }
 
     private void gerarHorariosAutomaticamente() {
-        this.controlador.gerarHorariosAutomaticamente();
+        try {
+            this.controlador.gerarHorariosAutomaticamente();
+        } catch (LNException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void modificarHorario() {
+        Menu menu = new Menu();
+        String numAluno = menu.readString("Número do aluno com horário para ser modificado :");
+
+        try {
+            Horario horario = this.controlador.obterHorarioAluno(numAluno);
+            System.out.println(horario);
+        } catch (LNException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Apresentar a lista de turnos do aluno;
+        // Pedir por modificação;
+
+        // Verficiar e guardar o horário;
+        // Informar acerca do sucesso da operação;
+
         this.controlador.modificarHorario();
     }
 
     private void publicarHorarios() {
-        this.controlador.publicarHorarios();
+        try {
+            Collection<String> falhas = this.controlador.publicarHorarios();
+            if (falhas.size() < 1) {
+                return;
+            }
+
+            System.out.println("As seguintes mensagens de correio eletrónico não puderam ser enviadas :");
+            for (String email : falhas) {
+                System.out.println(email);
+            }
+        } catch (LNException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public View run() {
