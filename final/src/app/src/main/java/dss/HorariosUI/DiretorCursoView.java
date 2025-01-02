@@ -1,12 +1,11 @@
 package dss.HorariosUI;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
+import java.util.Set;
 import dss.HorariosLN.LNException;
-import dss.HorariosLN.SubSistemaHorarios.Horario;
 
 public class DiretorCursoView implements View{
     private DiretorCursoController controlador;
@@ -80,7 +79,7 @@ public class DiretorCursoView implements View{
         String numAluno = menu.readString("Número do aluno com horário para ser modificado :");
 
         try {
-            Horario horario = this.controlador.obterHorarioAluno(numAluno);
+            Map<String, Set<String>> horario = this.controlador.obterHorarioAluno(numAluno);
             System.out.println(horario);
         } catch (LNException e) {
             System.out.println(e.getMessage());

@@ -1,6 +1,8 @@
 package dss.HorariosUI;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 import dss.HorariosLN.IHorariosLN;
 import dss.HorariosLN.LNException;
@@ -13,7 +15,7 @@ public class DiretorCursoController extends Controller {
 
     public void reiniciarSemestre() throws LNException{
         String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
-        Collection<String> alunos = this.getModelo().obterAlunosDeCurso(idCurso);
+        Set<String> alunos = this.getModelo().obterAlunosDeCurso(idCurso);
 
         this.getModelo().eliminarCredenciaisDeAlunos(alunos);
         this.getModelo().eliminarDadosCurso(idCurso);
@@ -48,7 +50,7 @@ public class DiretorCursoController extends Controller {
 
     }
 
-    public Horario obterHorarioAluno(String numAluno) throws LNException {
+    public Map<String, Set<String>> obterHorarioAluno(String numAluno) throws LNException {
         String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
 
         if (!this.getModelo().verificarSeAlunoInscritoEmCurso(numAluno, idCurso)) {
@@ -63,7 +65,7 @@ public class DiretorCursoController extends Controller {
 
     public Collection<String> publicarHorarios() throws LNException {
         String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
-        Collection<String> alunos = this.getModelo().obterAlunosDeCurso(idCurso);
+        Set<String> alunos = this.getModelo().obterAlunosDeCurso(idCurso);
 
         this.getModelo().gerarCredenciaisDeAlunos(alunos);
         Collection<String> falhas = this.getModelo().notificarAlunos(alunos);
