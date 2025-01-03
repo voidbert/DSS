@@ -21,24 +21,24 @@ import java.util.Scanner;
 
 import dss.HorariosLN.LNException;
 
-public class IniciarSessaoView implements View {
-    private IniciarSessaoController controlador;
-    private View nextView;
+public class IniciarSessaoVista implements Vista {
+    private IniciarSessaoControlador controlador;
+    private Vista proximaVista;
 
-    public IniciarSessaoView(IniciarSessaoController controlador) {
+    public IniciarSessaoVista(IniciarSessaoControlador controlador) {
         this.controlador = controlador;
-        this.nextView = null;
+        this.proximaVista = null;
     }
 
     private void iniciarSessao() {
         Menu menu = new Menu();
         String email = menu.readString("Email > ");
-        String password = menu.readString("Palavra passe > ");
+        String palavraPasse = menu.readString("Palavra passe > ");
 
         try {
-            this.controlador.iniciarSessao(email, password);
+            this.controlador.iniciarSessao(email, palavraPasse);
             System.out.println("Sessão iniciada com sucesso!");
-            this.nextView = controlador.nextView();
+            this.proximaVista = controlador.proximaVista();
         } catch (LNException e) {
             System.err.println(e.getMessage());
         }
@@ -53,18 +53,18 @@ public class IniciarSessaoView implements View {
         }
     }
 
-    public View run() {
-        boolean[]   exitRequest = { false }; // Array wrapper to allow for lambda modification
-        MenuEntry[] entries = {new MenuEntry("Iniciar Sessão", i -> {this.iniciarSessao();}),
+    public Vista run() {
+        boolean[]   sair = { false };
+        MenuEntry[] entradas = {new MenuEntry("Iniciar Sessão", i -> {this.iniciarSessao();}),
                             new MenuEntry("Terminar Sessão", i -> {this.terminarSessao();}),
-                            new MenuEntry("Sair", i -> { exitRequest[0] = true;})};
+                            new MenuEntry("Sair", i -> { sair[0] = true;})};
 
         try {
             do {
-                new Menu(entries, new Scanner(System.in)).run();
-            } while (!exitRequest[0] && this.nextView == null);
-        } catch (NoSuchElementException e) {} // System.in closed
+                new Menu(entradas, new Scanner(System.in)).run();
+            } while (!sair[0] && this.proximaVista == null);
+        } catch (NoSuchElementException e) {}
 
-        return this.nextView;
+        return this.proximaVista;
     }
 }

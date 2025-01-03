@@ -16,6 +16,6 @@
 
 package dss.HorariosUI;
 
-public interface View {
-    public abstract View run();
+public interface Vista {
+    public abstract Vista run();
 }

@@ -81,7 +81,7 @@ public class Menu {
 
     /** Runs this menu. */
     public void run() {
-        System.out.println("\nChoose an option ...\n");
+        System.out.println("\nEscolha uma opção ...\n");
         for (int i = 0; i < this.entries.length; ++i) {
             System.out.println(String.format("  %d -> %s", i + 1, entries[i].getText()));
         }
@@ -89,8 +89,8 @@ public class Menu {
 
         int option =
                 this.readInt(
-                        "Option > ",
-                        String.format("Must be an integer betwewn 1 and %d!", this.entries.length),
+                        "Opção > ",
+                        String.format("Tem de ser um inteiro entre 1 e %d!", this.entries.length),
                         i -> i > 0 && i <= this.entries.length);
         this.entries[option - 1].getHandler().accept(option - 1);
     }

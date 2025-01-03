@@ -19,25 +19,25 @@
 import dss.HorariosLN.IHorariosLN;
 import dss.HorariosLN.LNException;
 
-public class IniciarSessaoController extends Controller {
-    public IniciarSessaoController(IHorariosLN modelo) {
+public class IniciarSessaoControlador extends Controlador {
+    public IniciarSessaoControlador(IHorariosLN modelo) {
         super(modelo);
     }
 
     public void iniciarSessao(String email, String password) throws LNException {
-        this.getModelo().iniciarSessao(email, password);
+        this.obterModelo().iniciarSessao(email, password);
     }
 
     public void terminarSessao() throws LNException {
-        this.getModelo().terminarSessao();
+        this.obterModelo().terminarSessao();
     }
 
-    public View nextView() {
+    public Vista proximaVista() {
         try {
-            this.getModelo().obterNumeroAlunoAutenticado();
-            return new AlunoView(new AlunoController(this.getModelo()));
+            this.obterModelo().obterNumeroAlunoAutenticado();
+            return new AlunoVista(new AlunoControlador(this.obterModelo()));
         } catch (LNException e) {
-            return new DiretorCursoView(new DiretorCursoController(this.getModelo()));
+            return new DiretorCursoVista(new DiretorCursoControlador(this.obterModelo()));
         }
     }
 }

@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
- package dss.HorariosUI;
+package dss.HorariosUI;
 
-import dss.HorariosLN.IHorariosLN;
+import dss.HorariosLN.LNException;
 
-public abstract class Controller {
-    private IHorariosLN modelo;
-    public Controller(IHorariosLN modelo) { this.modelo = modelo; }
-    public IHorariosLN getModelo() { /* Clone model ? no */ return this.modelo; }
+public class UIException extends LNException {
+    public UIException(String message) {
+        super(message);
+    }
 }
+

@@ -21,10 +21,10 @@ import java.util.Scanner;
 
 import dss.HorariosLN.LNException;
 
-public class AlunoView implements View{
-    private AlunoController controlador;
+public class AlunoVista implements Vista {
+    private AlunoControlador controlador;
 
-    public AlunoView(AlunoController controlador) {
+    public AlunoVista(AlunoControlador controlador) {
         this.controlador = controlador;
     }
 
@@ -36,18 +36,18 @@ public class AlunoView implements View{
         }
     }
 
-    public View run() {
-        boolean[]   exitRequest = { false }; // Array wrapper to allow for lambda modification
-        MenuEntry[] entries =
+    public Vista run() {
+        boolean[]   sair = { false };
+        MenuEntry[] entradas =
             {new MenuEntry("Visualizar Horário", i -> {this.visualizarHorario();}),
-            new MenuEntry("Voltar atrás", i -> { exitRequest[0] = true;})};
+            new MenuEntry("Voltar atrás", i -> { sair[0] = true; })};
 
         try {
             do {
-                new Menu(entries, new Scanner(System.in)).run();
-            } while (!exitRequest[0]);
-        } catch (NoSuchElementException e) {} // System.in closed
+                new Menu(entradas, new Scanner(System.in)).run();
+            } while (!sair[0]);
+        } catch (NoSuchElementException e) {}
 
-        return new IniciarSessaoView(new IniciarSessaoController(this.controlador.getModelo()));
+        return new IniciarSessaoVista(new IniciarSessaoControlador(this.controlador.obterModelo()));
     }
 }
