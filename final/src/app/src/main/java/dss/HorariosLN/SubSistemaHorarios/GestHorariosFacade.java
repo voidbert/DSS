@@ -223,7 +223,7 @@ public class GestHorariosFacade implements IGestHorarios {
 
         Set<UC> ucs = new HashSet<UC>();
         for (String nome : nomeUCs) {
-            UC uc = this.ucs.get(nomeUCs);
+            UC uc = this.ucs.get(nome);
             if (uc == null)
                 throw new HorariosException("UC " + nome + " não existe");
 

@@ -96,7 +96,7 @@ public class DiretorCursoControlador extends Controlador {
     public Map<String, Set<String>> obterHorarioAluno(String numAluno) throws LNException {
         String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
 
-        if (this.obterModelo().verificarSeAlunoInscritoEmCurso(numAluno, idCurso)) {
+        if (!this.obterModelo().verificarSeAlunoInscritoEmCurso(numAluno, idCurso)) {
             throw new UIException("Aluno não se encontra inscrito em nenhum curso.");
         }
 

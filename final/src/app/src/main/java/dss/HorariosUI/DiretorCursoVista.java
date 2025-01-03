@@ -60,7 +60,7 @@ public class DiretorCursoVista implements Vista {
             this.controlador.importarUnidadesCurricularesTurnos(caminho);
             System.out.println("A importação de dados foi realizada com sucesso!");
         } catch (LNException e) {
-            System.out.println("Importanção de dados abortada...");
+            System.err.println(e.getMessage() + " Importanção de dados abortada...");
         }
     }
 
@@ -85,9 +85,9 @@ public class DiretorCursoVista implements Vista {
 
         try{
             this.controlador.importarAlunosEInscricoes(caminho);
-            System.out.println("Importanção de alunos e inscrições foi realizada com sucesso!");
+            System.out.println("Importação de alunos e inscrições foi realizada com sucesso!");
         } catch (LNException e) {
-            System.out.println("Importação de Alunos e Inscrições abortada...");
+            System.err.println(e.getMessage() + " Importação de Alunos e Inscrições abortada...");
         }
     }
 
@@ -103,7 +103,7 @@ public class DiretorCursoVista implements Vista {
             Set<String> listaInscricoes = new HashSet<>();
             boolean[] sair = { false };
 
-            System.out.println("Inscrever aluno na UC ...");
+            System.out.print("\nAdicione as UC's nas quais o aluno se encontra inscrito :");
             for (String key : ucsCurso) {
                 listaEntradas.add(new MenuEntry(key, i -> { listaInscricoes.add(key); }));
             }
@@ -123,7 +123,7 @@ public class DiretorCursoVista implements Vista {
             this.controlador.adicionarAluno(numAluno, listaInscricoes);
             System.out.println("Adição de aluno realizada com sucesso!");
         } catch (LNException e){
-            System.err.println(e.getMessage());
+            System.err.println(e.getMessage() + " Operação cancelada.");
         }
     }
 
