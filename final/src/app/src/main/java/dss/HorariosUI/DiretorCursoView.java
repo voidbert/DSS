@@ -44,14 +44,13 @@ public class DiretorCursoView implements View{
             this.controlador.importarUnidadesCurricularesTurnos(caminho);
             System.out.println("A importação de dados foi realizada com sucesso!");
         } catch (LNException e) {
-            System.err.println("Importanção de dados abortada...");
+            System.out.println("Importanção de dados abortada...");
         }
     }
 
     private void importarAlunosEInscricoes(){
         try {
             this.controlador.verificarCursoTemAlunos();
-
         }catch(LNException e){
             boolean[] sobrescreverAlunosEInscricoes = { false };
             MenuEntry[] entries = {new MenuEntry("Sobrescrever Alunos e Inscrições existentes", i -> { sobrescreverAlunosEInscricoes[0] = true; }),
@@ -76,82 +75,44 @@ public class DiretorCursoView implements View{
         }
     }
 
-    private void definirPreferenciasUC() {
-        String[] UC = new String[1];
-        try {
-            Collection<String> ucs = Collections.singleton(this.controlador.obterListaUCs());
-            MenuEntry[] entries = new MenuEntry[ucs.size()];
-            int i = 0;
-            for (String uc : ucs) {
-                entries[i] = new MenuEntry(i + ": " + uc, l-> {UC[0] = uc;});
-                i++;
-            }
-            new Menu(entries, new Scanner(System.in)).run();
-
-        } catch (LNException e){
-            System.out.println("Não existem UCs.");
-        }
-
-        try{
-            this.controlador.verificarUCTemPreferencias(UC[0]);
-        } catch (LNException e){
-            boolean[] sobrescreverPreferenciasUC = { false };
-            MenuEntry[] entries = {new MenuEntry("Sobrescrever Preferências existentes", i -> { sobrescreverPreferenciasUC[0] = true; }),
-                    new MenuEntry("Abortar alteração de Preferências", i -> { })};
-
-            new Menu(entries, new Scanner(System.in)).run();
-
-            if (!sobrescreverPreferenciasUC[0]) {
-                System.out.println("Alteração de Preferências abortada...");
-                return;
-            }
-        }
-
-        Menu menu = new Menu();
-        String caminho = menu.readString("Caminho para o ficheiro de Preferências: ");
-
-        try{
-            this.controlador.definirPreferenciasUC(caminho, UC[0]);
-        } catch (LNException e){
-            System.out.println("Alteração de Preferênvias abortada...");
-        }
-    }
-
     private void adicionarAluno() {
         Menu menu = new Menu();
         String numAluno = menu.readString("Numero de aluno: ");
 
         try {
             this.controlador.verificarExistenciaAluno(numAluno);
-        } catch (LNException e){
-            System.out.println("Abortar adicionar aluno, aluno já existe...");
-        }
 
-        try {
-            Collection<String> ucs = Collections.singleton(this.controlador.obterListaUCs());
-            for (String uc : ucs) {
-                System.out.println(uc);
+            List<MenuEntry> entriesList = new ArrayList<>();
+            Set<String> ucsCurso = this.controlador.obterListaUCs();
+            Set<String> listaInscricoes = new HashSet<>();
+            boolean[] sair = { false };
+
+            System.out.print("Inscrever aluno na UC ...");
+            for (String key : ucsCurso) {
+                entriesList.add(new MenuEntry(key, i -> { listaInscricoes.add(key); }));
             }
-        } catch (LNException e){
-            System.out.println("Não existem UCs.");
-        }
+            entriesList.add(new MenuEntry("Concluir Operação", i -> { sair[0] = true; }));
 
-        Set<String> nomeUCs = new HashSet<>();
-        String uc = "";
-        while (!(uc= menu.readString("Introduza a UC a adicionar (em branco para parar): ")).isEmpty()){
-            nomeUCs.add(uc);
-        }
+            MenuEntry[] entries = new MenuEntry[entriesList.size()];
+            for (int i = 0; i < entriesList.size(); i++) {
+                entries[i] = entriesList.get(i);
+            }
 
-        try {
-            this.controlador.adicionarAluno(numAluno, nomeUCs);
+            menu = new Menu(entries, new Scanner(System.in));
+
+            do {
+                menu.run();
+            } while (!sair[0]);
+
+            this.controlador.adicionarAluno(numAluno, listaInscricoes);
         } catch (LNException e){
-            System.out.println("Abortar adicionar aluno...");
+            System.err.println(e.getMessage());
         }
     }
 
     private void gerarHorariosAutomaticamente() {
         try {
-            System.out.println("Im here!");
+            System.out.println("A gerar horarios automaticamente...");
             Collection<Sobreposicao> sobreposicoes = this.controlador.gerarHorariosAutomaticamente();
 
             if (sobreposicoes.size() < 1) {
@@ -163,9 +124,53 @@ public class DiretorCursoView implements View{
             }
 
             this.controlador.armazenarHorarios();
+            System.out.println("Horarios gerados com sucesso!");
         } catch (LNException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    private MenuEntry[] gerarEntradasMenuUCs(Map<String, Set<String>> horario,
+                                             String[] UC,
+                                             boolean[] sair,
+                                             Menu menuTurnos) {
+
+        List<MenuEntry> entries = new ArrayList<>();
+
+        for (String key : horario.keySet()) {
+            entries.add(new MenuEntry(key, i -> {
+                String turnos;
+                if (horario.get(key).size() < 1) {
+                    turnos = "Não existem turnos associados";
+                } else {
+                    turnos = horario.get(key).toString();
+                }
+
+                System.out.println("Turnos associados à UC " + key + " :\n" + turnos);
+                UC[0] = key;
+
+                menuTurnos.run();
+            }));
+        }
+
+        entries.add(new MenuEntry("Adicionar UC", i -> {
+            String novaUC = menuTurnos.readString("Insira UC a adicionar : ");
+            horario.put(novaUC, new HashSet<String>());
+        }));
+
+        entries.add(new MenuEntry("Remover UC", i -> {
+            String removerUC = menuTurnos.readString("Insira UC a remover : ");
+            horario.remove(removerUC);
+        }));
+
+        entries.add(new MenuEntry("Concluir Operação", i -> { sair[0] = true; }));
+
+        MenuEntry[] UCEntriesArray = new MenuEntry[entries.size()];
+        for (int i = 0; i < entries.size(); i++) {
+            UCEntriesArray[i] = entries.get(i);
+        }
+
+        return UCEntriesArray;
     }
 
     private void modificarHorario() {
@@ -174,9 +179,8 @@ public class DiretorCursoView implements View{
 
         try {
             Map<String, Set<String>> horario = this.controlador.obterHorarioAluno(numAluno);
-
-            List<MenuEntry> UCEntries = new ArrayList<>();
             String[] UC = { null };
+            boolean[] sair = { false };
 
             /* Preparar menu que permite a alteração de turnos */
             MenuEntry[] turnosEntries = {
@@ -188,35 +192,15 @@ public class DiretorCursoView implements View{
                     String turnoARemover = menu.readString("Insira turno a ser removido :");
                     horario.get(UC[0]).remove(turnoARemover);
                 }),
-                new MenuEntry("Cancelar Operação", i -> { })
+                new MenuEntry("Voltar atrás", i -> { sair[0] = true; })
             };
 
             Menu turnosMenu = new Menu(turnosEntries, new Scanner(System.in));
             /* */
 
-            for (String key : horario.keySet()) {
-                UCEntries.add(new MenuEntry(key, i -> {
-                    System.out.println("Turnos associados à UC " + key + " :\n" + horario.get(key).toString());
-                    UC[0] = key;
-                    turnosMenu.run();
-                }));
-            }
-            boolean[] sair = { false };
-            UCEntries.add(new MenuEntry("Adicionar UC", i -> {
-                String novaUC = menu.readString("Insira UC a adicionar :");
-                horario.put(novaUC, null);
-            }));
-            UCEntries.add(new MenuEntry("Concluir Operação", i -> { sair[0] = true; }));
-
-            MenuEntry[] UCEntriesArray = new MenuEntry[UCEntries.size()];
-            for (int i = 0; i < UCEntries.size(); i++) {
-                UCEntriesArray[i] = UCEntries.get(i);
-            }
-
-            Menu UCMenu = new Menu(UCEntriesArray, new Scanner(System.in));
-
             do {
-                UCMenu.run();
+                MenuEntry[] UCEntriesArray = gerarEntradasMenuUCs(horario, UC, sair, turnosMenu);
+                new Menu(UCEntriesArray, new Scanner(System.in)).run();
             } while (!sair[0]);
 
             this.controlador.atualizarHorario(numAluno, horario);
@@ -229,6 +213,7 @@ public class DiretorCursoView implements View{
         try {
             Collection<String> falhas = this.controlador.publicarHorarios();
             if (falhas.size() < 1) {
+                System.out.println("A operação foi realizada com sucesso!");
                 return;
             }
 
@@ -247,7 +232,6 @@ public class DiretorCursoView implements View{
             {new MenuEntry("Reiniciar Semestre", i -> { this.reiniciarSemestre(); }),
             new MenuEntry("Importar Unidades Curriculares e Turnos", i -> { this.importarUnidadesCurricularesTurnos(); }),
             new MenuEntry("Importar Alunos e Inscrições", i -> { this.importarAlunosEInscricoes(); }),
-            new MenuEntry("Definir Preferências de uma UC", i -> { this.definirPreferenciasUC(); }),
             new MenuEntry("Adicionar Aluno", i -> { this.adicionarAluno(); }),
             new MenuEntry("Gerar Horários", i -> { this.gerarHorariosAutomaticamente(); }),
             new MenuEntry("Modificar Horário", i -> { this.modificarHorario(); }),

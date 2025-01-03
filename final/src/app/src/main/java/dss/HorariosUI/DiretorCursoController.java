@@ -6,7 +6,6 @@ import java.util.Set;
 
 import dss.HorariosLN.IHorariosLN;
 import dss.HorariosLN.LNException;
-import dss.HorariosLN.SubSistemaHorarios.Horario;
 import dss.HorariosLN.SubSistemaHorarios.Sobreposicao;
 
 public class DiretorCursoController extends Controller {
@@ -46,37 +45,14 @@ public class DiretorCursoController extends Controller {
         this.getModelo().importarAlunos(caminhoFicheiro, idCurso);
     }
 
-    public String obterListaUCs() throws LNException {
+    public Set<String> obterListaUCs() throws LNException {
         String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
-        Collection<String> ucs = this.getModelo().obterUCsDeCurso(idCurso);
-        if(ucs.isEmpty()){
-            throw new LNException();
-        }
-        StringBuilder ans = new StringBuilder();
-        int x = 1;
-        for (String uc : ucs) {
-            ans.append(x).append(" - ").append(uc).append("\n");
-        }
-        return String.valueOf(ans);
-    }
-
-    public void verificarUCTemPreferencias(String nomeUC) throws LNException{
-        String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
-        //TODO metodo desapareceu?
-//        if (this.getModelo().verificarUCTemPreferencias(idCurso, nomeUC)) {
-            throw new LNException();
-//        }
-    }
-
-    public void definirPreferenciasUC(String caminhoFicheiro, String nomeUC) throws LNException{
-        String idCurso = this.getModelo().obterIdCursoDiretorAutenticado();
-        //TODO metodo desapareceu?
-//        this.getModelo().importarPreferenciasUC(caminhoFicheiro, idCurso, nomeUC);
+        return this.getModelo().obterUCsDeCurso(idCurso);
     }
 
     public void verificarExistenciaAluno(String numeroAluno) throws LNException{
         if(this.getModelo().verificarExistenciaAluno(numeroAluno)){
-            throw new LNException();
+            throw new LNException("Aluno com o mesmo número já existe!");
         }
     }
 
