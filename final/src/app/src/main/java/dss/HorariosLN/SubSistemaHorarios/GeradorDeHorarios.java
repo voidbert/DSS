@@ -30,8 +30,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import dss.HorariosDL.UCDAO;
-
 public class GeradorDeHorarios {
     private Map<String, Integer> assocUCs;
     private Map<String, String>  assocUCsInverso;
@@ -63,7 +61,6 @@ public class GeradorDeHorarios {
     }
 
     public void adicionarAluno(Aluno aluno) {
-        UCDAO          dao = UCDAO.getInstance();
         Collection<UC> ucs = aluno.getUCs();
 
         List<Turno> turnosAluno = new ArrayList<Turno>();
