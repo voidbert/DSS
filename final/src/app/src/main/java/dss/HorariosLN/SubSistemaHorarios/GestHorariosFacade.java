@@ -289,7 +289,7 @@ public class GestHorariosFacade implements IGestHorarios {
         if (aluno == null)
             throw new HorariosException("Aluno não existe");
 
-        Horario horarioObj = new Horario(horario);
+        Horario horarioObj = this.horarioDeNomes(horario);
         boolean res        = horarioObj.validar(aluno);
         return res;
     }
@@ -302,7 +302,7 @@ public class GestHorariosFacade implements IGestHorarios {
         if (aluno == null)
             throw new HorariosException("Aluno não existe");
 
-        Horario horarioObj = new Horario(horario);
+        Horario horarioObj = this.horarioDeNomes(horario);
         aluno.setHorario(horarioObj);
         this.alunos.put(numeroAluno, aluno);
 
@@ -311,6 +311,29 @@ public class GestHorariosFacade implements IGestHorarios {
             throw new HorariosException("Curso não existe");
 
         this.cursos.put(idCurso, curso);
+    }
+
+    private Horario horarioDeNomes(Map<String, Set<String>> horario) throws HorariosException {
+        Horario ret = new Horario();
+
+        Set<Map.Entry<String, Set<String>>> horarioUcs = horario.entrySet();
+        for (Map.Entry<String, Set<String>> uc : horarioUcs) {
+            String nomeUC = uc.getKey();
+            UC     ucObj  = this.ucs.get(nomeUC);
+            if (ucObj == null)
+                throw new HorariosException("UC não existe");
+
+            Set<String> turnos = uc.getValue();
+            for (String turno : turnos) {
+                Turno turnoObj = ucObj.getTurno(turno);
+                if (turnoObj == null)
+                    throw new HorariosException("Turno não existe");
+
+                ret.adicionarTurno(ucObj, turnoObj);
+            }
+        }
+
+        return ret;
     }
 
     private Map<String, JsonElement> lerJson(String caminhoFicheiro) throws HorariosException {
