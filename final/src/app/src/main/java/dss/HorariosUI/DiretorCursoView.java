@@ -1,12 +1,6 @@
 package dss.HorariosUI;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 import dss.HorariosLN.LNException;
 import dss.HorariosLN.SubSistemaHorarios.Sobreposicao;
@@ -54,20 +48,105 @@ public class DiretorCursoView implements View{
         }
     }
 
-    private void importarAlunosEInscricoes() {
+    private void importarAlunosEInscricoes(){
         try {
-            this.controlador.importarAlunosEInscricoes();
+            this.controlador.verificarCursoTemAlunos();
+
+        }catch(LNException e){
+            boolean[] sobrescreverAlunosEInscricoes = { false };
+            MenuEntry[] entries = {new MenuEntry("Sobrescrever Alunos e Inscrições existentes", i -> { sobrescreverAlunosEInscricoes[0] = true; }),
+                    new MenuEntry("Abortar Importação de Alunos e Inscrições", i -> { })};
+
+            new Menu(entries, new Scanner(System.in)).run();
+
+            if (!sobrescreverAlunosEInscricoes[0]) {
+                System.out.println("Importação de Alunos e Inscrições abortada...");
+                return;
+            }
+        }
+
+        Menu menu = new Menu();
+        String caminho = menu.readString("Caminho para o ficheiro de Alunos e Inscrições: ");
+
+        try{
+            this.controlador.importarAlunosEInscricoes(caminho);
+            System.out.println("Importanção de alunos e inscrições foi realizada com sucesso!");
         } catch (LNException e) {
-            System.err.println(e.getMessage());
+            System.out.println("Importação de Alunos e Inscrições abortada...");
         }
     }
 
     private void definirPreferenciasUC() {
-        this.controlador.definirPreferenciasUC();
+        String[] UC = new String[1];
+        try {
+            Collection<String> ucs = Collections.singleton(this.controlador.obterListaUCs());
+            MenuEntry[] entries = new MenuEntry[ucs.size()];
+            int i = 0;
+            for (String uc : ucs) {
+                entries[i] = new MenuEntry(i + ": " + uc, l-> {UC[0] = uc;});
+                i++;
+            }
+            new Menu(entries, new Scanner(System.in)).run();
+
+        } catch (LNException e){
+            System.out.println("Não existem UCs.");
+        }
+
+        try{
+            this.controlador.verificarUCTemPreferencias(UC[0]);
+        } catch (LNException e){
+            boolean[] sobrescreverPreferenciasUC = { false };
+            MenuEntry[] entries = {new MenuEntry("Sobrescrever Preferências existentes", i -> { sobrescreverPreferenciasUC[0] = true; }),
+                    new MenuEntry("Abortar alteração de Preferências", i -> { })};
+
+            new Menu(entries, new Scanner(System.in)).run();
+
+            if (!sobrescreverPreferenciasUC[0]) {
+                System.out.println("Alteração de Preferências abortada...");
+                return;
+            }
+        }
+
+        Menu menu = new Menu();
+        String caminho = menu.readString("Caminho para o ficheiro de Preferências: ");
+
+        try{
+            this.controlador.definirPreferenciasUC(caminho, UC[0]);
+        } catch (LNException e){
+            System.out.println("Alteração de Preferênvias abortada...");
+        }
     }
 
     private void adicionarAluno() {
-        this.controlador.adicionarAluno();
+        Menu menu = new Menu();
+        String numAluno = menu.readString("Numero de aluno: ");
+
+        try {
+            this.controlador.verificarExistenciaAluno(numAluno);
+        } catch (LNException e){
+            System.out.println("Abortar adicionar aluno, aluno já existe...");
+        }
+
+        try {
+            Collection<String> ucs = Collections.singleton(this.controlador.obterListaUCs());
+            for (String uc : ucs) {
+                System.out.println(uc);
+            }
+        } catch (LNException e){
+            System.out.println("Não existem UCs.");
+        }
+
+        Set<String> nomeUCs = new HashSet<>();
+        String uc = "";
+        while (!(uc= menu.readString("Introduza a UC a adicionar (em branco para parar): ")).isEmpty()){
+            nomeUCs.add(uc);
+        }
+
+        try {
+            this.controlador.adicionarAluno(numAluno, nomeUCs);
+        } catch (LNException e){
+            System.out.println("Abortar adicionar aluno...");
+        }
     }
 
     private void gerarHorariosAutomaticamente() {
