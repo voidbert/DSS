@@ -50,37 +50,8 @@ public class UC {
             String nome = nomeElement.getAsString();
             this.nome   = nome;
 
-            JsonElement praticosElement = map.get("praticos");
-            if (praticosElement == null)
-                throw new HorariosException("Dados inválidos (UC sem propriedade praticos)");
-
-            JsonObject               praticosObject = praticosElement.getAsJsonObject();
-            Map<String, JsonElement> praticosJson   = praticosObject.asMap();
-            this.praticos                           = new HashMap<String, Turno>();
-
-            for (Map.Entry<String, JsonElement> entry : praticosJson.entrySet()) {
-                String      nomeTurno    = entry.getKey();
-                JsonElement turnoElement = entry.getValue();
-
-                Turno pratico = new TurnoPratico(turnoElement, salaChecker);
-                this.praticos.put(nomeTurno, pratico);
-            }
-
-            JsonElement teoricosElement = map.get("teoricos");
-            if (teoricosElement == null)
-                throw new HorariosException("Dados inválidos (UC sem propriedade teoricos)");
-
-            JsonObject               teoricosObject = teoricosElement.getAsJsonObject();
-            Map<String, JsonElement> teoricosJson   = teoricosObject.asMap();
-            this.teoricos                           = new HashMap<String, Turno>();
-
-            for (Map.Entry<String, JsonElement> entry : teoricosJson.entrySet()) {
-                String      nomeTurno    = entry.getKey();
-                JsonElement turnoElement = entry.getValue();
-
-                Turno teorico = new TurnoTeorico(turnoElement, salaChecker);
-                this.teoricos.put(nomeTurno, teorico);
-            }
+            this.importarPraticos(map, salaChecker);
+            this.importarTeoricos(map, salaChecker);
         } catch (ClassCastException e) {
             throw new HorariosException("Dados inválidos");
         } catch (IllegalStateException e) {
@@ -90,6 +61,44 @@ public class UC {
 
     public UC(UC uc) {
         this(uc.getNome(), uc.getPraticos(), uc.getTeoricos());
+    }
+
+    private void importarPraticos(Map<String, JsonElement> map, Map<String, Sala> salaChecker)
+        throws HorariosException {
+        JsonElement praticosElement = map.get("praticos");
+        if (praticosElement == null)
+            throw new HorariosException("Dados inválidos (UC sem propriedade praticos)");
+
+        JsonObject               praticosObject = praticosElement.getAsJsonObject();
+        Map<String, JsonElement> praticosJson   = praticosObject.asMap();
+        this.praticos                           = new HashMap<String, Turno>();
+
+        for (Map.Entry<String, JsonElement> entry : praticosJson.entrySet()) {
+            String      nomeTurno    = entry.getKey();
+            JsonElement turnoElement = entry.getValue();
+
+            Turno pratico = new TurnoPratico(turnoElement, salaChecker);
+            this.praticos.put(nomeTurno, pratico);
+        }
+    }
+
+    private void importarTeoricos(Map<String, JsonElement> map, Map<String, Sala> salaChecker)
+        throws HorariosException {
+        JsonElement teoricosElement = map.get("teoricos");
+        if (teoricosElement == null)
+            throw new HorariosException("Dados inválidos (UC sem propriedade teoricos)");
+
+        JsonObject               teoricosObject = teoricosElement.getAsJsonObject();
+        Map<String, JsonElement> teoricosJson   = teoricosObject.asMap();
+        this.teoricos                           = new HashMap<String, Turno>();
+
+        for (Map.Entry<String, JsonElement> entry : teoricosJson.entrySet()) {
+            String      nomeTurno    = entry.getKey();
+            JsonElement turnoElement = entry.getValue();
+
+            Turno teorico = new TurnoTeorico(turnoElement, salaChecker);
+            this.teoricos.put(nomeTurno, teorico);
+        }
     }
 
     public String getNome() {
@@ -126,7 +135,9 @@ public class UC {
         if (ret == null)
             ret = this.teoricos.get(nome);
 
-        return (Turno) ret.clone();
+        if (ret != null)
+            ret = (Turno) ret.clone();
+        return ret;
     }
 
     @Override
