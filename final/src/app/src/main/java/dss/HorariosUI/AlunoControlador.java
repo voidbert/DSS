@@ -14,23 +14,21 @@
  * limitations under the License.
  */
 
-package dss;
+ package dss.HorariosUI;
 
-import dss.HorariosLN.HorariosLNFacade;
+import java.util.Map;
+import java.util.Set;
+
 import dss.HorariosLN.IHorariosLN;
-import dss.HorariosUI.IniciarSessaoControlador;
-import dss.HorariosUI.IniciarSessaoVista;
-import dss.HorariosUI.Vista;
+import dss.HorariosLN.LNException;
 
-public class Program {
-    public static void main(String[] args) throws Exception {
-        IHorariosLN horarios = new HorariosLNFacade();
+public class AlunoControlador extends Controlador {
+    public AlunoControlador(IHorariosLN modelo) {
+        super(modelo);
+    }
 
-        IniciarSessaoControlador controlador = new IniciarSessaoControlador(horarios);
-        Vista nextView = new IniciarSessaoVista(controlador);
-
-        do {
-            nextView = nextView.run();
-        } while (nextView != null);
+    public Map<String, Set<String>> obterHorario() throws LNException {
+        String res = this.obterModelo().obterNumeroAlunoAutenticado();
+        return this.obterModelo().obterHorario(res);
     }
 }

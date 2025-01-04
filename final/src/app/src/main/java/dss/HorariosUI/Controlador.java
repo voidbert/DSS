@@ -14,23 +14,12 @@
  * limitations under the License.
  */
 
-package dss;
+ package dss.HorariosUI;
 
-import dss.HorariosLN.HorariosLNFacade;
 import dss.HorariosLN.IHorariosLN;
-import dss.HorariosUI.IniciarSessaoControlador;
-import dss.HorariosUI.IniciarSessaoVista;
-import dss.HorariosUI.Vista;
 
-public class Program {
-    public static void main(String[] args) throws Exception {
-        IHorariosLN horarios = new HorariosLNFacade();
-
-        IniciarSessaoControlador controlador = new IniciarSessaoControlador(horarios);
-        Vista nextView = new IniciarSessaoVista(controlador);
-
-        do {
-            nextView = nextView.run();
-        } while (nextView != null);
-    }
+public abstract class Controlador {
+    private IHorariosLN modelo;
+    public Controlador(IHorariosLN modelo) { this.modelo = modelo; }
+    public IHorariosLN obterModelo() { /* Clone model ? no */ return this.modelo; }
 }

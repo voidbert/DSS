@@ -14,23 +14,13 @@
  * limitations under the License.
  */
 
-package dss;
+package dss.HorariosUI;
 
-import dss.HorariosLN.HorariosLNFacade;
-import dss.HorariosLN.IHorariosLN;
-import dss.HorariosUI.IniciarSessaoControlador;
-import dss.HorariosUI.IniciarSessaoVista;
-import dss.HorariosUI.Vista;
+import dss.HorariosLN.LNException;
 
-public class Program {
-    public static void main(String[] args) throws Exception {
-        IHorariosLN horarios = new HorariosLNFacade();
-
-        IniciarSessaoControlador controlador = new IniciarSessaoControlador(horarios);
-        Vista nextView = new IniciarSessaoVista(controlador);
-
-        do {
-            nextView = nextView.run();
-        } while (nextView != null);
+public class UIException extends LNException {
+    public UIException(String message) {
+        super(message);
     }
 }
+
