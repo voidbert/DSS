@@ -27,7 +27,7 @@ public class Program {
         IHorariosLN horarios = new HorariosLNFacade();
 
         IniciarSessaoControlador controlador = new IniciarSessaoControlador(horarios);
-        Vista nextView = new IniciarSessaoVista(controlador);
+        Vista                    nextView    = new IniciarSessaoVista(controlador);
 
         do {
             nextView = nextView.run();

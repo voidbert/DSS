@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
- package dss.HorariosUI;
+package dss.HorariosUI;
 
 import dss.HorariosLN.IHorariosLN;
 import dss.HorariosLN.LNException;

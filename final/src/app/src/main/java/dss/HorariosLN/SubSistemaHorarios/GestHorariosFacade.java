@@ -208,8 +208,12 @@ public class GestHorariosFacade implements IGestHorarios {
         this.cursos.put(idCurso, curso);
     }
 
-    public void registarUCsDeAluno(String numeroAluno, Set<String> nomeUCs)
+    public void registarUCsDeAluno(String idCurso, String numeroAluno, Set<String> nomeUCs)
         throws HorariosException {
+
+        Curso curso = this.cursos.get(idCurso);
+        if (curso == null)
+            throw new HorariosException("Curso não existe");
 
         Aluno aluno = this.alunos.get(numeroAluno);
         if (aluno == null)
@@ -226,6 +230,8 @@ public class GestHorariosFacade implements IGestHorarios {
 
         aluno.setUCs(ucs);
         this.alunos.put(numeroAluno, aluno);
+
+        this.cursos.put(idCurso, curso);
     }
 
     public void gerarHorarios(String idCurso) throws HorariosException {
@@ -296,14 +302,13 @@ public class GestHorariosFacade implements IGestHorarios {
         if (aluno == null)
             throw new HorariosException("Aluno não existe");
 
-        Horario horarioObj = this.horarioDeNomes(horario);
-        aluno.setHorario(horarioObj);
-        this.alunos.put(numeroAluno, aluno);
-
         Curso curso = this.cursos.get(idCurso);
         if (curso == null)
             throw new HorariosException("Curso não existe");
 
+        Horario horarioObj = this.horarioDeNomes(horario);
+        aluno.setHorario(horarioObj);
+        this.alunos.put(numeroAluno, aluno);
         this.cursos.put(idCurso, curso);
     }
 

@@ -23,16 +23,16 @@ import dss.HorariosLN.LNException;
 
 public class IniciarSessaoVista implements Vista {
     private IniciarSessaoControlador controlador;
-    private Vista proximaVista;
+    private Vista                    proximaVista;
 
     public IniciarSessaoVista(IniciarSessaoControlador controlador) {
-        this.controlador = controlador;
+        this.controlador  = controlador;
         this.proximaVista = null;
     }
 
     private void iniciarSessao() {
-        Menu menu = new Menu();
-        String email = menu.readString("Email > ");
+        Menu   menu         = new Menu();
+        String email        = menu.readString("Email > ");
         String palavraPasse = menu.readString("Palavra passe > ");
 
         try {
@@ -44,20 +44,10 @@ public class IniciarSessaoVista implements Vista {
         }
     }
 
-    private void terminarSessao() {
-        try {
-            this.controlador.terminarSessao();
-            System.out.println("Sessão terminada com sucesso!");
-        } catch (LNException e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
     public Vista run() {
-        boolean[]   sair = { false };
-        MenuEntry[] entradas = {new MenuEntry("Iniciar Sessão", i -> {this.iniciarSessao();}),
-                            new MenuEntry("Terminar Sessão", i -> {this.terminarSessao();}),
-                            new MenuEntry("Sair", i -> { sair[0] = true;})};
+        boolean[]   sair     = { false };
+        MenuEntry[] entradas = { new MenuEntry("Iniciar Sessão", i -> this.iniciarSessao()),
+                                 new MenuEntry("Sair", i -> { sair[0] = true; }) };
 
         try {
             do {

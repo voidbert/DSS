@@ -118,8 +118,9 @@ public class HorariosLNFacade implements IHorariosLN {
         this.ssHorarios.registarAluno(idCurso, numeroAluno);
     }
 
-    public void registarUCsDeAluno(String numeroAluno, Set<String> nomeUCs) throws LNException {
-        this.ssHorarios.registarUCsDeAluno(numeroAluno, nomeUCs);
+    public void registarUCsDeAluno(String idCurso, String numeroAluno, Set<String> nomeUCs)
+        throws LNException {
+        this.ssHorarios.registarUCsDeAluno(idCurso, numeroAluno, nomeUCs);
     }
 
     public void gerarHorarios(String idCurso) throws LNException {

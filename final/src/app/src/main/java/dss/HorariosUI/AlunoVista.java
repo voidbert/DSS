@@ -16,10 +16,10 @@
 
 package dss.HorariosUI;
 
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
-import dss.HorariosLN.LNException;
+import java.util.Set;
 
 public class AlunoVista implements Vista {
     private AlunoControlador controlador;
@@ -30,17 +30,31 @@ public class AlunoVista implements Vista {
 
     private void visualizarHorario() {
         try {
-            System.out.println(this.controlador.obterHorario());
-        } catch (LNException e){
+            Map<String, Set<String>> horario = this.controlador.obterHorario();
+            for (Map.Entry<String, Set<String>> entry : horario.entrySet()) {
+                String uc = entry.getKey();
+
+                for (String turno : entry.getValue()) {
+                    System.out.println(uc + " " + turno);
+                }
+            }
+            System.out.println();
+        } catch (UIException e) {
             System.err.println(e.getMessage());
         }
     }
 
+    private void terminarSessao() {
+        this.controlador.terminarSessao();
+    }
+
     public Vista run() {
-        boolean[]   sair = { false };
-        MenuEntry[] entradas =
-            {new MenuEntry("Visualizar Horário", i -> {this.visualizarHorario();}),
-            new MenuEntry("Voltar atrás", i -> { sair[0] = true; })};
+        boolean[] sair = { false };
+        MenuEntry[] entradas = { new MenuEntry("Visualizar Horário", i -> this.visualizarHorario()),
+                                 new MenuEntry("Terminar sessão", i -> {
+                                     this.terminarSessao();
+                                     sair[0] = true;
+                                 }) };
 
         try {
             do {

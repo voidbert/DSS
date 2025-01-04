@@ -19,6 +19,7 @@ package dss.HorariosUI;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import dss.HorariosLN.IHorariosLN;
 import dss.HorariosLN.LNException;
@@ -29,95 +30,133 @@ public class DiretorCursoControlador extends Controlador {
         super(modelo);
     }
 
-    public void reiniciarSemestre() throws LNException{
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        Set<String> alunos = this.obterModelo().obterAlunosDeCurso(idCurso);
+    public void reiniciarSemestre() throws UIException {
+        try {
+            String      idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            Set<String> alunos  = this.obterModelo().obterAlunosDeCurso(idCurso);
 
-        this.obterModelo().eliminarCredenciaisDeAlunos(alunos);
-        this.obterModelo().eliminarDadosCurso(idCurso);
-    }
-
-    public void verificarCursoTemUCs() throws LNException{
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        if (this.obterModelo().verificarCursoTemUCs(idCurso)) {
-            throw new UIException("Curso não tem unidades curriculares.");
+            this.obterModelo().eliminarCredenciaisDeAlunos(alunos);
+            this.obterModelo().eliminarDadosCurso(idCurso);
+        } catch (LNException e) {
+            throw new UIException(e.getMessage());
         }
     }
 
-    public void importarUnidadesCurricularesTurnos(String caminhoFicheiro) throws LNException{
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        this.obterModelo().importarUCs(caminhoFicheiro, idCurso);
-    }
-
-    public void verificarCursoTemAlunos() throws LNException{
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        if (this.obterModelo().verificarCursoTemAlunos(idCurso)) {
-            throw new UIException("Curso não tem alunos.");
+    public boolean verificarCursoTemUCs() {
+        try {
+            String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            return this.obterModelo().verificarCursoTemUCs(idCurso);
+        } catch (LNException e) {
+            return false; // Can't happen
         }
     }
 
-    public void importarAlunosEInscricoes(String caminhoFicheiro) throws LNException {
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        this.obterModelo().importarAlunos(caminhoFicheiro, idCurso);
+    public void importarUnidadesCurricularesTurnos(String caminhoFicheiro) throws UIException {
+        try {
+            String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            this.obterModelo().importarUCs(caminhoFicheiro, idCurso);
+        } catch (LNException e) {
+            throw new UIException(e.getMessage());
+        }
     }
 
-    public Set<String> obterListaUCs() throws LNException {
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        return this.obterModelo().obterUCsDeCurso(idCurso);
+    public boolean verificarCursoTemAlunos() {
+        try {
+            String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            return this.obterModelo().verificarCursoTemAlunos(idCurso);
+        } catch (LNException e) {
+            return false; // Can't happen
+        }
     }
 
-    public void verificarExistenciaAluno(String numeroAluno) throws LNException{
-        if(this.obterModelo().verificarExistenciaAluno(numeroAluno)){
+    public void importarAlunosEInscricoes(String caminhoFicheiro) throws UIException {
+        try {
+            String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            this.obterModelo().importarAlunos(caminhoFicheiro, idCurso);
+        } catch (LNException e) {
+            throw new UIException(e.getMessage());
+        }
+    }
+
+    public Set<String> obterListaUCs() throws UIException {
+        try {
+            String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            return this.obterModelo().obterUCsDeCurso(idCurso);
+        } catch (LNException e) {
+            throw new UIException(e.getMessage());
+        }
+    }
+
+    public void verificarExistenciaAluno(String numeroAluno) throws UIException {
+        if (this.obterModelo().verificarExistenciaAluno(numeroAluno))
             throw new UIException("Aluno com o mesmo número já existe.");
+    }
+
+    public void adicionarAluno(String numeroAluno, Set<String> nomeUCs) throws UIException {
+        try {
+            String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            this.obterModelo().registarAluno(idCurso, numeroAluno);
+            this.obterModelo().registarUCsDeAluno(idCurso, numeroAluno, nomeUCs);
+        } catch (LNException e) {
+            throw new UIException(e.getMessage());
         }
     }
 
-    public void adicionarAluno(String numeroAluno, Set<String> nomeUCs) throws LNException {
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        this.obterModelo().registarAluno(idCurso, numeroAluno);
-        this.obterModelo().registarUCsDeAluno(numeroAluno, nomeUCs);
-    }
-    public Collection<Sobreposicao> gerarHorariosAutomaticamente() throws LNException {
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        this.obterModelo().gerarHorarios(idCurso);
-        return this.obterModelo().procurarSobreposicoes(idCurso);
-    }
+    public Collection<String> gerarHorariosAutomaticamente() throws UIException {
+        try {
+            String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            this.obterModelo().gerarHorarios(idCurso);
 
-    public void armazenarHorarios() throws LNException {
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        Set<String> alunos = this.obterModelo().obterAlunosDeCurso(idCurso);
-
-        for (String aluno : alunos) {
-            Map<String, Set<String>> horario = this.obterModelo().obterHorario(aluno);
-            this.obterModelo().armazenarHorario(idCurso, aluno, horario);
+            Collection<Sobreposicao> s = this.obterModelo().procurarSobreposicoes(idCurso);
+            return s.stream().map(Object::toString).collect(Collectors.toList());
+        } catch (LNException e) {
+            throw new UIException(e.getMessage());
         }
     }
 
-    public Map<String, Set<String>> obterHorarioAluno(String numAluno) throws LNException {
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+    public Map<String, Set<String>> obterHorarioAluno(String numAluno) throws UIException {
+        try {
+            String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            if (!this.obterModelo().verificarSeAlunoInscritoEmCurso(numAluno, idCurso))
+                throw new UIException("Aluno não encontrado no seu curso.");
 
-        if (!this.obterModelo().verificarSeAlunoInscritoEmCurso(numAluno, idCurso)) {
-            throw new UIException("Aluno não se encontra inscrito em nenhum curso.");
+            return this.obterModelo().obterHorario(numAluno);
+        } catch (LNException e) {
+            throw new UIException(e.getMessage());
         }
-
-        return this.obterModelo().obterHorario(numAluno);
     }
 
-    public void atualizarHorario(String numAluno, Map<String, Set<String>> horario) throws LNException {
-        if (!this.obterModelo().validarHorario(numAluno, horario)) {
-            throw new UIException("Horario modificado não é válido.");
+    public void atualizarHorario(String numAluno, Map<String, Set<String>> horario)
+        throws UIException {
+
+        try {
+            if (!this.obterModelo().validarHorario(numAluno, horario))
+                throw new UIException("Horario modificado não é válido.");
+
+            String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            this.obterModelo().armazenarHorario(idCurso, numAluno, horario);
+        } catch (LNException e) {
+            throw new UIException(e.getMessage());
         }
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        this.obterModelo().armazenarHorario(idCurso, numAluno, horario);
     }
 
-    public Collection<String> publicarHorarios() throws LNException {
-        String idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
-        Set<String> alunos = this.obterModelo().obterAlunosDeCurso(idCurso);
+    public Collection<String> publicarHorarios() throws UIException {
+        try {
+            String      idCurso = this.obterModelo().obterIdCursoDiretorAutenticado();
+            Set<String> alunos  = this.obterModelo().obterAlunosDeCurso(idCurso);
 
-        this.obterModelo().gerarCredenciaisDeAlunos(alunos);
-        Collection<String> falhas = this.obterModelo().notificarAlunos(alunos);
+            this.obterModelo().gerarCredenciaisDeAlunos(alunos);
+            Collection<String> falhas = this.obterModelo().notificarAlunos(alunos);
 
-        return falhas;
+            return falhas;
+        } catch (LNException e) {
+            throw new UIException(e.getMessage());
+        }
+    }
+
+    public void terminarSessao() {
+        try {
+            this.obterModelo().terminarSessao();
+        } catch (LNException e) {}
     }
 }

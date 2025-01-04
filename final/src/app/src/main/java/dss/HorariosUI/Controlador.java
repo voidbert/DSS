@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
- package dss.HorariosUI;
+package dss.HorariosUI;
 
 import dss.HorariosLN.IHorariosLN;
 
 public abstract class Controlador {
     private IHorariosLN modelo;
-    public Controlador(IHorariosLN modelo) { this.modelo = modelo; }
-    public IHorariosLN obterModelo() { /* Clone model ? no */ return this.modelo; }
+
+    public Controlador(IHorariosLN modelo) {
+        this.modelo = modelo;
+    }
+
+    public IHorariosLN obterModelo() { /* Clone model ? no */
+        return this.modelo;
+    }
 }

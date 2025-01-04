@@ -16,11 +16,12 @@
 
 package dss.HorariosUI;
 
-import dss.HorariosLN.LNException;
+public class UIException extends Exception {
+    public UIException() {
+        super();
+    }
 
-public class UIException extends LNException {
     public UIException(String message) {
         super(message);
     }
 }
-

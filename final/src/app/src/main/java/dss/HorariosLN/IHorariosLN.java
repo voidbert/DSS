@@ -45,8 +45,9 @@ public interface IHorariosLN {
     public boolean     verificarCursoTemAlunos(String idCurso) throws LNException;
     public void        importarAlunos(String caminhoFicheiro, String idCurso) throws LNException;
     public void        registarAluno(String idCurso, String numeroAluno) throws LNException;
-    public void registarUCsDeAluno(String numeroAluno, Set<String> nomeUCs) throws LNException;
-    public void gerarHorarios(String idCurso) throws LNException;
+    public void        registarUCsDeAluno(String idCurso, String numeroAluno, Set<String> nomeUCs)
+        throws LNException;
+    public void                     gerarHorarios(String idCurso) throws LNException;
     public Collection<Sobreposicao> procurarSobreposicoes(String idCurso) throws LNException;
     public boolean validarHorario(String numeroAluno, Map<String, Set<String>> horario)
         throws LNException;

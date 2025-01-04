@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
- package dss.HorariosUI;
+package dss.HorariosUI;
 
 import java.util.Map;
 import java.util.Set;
@@ -27,8 +27,18 @@ public class AlunoControlador extends Controlador {
         super(modelo);
     }
 
-    public Map<String, Set<String>> obterHorario() throws LNException {
-        String res = this.obterModelo().obterNumeroAlunoAutenticado();
-        return this.obterModelo().obterHorario(res);
+    public Map<String, Set<String>> obterHorario() throws UIException {
+        try {
+            String res = this.obterModelo().obterNumeroAlunoAutenticado();
+            return this.obterModelo().obterHorario(res);
+        } catch (LNException e) {
+            throw new UIException(e.getMessage());
+        }
+    }
+
+    public void terminarSessao() {
+        try {
+            this.obterModelo().terminarSessao();
+        } catch (LNException e) {}
     }
 }

@@ -33,7 +33,7 @@ public interface IGestHorarios {
     public boolean     verificarCursoTemAlunos(String idCurso) throws HorariosException;
     public void importarAlunos(String caminhoFicheiro, String idCurso) throws HorariosException;
     public void registarAluno(String idCurso, String numeroAluno) throws HorariosException;
-    public void registarUCsDeAluno(String numeroAluno, Set<String> nomeUCs)
+    public void registarUCsDeAluno(String idCurso, String numeroAluno, Set<String> nomeUCs)
         throws HorariosException;
     public void                     gerarHorarios(String idCurso) throws HorariosException;
     public Collection<Sobreposicao> procurarSobreposicoes(String idCurso) throws HorariosException;
