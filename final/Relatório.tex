@@ -141,7 +141,7 @@
 
         \begin{figure}
             \centering
-            \includegraphics[scale=0.44]{Imagens/Modelos/ModeloDominio.eps}
+            \includegraphics[scale=0.44]{Imagens/Modelos/ModeloDominio.svg.eps}
             \caption{Modelo de Domínio. É recomendado que a sua leitura tenha início na entidade
                 Unidade Curricular.}
         \end{figure}
@@ -150,10 +150,11 @@
 
 \subsection{Restrições nas relações}
 
-A linguagem de modelação UML não permite expressar restrições nas relações, ou seja, não permite
-especificar que dois objetos A e B apenas se podem relacionar caso se verifique uma dada condição,
-como, por exemplo, A se relacionar com um outro objeto C. Esta secção do relatório pretende expor
-onde, no modelo de domínio construído, se verificam estas situações.
+A linguagem de modelação UML não permite expressar restrições nas relações concetuais (OCL não pode
+ser aplicado ao modelo de domínio), ou seja, não permite especificar que dois objetos A e B apenas
+se podem relacionar caso se verifique uma dada condição, como, por exemplo, A se relacionar com um
+outro objeto C. Esta secção do relatório pretende expor onde, no modelo de domínio construído, se
+verificam estas situações.
 
 \begin{longtable}{|>{\centering}m{2.5cm}
                   |>{\centering}m{2.5cm}
@@ -498,6 +499,9 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     }
 \end{usecase}
 
+O caso de uso abaixo, apesar de especificado, não foi implementado nesta primeira iteração do
+processo de desenvolvimento.
+
 \begin{usecase}
     {Definir preferências de uma UC}
     {
@@ -685,22 +689,1157 @@ Seguem-se abaixo, as descrições dos casos de uso no modelo anteriormente apres
     }
 \end{usecase}
 
-\section{Diagrama de componentes}
+\section{Diagramas relativos à modelação conceptual}
+
+\begingroup
+    \newgeometry{left=1cm,bottom=1cm,right=1cm,top=1cm}
+    \begin{landscape}
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Imagens/Modelos/Utilizadores.svg.eps}
+            \caption{
+                Diagrama de classes da modelação conceptual do subsistema de utilizadores.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Imagens/Modelos/Horários.svg.eps}
+            \caption{
+                Diagrama de classes da modelação conceptual do subsistema de horários.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.8]{Imagens/Modelos/iniciarSessao.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{iniciarSessao}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Imagens/Modelos/terminarSessao.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{terminarSessao}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Imagens/Modelos/obterNumeroAlunoAutenticado.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterNumeroAlunoAutenticado}.
+            }
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Imagens/Modelos/obterIdCursoDiretorAutenticado.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterIdCursoDiretorAutenticado}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.8]{Imagens/Modelos/eliminarCredenciaisDeAlunos.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{eliminarCredenciaisDeAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/notificarAlunos.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{notificarAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.45]{Imagens/Modelos/obterHorario.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterHorario}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1.0]{Imagens/Modelos/verificarExistenciaAluno.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{verificarExistenciaAluno}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.65]{Imagens/Modelos/verificarSeAlunoInscritoEmCurso.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{verificarSeAlunoInscritoEmCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/obterAlunosDeCurso.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterAlunosDeCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1.0]{Imagens/Modelos/eliminarDadosDeCurso.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{eliminarDadosDeCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/eliminarAlunosDeCurso.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{eliminarAlunosDeCurso}, essencial
+                para o funcionamento da operação \texttt{eliminarDadosDeCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/eliminarUCsDeCurso.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{eliminarUCsDeCurso}, essencial
+                para o funcionamento da operação \texttt{eliminarDadosDeCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.75]{Imagens/Modelos/verificarCursoTemUCs.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{verificarCursoTemUCs}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.40]{Imagens/Modelos/importarUCs.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{importarUCs}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.80]{Imagens/Modelos/lerJSON.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{lerJson}, essencial para o
+                funcionamento da operação \texttt{importarUCs}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.8]{Imagens/Modelos/importarUCsConstrutorUC.svg.eps}
+            \caption{
+                Diagrama de sequência relativo ao construtor de uma \texttt{UC} com base num
+                elemento JSON, essencial para o funcionamento da operação \texttt{importarUCs}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.50]{Imagens/Modelos/importarUCsConstrutorUCimportarPraticos.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{UC.importarPraticos}, essencial para o
+                funcionamento da operação \texttt{importarUCs}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.50]{Imagens/Modelos/importarUCsConstrutorUCimportarTeoricos.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{UC.importarTeoricos}, essencial para o
+                funcionamento da operação \texttt{importarUCs}.
+            }
+        \end{figure}
+
+        Não se modelaram os construtores de turnos com base em elementos JSON, uma vez que estes são
+        muito semelhantes aos construtores de um \texttt{Aluno}, apresentado mais à frente.
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/obterUCsDeCurso.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterUCsDeCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/obterTurnosDeUC.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterTurnosDeUC}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.75]{Imagens/Modelos/verificarCursoTemAlunos.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{verificarCursoTemAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.40]{Imagens/Modelos/importarAlunos.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{importarAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.45]{Imagens/Modelos/importarAlunosConstrutor.svg.eps}
+            \caption{
+                Diagrama de sequência relativo ao construtor de um \texttt{Aluno} com base num
+                elemento JSON, essencial para o funcionamento da operação \texttt{importarAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/registarAluno.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{registarAluno}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.65]{Imagens/Modelos/registarUCsDeAluno.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{registarUCsDeAluno}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.40]{Imagens/Modelos/gerarHorarios.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/gerarHorariosAdicionarAluno.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.adicionarAluno},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1.0]{Imagens/Modelos/gerarHorariosAdicionarFrequencias.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.adicionarFrequencias},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/gerarHorariosAdicionarCapacidades.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.adicionarCapacidades},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/gerarHorariosAdicionarSobreposicoes.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.adicionarSobreposicoes},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.80]{Imagens/Modelos/gerarHorariosCodificarVariavel.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.codificarVariavel},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/gerarHorariosRun.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.run},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+    \end{landscape}
+\endgroup
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.32]{Imagens/Modelos/gerarHorariosToString.svg.eps}
+    \caption{
+        Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.toString},
+        essencial para o funcionamento da operação \texttt{gerarHorarios}.
+    }
+\end{figure}
 
 \begingroup
     \newgeometry{left=1cm,bottom=1cm,right=1cm,top=1cm}
     \begin{landscape}
         \thispagestyle{empty}
+        \vspace*{\fill}
 
-        \begin{figure}
+        \begin{figure}[H]
             \centering
-            \includegraphics[scale=0.7]{Imagens/Modelos/Componentes.eps}
+            \includegraphics[scale=0.50]{Imagens/Modelos/gerarHorariosParseResultado.svg.eps}
             \caption{
-                Diagrama de componentes com uma visão de alto nível da arquitetura da aplicação.
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.parseResultado},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
             }
         \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/procurarSobreposicoes.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{procurarSobreposicoes}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.55]{Imagens/Modelos/procurarSobreposicoesHorario.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{Horario.procurarSobreposicoes},
+                essencial para o funcionamento da operação \texttt{procurarSobreposicoes}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.95]{Imagens/Modelos/procurarSobreposicoesTurno.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{Turno.soprepoe}, essencial para o
+                funcionamento da operação \texttt{procurarSobreposicoes}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.55]{Imagens/Modelos/validarHorario.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{validarHorario}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.45]{Imagens/Modelos/horarioDeNomes.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{horarioDeNomes}, essencial para o
+                funcionamento das operações \texttt{validarHorario} e \texttt{armazenarHorario}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.85]{Imagens/Modelos/armazenarHorario.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{armazenarHorario}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
     \end{landscape}
 \endgroup
+
+\section{Diagramas relativos à implementação}
+
+\begingroup
+    \newgeometry{left=1cm,bottom=1cm,right=1cm,top=1cm}
+    \begin{landscape}
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.4]{Imagens/Modelos/HierarquiaDAO.svg.eps}
+            \caption{
+                Diagrama de classes da implementação da camada de dados.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{Imagens/Modelos/UtilizadoresDAO.svg.eps}
+            \caption{
+                Diagrama de classes da implementação do subsistema de utilizadores.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Imagens/Modelos/HoráriosDAO.svg.eps}
+            \caption{
+                Diagrama de classes da implementação do subsistema de horários.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.8]{Imagens/Modelos/iniciarSessaoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{iniciarSessao}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Imagens/Modelos/terminarSessaoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{terminarSessao}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Imagens/Modelos/obterNumeroAlunoAutenticadoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterNumeroAlunoAutenticado}.
+            }
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Imagens/Modelos/obterIdCursoDiretorAutenticadoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterIdCursoDiretorAutenticado}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.85]{Imagens/Modelos/eliminarCredenciaisDeAlunosDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{eliminarCredenciaisDeAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/notificarAlunosDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{notificarAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.8]{Imagens/Modelos/obterHorarioDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterHorario}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1.0]{Imagens/Modelos/verificarExistenciaAlunoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{verificarExistenciaAluno}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.65]{Imagens/Modelos/verificarSeAlunoInscritoEmCursoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{verificarSeAlunoInscritoEmCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.75]{Imagens/Modelos/obterAlunosDeCursoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterAlunosDeCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1.0]{Imagens/Modelos/eliminarDadosDeCursoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{eliminarDadosDeCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/eliminarAlunosDeCursoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{eliminarAlunosDeCurso}, essencial
+                para o funcionamento da operação \texttt{eliminarDadosDeCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/eliminarUCsDeCursoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{eliminarUCsDeCurso}, essencial
+                para o funcionamento da operação \texttt{eliminarDadosDeCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.75]{Imagens/Modelos/verificarCursoTemUCsDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{verificarCursoTemUCs}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.40]{Imagens/Modelos/importarUCsDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{importarUCs}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.80]{Imagens/Modelos/lerJSONDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{lerJson}, essencial para o
+                funcionamento da operação \texttt{importarUCs}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.8]{Imagens/Modelos/importarUCsConstrutorUCDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo ao construtor de uma \texttt{UC} com base num
+                elemento JSON, essencial para o funcionamento da operação \texttt{importarUCs}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.50]{Imagens/Modelos/importarUCsConstrutorUCimportarPraticosDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{UC.importarPraticos}, essencial para o
+                funcionamento da operação \texttt{importarUCs}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.50]{Imagens/Modelos/importarUCsConstrutorUCimportarTeoricosDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{UC.importarTeoricos}, essencial para o
+                funcionamento da operação \texttt{importarUCs}.
+            }
+        \end{figure}
+
+        Não se modelaram os construtores de turnos com base em elementos JSON, uma vez que estes são
+        muito semelhantes aos construtores de um \texttt{Aluno}, apresentado mais à frente.
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.75]{Imagens/Modelos/obterUCsDeCursoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterUCsDeCurso}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/obterTurnosDeUCDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{obterTurnosDeUC}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.75]{Imagens/Modelos/verificarCursoTemAlunosDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{verificarCursoTemAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.40]{Imagens/Modelos/importarAlunosDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{importarAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.45]{Imagens/Modelos/importarAlunosConstrutorDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo ao construtor de um \texttt{Aluno} com base num
+                elemento JSON, essencial para o funcionamento da operação \texttt{importarAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/registarAlunoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{registarAluno}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.65]{Imagens/Modelos/registarUCsDeAlunoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{registarUCsDeAluno}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.33]{Imagens/Modelos/gerarHorariosDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/gerarHorariosAdicionarAlunoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.adicionarAluno},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1.0]{Imagens/Modelos/gerarHorariosAdicionarFrequenciasDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.adicionarFrequencias},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/gerarHorariosAdicionarCapacidadesDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.adicionarCapacidades},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/gerarHorariosAdicionarSobreposicoesDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.adicionarSobreposicoes},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.80]{Imagens/Modelos/gerarHorariosCodificarVariavelDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.codificarVariavel},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.70]{Imagens/Modelos/gerarHorariosRunDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.run},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+    \end{landscape}
+\endgroup
+
+\begin{figure}[H]
+    \centering
+    % É igual sem DAO (mas esqueci-me de exportar o ficheiro)
+    \includegraphics[scale=0.32]{Imagens/Modelos/gerarHorariosToString.svg.eps}
+    \caption{
+        Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.toString},
+        essencial para o funcionamento da operação \texttt{gerarHorarios}.
+    }
+\end{figure}
+
+\begingroup
+    \newgeometry{left=1cm,bottom=1cm,right=1cm,top=1cm}
+    \begin{landscape}
+        \thispagestyle{empty}
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.50]{Imagens/Modelos/gerarHorariosParseResultadoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.parseResultado},
+                essencial para o funcionamento da operação \texttt{gerarHorarios}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.60]{Imagens/Modelos/procurarSobreposicoesDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{procurarSobreposicoes}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.55]{Imagens/Modelos/procurarSobreposicoesHorarioDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{Horario.procurarSobreposicoes},
+                essencial para o funcionamento da operação \texttt{procurarSobreposicoes}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.95]{Imagens/Modelos/procurarSobreposicoesTurnoDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{Turno.soprepoe}, essencial para o
+                funcionamento da operação \texttt{procurarSobreposicoes}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.55]{Imagens/Modelos/validarHorarioDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{validarHorario}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.45]{Imagens/Modelos/horarioDeNomesDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{horarioDeNomes}, essencial para o
+                funcionamento das operações \texttt{validarHorario} e \texttt{armazenarHorario}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.75]{Imagens/Modelos/armazenarHorarioDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{armazenarHorario}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+    \end{landscape}
+\endgroup
+
+\section{Diagramas estruturais de alto nível}
+
+Nesta secção, procura-se apresentar a arquitetura do \emph{software} desenvolvido a um nível mais
+elevado do que o dos diagramas de classe. Segue-se o primeiro diagrama de componentes construído,
+antes da conceção da camada de dados.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Imagens/Modelos/Componentes.svg.eps}
+    \caption{
+        Diagrama de componentes, com uma visão de alto nível da arquitetura da aplicação antes da
+        conceção da camada de dados.
+    }
+\end{figure}
+
+Após a conceção da camada de dados, o diagrama de componentes da aplicação é o seguinte:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Imagens/Modelos/ComponentesDAO.svg.eps}
+    \caption{
+        Diagrama de componentes, com uma visão de alto nível da arquitetura da aplicação depois da
+        conceção da camada de dados.
+    }
+\end{figure}
+
+O diagrama acima pode facilmente ser traduzido num diagrama de \emph{packages}. Os métodos da
+\texttt{HorariosLNFacade} e \texttt{IHorariosLN} foram omitidos, mas consistem na união dos
+métodos das interfaces dos subsistemas dos utilizadores e dos horários.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Imagens/Modelos/GeralDAO.svg.eps}
+    \caption{
+        Diagrama de \emph{packages}.
+    }
+\end{figure}
+
+\section{Diagrama de instalação}
+
+\vspace*{\fill}
+
+O seguinte diagrama de instalação foi construído para mostrar como a aplicação deve ser instalada
+para execução num ambiente de produção:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Imagens/Modelos/Instalação.svg.eps}
+    \caption{
+        Diagrama de instalação.
+    }
+\end{figure}
+
+\vspace*{\fill}
 
 \section{Anexos}
 
