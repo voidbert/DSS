@@ -160,14 +160,8 @@ public class GestHorariosFacade implements IGestHorarios {
         if (uc == null)
             throw new HorariosException("UC não existe");
 
-        Map<String, Turno> praticos      = uc.getPraticos();
-        Set<String>        nomesPraticos = praticos.keySet();
-
-        Map<String, Turno> teoricos      = uc.getTeoricos();
-        Set<String>        nomesTeoricos = teoricos.keySet();
-
-        nomesPraticos.addAll(nomesTeoricos);
-        return nomesPraticos;
+        Set<String> nomes = uc.getNomesDeTurnos();
+        return nomes;
     }
 
     public boolean verificarCursoTemAlunos(String idCurso) throws HorariosException {
@@ -223,7 +217,7 @@ public class GestHorariosFacade implements IGestHorarios {
 
         Set<UC> ucs = new HashSet<UC>();
         for (String nome : nomeUCs) {
-            UC uc = this.ucs.get(nomeUCs);
+            UC uc = this.ucs.get(nome);
             if (uc == null)
                 throw new HorariosException("UC " + nome + " não existe");
 

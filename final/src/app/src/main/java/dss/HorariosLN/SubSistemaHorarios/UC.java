@@ -17,7 +17,9 @@
 package dss.HorariosLN.SubSistemaHorarios;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.google.gson.JsonElement;
@@ -97,6 +99,21 @@ public class UC {
     public Map<String, Turno> getPraticos() {
         return this.praticos.entrySet().stream().collect(
             Collectors.toMap(e -> e.getKey(), e -> (Turno) e.getValue().clone()));
+    }
+
+    public Set<String> getNomesDePraticos() {
+        return new HashSet(this.praticos.keySet());
+    }
+
+    public Set<String> getNomesDeTeoricos() {
+        return new HashSet(this.teoricos.keySet());
+    }
+
+    public Set<String> getNomesDeTurnos() {
+        Set<String> p = this.getNomesDePraticos();
+        Set<String> t = this.getNomesDeTeoricos();
+        p.addAll(t);
+        return t;
     }
 
     public Map<String, Turno> getTeoricos() {
