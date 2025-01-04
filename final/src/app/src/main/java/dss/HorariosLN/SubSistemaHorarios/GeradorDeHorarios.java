@@ -100,9 +100,10 @@ public class GeradorDeHorarios {
     }
 
     private void adicionarCapacidades(Aluno aluno, UC uc, Collection<Turno> turnos) {
+        String nomeUC = uc.getNome();
+
         for (Turno turno : turnos) {
             String nome       = turno.getNome();
-            String nomeUC     = uc.getNome();
             String nomeLimite = nomeUC + "_" + nome;
 
             Collection<String> inscritos = this.capacidadesVars.get(nomeLimite);
@@ -287,8 +288,7 @@ public class GeradorDeHorarios {
 
             builder.append("SOB_" + var1 + "_" + var2);
             builder.append(" >= ");
-            String soma = String.join(" + ", var1, var2);
-            builder.append(soma);
+            builder.append(var1 + " + " + var2);
             builder.append(" - 1;\n");
 
             indice++;
@@ -302,7 +302,7 @@ public class GeradorDeHorarios {
             builder.append(indice);
             builder.append(": ");
 
-            String             limite = this.capacidadesVals.get(ucTurno).toString();
+            Integer            limite = this.capacidadesVals.get(ucTurno);
             Collection<String> vars   = this.capacidadesVars.get(ucTurno);
             String             soma   = String.join(" + ", vars);
 

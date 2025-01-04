@@ -17,7 +17,6 @@
 package dss.HorariosLN.SubSistemaHorarios;
 
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -96,10 +95,11 @@ public class GestHorariosFacade implements IGestHorarios {
 
         Collection<String> alunosCurso = curso.getNumerosDeAlunos();
         curso.removerAlunos();
-        this.cursos.put(idCurso, curso);
 
         for (String aluno : alunosCurso)
             this.alunos.remove(aluno);
+
+        this.cursos.put(idCurso, curso);
     }
 
     private void eliminarUCsDeCurso(String idCurso) throws HorariosException {
@@ -109,7 +109,6 @@ public class GestHorariosFacade implements IGestHorarios {
 
         Set<String> ucsCurso = curso.getNomesDeUCs();
         curso.removerUCs();
-        this.cursos.put(idCurso, curso);
 
         for (String uc : ucsCurso)
             this.ucs.remove(uc);
@@ -176,9 +175,7 @@ public class GestHorariosFacade implements IGestHorarios {
     public void importarAlunos(String caminhoFicheiro, String idCurso) throws HorariosException {
         this.eliminarAlunosDeCurso(idCurso);
 
-        Curso curso = this.cursos.get(idCurso);
-        if (curso == null)
-            throw new HorariosException("Curso não existe");
+        Curso curso = this.cursos.get(idCurso); // Já sabemos que o curso existe
 
         Map<String, UC>          readOnlyUCs = Collections.unmodifiableMap(this.ucs);
         Map<String, Aluno>       novosAlunos = new HashMap<String, Aluno>();
@@ -235,36 +232,18 @@ public class GestHorariosFacade implements IGestHorarios {
     }
 
     public void gerarHorarios(String idCurso) throws HorariosException {
-        Collection<String> nomesUCs = this.obterUCsDeCurso(idCurso);
-        GeradorDeHorarios  gerador  = new GeradorDeHorarios(nomesUCs);
-
-        Curso             curso = this.cursos.get(idCurso); // Já sabemos que o curso não é null
-        Collection<Aluno> valoresAlunos = curso.getAlunos();
-
-        for (Aluno aluno : valoresAlunos)
-            gerador.adicionarAluno(aluno);
+        Curso curso = this.cursos.get(idCurso);
+        if (curso == null)
+            throw new HorariosException("Curso não existe");
 
         Map<String, UC> readOnlyUCs = Collections.unmodifiableMap(this.ucs);
+        Set<Aluno>      alunos      = curso.gerarHorarios(readOnlyUCs);
 
-        try {
-            Map<String, Horario>            horarios = gerador.run(readOnlyUCs);
-            Set<Map.Entry<String, Horario>> entradas = horarios.entrySet();
-
-            for (Map.Entry<String, Horario> entrada : entradas) {
-                String  numero  = entrada.getKey();
-                Horario horario = entrada.getValue();
-
-                Aluno aluno = this.alunos.get(numero);
-                aluno.setHorario(horario);
-                this.alunos.put(numero, aluno);
-            }
-        } catch (IOException e) {
-            throw new HorariosException(e.getMessage());
-        } catch (InterruptedException e) {
-            throw new HorariosException(e.getMessage());
-        } finally {
-            this.cursos.put(idCurso, curso);
+        for (Aluno a : alunos) {
+            String numero = a.getNumero();
+            this.alunos.put(numero, a);
         }
+        this.cursos.put(idCurso, curso);
     }
 
     public Collection<Sobreposicao> procurarSobreposicoes(String idCurso) throws HorariosException {

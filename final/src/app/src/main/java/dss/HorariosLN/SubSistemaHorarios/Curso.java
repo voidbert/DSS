@@ -16,7 +16,9 @@
 
 package dss.HorariosLN.SubSistemaHorarios;
 
+import java.io.IOException;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -88,6 +90,18 @@ public class Curso {
         return this.alunos.stream().map(numero -> dao.get(numero)).collect(Collectors.toSet());
     }
 
+    private Aluno getAluno(String numero) {
+        boolean contem = this.alunos.contains(numero);
+
+        Aluno aluno = null;
+        if (contem) {
+            AlunoDAO dao = AlunoDAO.getInstance();
+            aluno        = dao.get(numero);
+        }
+
+        return aluno;
+    }
+
     public Set<String> getNumerosDeAlunos() {
         return new HashSet<String>(this.alunos);
     }
@@ -99,6 +113,35 @@ public class Curso {
 
     public Set<String> getNomesDeUCs() {
         return new HashSet<String>(this.ucs);
+    }
+
+    public Set<Aluno> gerarHorarios(Map<String, UC> readOnlyUCs) throws HorariosException {
+        Set<String>       nomesUCs      = this.getNomesDeUCs();
+        GeradorDeHorarios gerador       = new GeradorDeHorarios(nomesUCs);
+        Set<Aluno>        valoresAlunos = this.getAlunos();
+
+        for (Aluno aluno : valoresAlunos)
+            gerador.adicionarAluno(aluno);
+
+        try {
+            Map<String, Horario>            horarios = gerador.run(readOnlyUCs);
+            Set<Map.Entry<String, Horario>> entradas = horarios.entrySet();
+
+            for (Map.Entry<String, Horario> entrada : entradas) {
+                String  numero  = entrada.getKey();
+                Horario horario = entrada.getValue();
+
+                Aluno aluno = this.getAluno(numero);
+                aluno.setHorario(horario);
+                valoresAlunos.add(aluno);
+            }
+        } catch (IOException e) {
+            throw new HorariosException(e.getMessage());
+        } catch (InterruptedException e) {
+            throw new HorariosException(e.getMessage());
+        }
+
+        return valoresAlunos;
     }
 
     @Override
