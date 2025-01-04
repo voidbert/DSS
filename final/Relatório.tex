@@ -1128,6 +1128,187 @@ processo de desenvolvimento.
     \end{landscape}
 \endgroup
 
+\section{Descrição da aplicação}
+
+Após transferir o repositório \texttt{git}, a aplicação pode ser executada com o comando
+\texttt{gradle run --console=plain}. Ao iniciar a aplicação o utilizador deparar-se-á com o seguinte
+menu:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Imagens/Manual/IniciarSessao.png}
+    \caption{Menu de início de sessão.}
+    \label{iniciarsessao}
+\end{figure}
+
+A opção 1 permite que o utilizador inicie sessão na aplicação. Se esta for selecionada, é
+requisitado, pelo sistema, o correio eletrónico e a palavra passe da conta do utilizador, como
+podemos observar na figura abaixo. Estamos a demonstrar a primeira tentativa de execução da
+aplicação, onde ainda não existem alunos registados, pelo que efetuamos o primeiro início de sessão
+como diretor de curso.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Imagens/Manual/IniciarSessao-1.png}
+    \caption{Inicio de sessão.}
+\end{figure}
+
+O início de sessão como diretor de curso leva o utilizador ao menu apresentado na figura abaixo.
+Aqui, o utilizador pode efetuar todas as operações que lhe são apresentadas, as quais descrevemos de
+forma mais detalhada de seguida.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Imagens/Manual/DiretorCurso.png}
+    \caption{Menu principal do diretor de curso.}
+    \label{menudiretor}
+\end{figure}
+
+A opção 1 permite eliminar todos os dados presentes no curso associado ao utilizador, incluindo as
+credenciais dos seus alunos, de modo a reiniciar totalmente o semestre. A figura seguinte apresenta
+o resultado da operação, quando esta for bem sucedida.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/Manual/DiretorCurso-1.png}
+    \caption{Reiniciar semestre.}
+\end{figure}
+
+Tanto a segunda como a terceira opções servem para importar novos dados para o curso, sendo estas
+importações de unidades curriculares e de alunos, respetivamente. A importação é feita a partir de
+um ficheiro \texttt{json}, requisitado ao utilizador assim que qualquer uma das opções é
+selecionada. Para ser iniciada a operação, basta apresentar ao programa o caminho absoluto do
+ficheiro, como demonstrado nas figuras que seguem.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Imagens/Manual/DiretorCurso-2.png}
+    \includegraphics[width=1\textwidth]{Imagens/Manual/DiretorCurso-3.png}
+    \caption{Importação de dados.}
+\end{figure}
+
+Caso já existam dados presentes no sistema, é ainda apresentada a opção de escolha entre
+sobrescrever os dados existentes, ou cancelar a operação:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Imagens/Manual/DiretorCurso-SobrescreverDados.png}
+    \caption{Importação de dados - Sobrescrever dados.}
+\end{figure}
+
+A opção 4 do menu principal do diretor de curso (\ref{menudiretor}) permite adicionar um novo aluno
+manualmente. Ao ser selecionada é requisitado, pelo sistema, o número de aluno pelo qual este se
+deve identificar, seguido das unidades curriculares em que se encontra inscrito. A escolha das
+unidades curriculares é feita através da seleção de opções desejadas, a partir de uma lista com
+todas as unidades curriculares do curso (\ref{listaucs}). O utilizador seleciona uma unidade
+curricular de cada vez e, assim que quiser terminar o processo, seleciona a opção
+"Concluir Operação" (\ref{adicaoconcluida}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/Manual/DiretorCurso-4-1.png}
+
+    (...)
+
+    \includegraphics[width=0.6\textwidth]{Imagens/Manual/DiretorCurso-4-2.png}
+    \caption{Adição manual de um novo aluno.}
+    \label{listaucs}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/Manual/DiretorCurso-4-3.png}
+    \caption{Adição manual de um novo aluno - Conclusão de operação.}
+    \label{adicaoconcluida}
+\end{figure}
+
+Para gerar os horários de todos os alunos inscritos no curso, o utilizador pode selecionar a opção
+5, do menu principal do diretor de curso (\ref{menudiretor}). A geração automática de horários não
+garante a inexistência de sobreposições. Para que o utilizador possa, posteriormente, retificar
+manualmente os horários, o sistema apresenta todas as sobreposições identificadas, como demonstrado
+na figura seguinte.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Imagens/Manual/DiretorCurso-5.png}
+    \caption{Geração automática de horários.}
+\end{figure}
+
+A opção 6, do menu principal do diretor de curso (\ref{menudiretor}), permite a modificação de
+qualquer horário presente no sistema, o que possibilita a já referida retificação manual de
+horários. Ao selecionar esta opção, o sistema requisita o número do aluno com o horário a ser
+modificado. Assim que o utilizador apresenta o identificador do aluno pretendido, este depara-se com
+a lista de unidades curriculares presentes no horário atual do aluno:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/Manual/DiretorCurso-6.png}
+    \caption{Modificação de horário - Apresentação das unidades curriculares.}
+\end{figure}
+
+Agora, o utilizador pode optar por selecionar qualquer uma das unidades curriculares, sendo, de
+seguida, apresentadas opções de remoção ou de adição de turnos. O processo de substituição de um
+turno por outro pode ser consultado na figura seguinte.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/Manual/DiretorCurso-6-1.png}
+    \caption{Modificação de horário - Adição e remoção de turnos.}
+\end{figure}
+
+Além disso, poderá também remover qualquer unidade curricular apresentada a partir da opção
+"Remover UC". Assim que uma unidade curricular for removida, o menu é atualizado para não a conter
+de entre as suas opções, confirmando o sucesso da remoção. Por fim, o utilizador também poderá
+adicionar uma unidade curricular através da seleção da opção "Adicionar UC". Análogo à operação de
+remoção, uma adição também implica a atualização do menu, como demonstrado nas figuras abaixo.
+De notar a operação de modificação de horário só pode ser concluída se o horário for válido, ou
+seja, se este conter todos os turnos que o aluno deve frequentar.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Imagens/Manual/DiretorCurso-6-2.png}
+    \includegraphics[width=0.6\textwidth]{Imagens/Manual/DiretorCurso-6-3.png}
+    \includegraphics[width=0.6\textwidth]{Imagens/Manual/DiretorCurso-6-4.png}
+    \caption{Modificação de horário - Adição e remoção de unidades curriculares.}
+\end{figure}
+
+A opção 7, do menu principal do diretor de curso (\ref{menudiretor}), permite publicar os horários
+construídos. Esta operação gera e envia as credenciais de acesso à aplicação para cada aluno,
+automaticamente. O processo de envio, neste momento, está implementado apenas como \emph{stub}, uma
+vez que não queremos enviar correio eletrónico sem intenção. Na figura seguinte podemos observar o
+resultado de uma operação de publicação bem sucedida. Caso existisse falha no envio de uma mensagem,
+a mesma seria reportada pelo sistema e demonstrada ao utilizador.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Imagens/Manual/DiretorCurso-7.png}
+    \caption{Publicação de horários.}
+\end{figure}
+
+Para terminar a descrição do menu do diretor curso (\ref{menudiretor}), resta abordar a opção 8, que
+termina a sessão atual do utilizador, e o retorna para o menu de início de sessão
+(\ref{iniciarsessao}).
+
+Se o utilizador a iniciar sessão for um aluno, este irá se deparar com o seguinte menu, após a
+apresentação das suas credenciais de acesso:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Imagens/Manual/Aluno.png}
+    \caption{Menu principal do aluno.}
+\end{figure}
+
+As únicas opções disponibilizadas para os utilizadores alunos são "Terminar Sessão", que tem o
+mesmo efeito do que a operação de término de sessão do diretor de curso, e "Visualizar Horário",
+que apresenta a atual versão do horário atribuído ao utilizador. A execução desta operação pode ser
+consultada na figura seguinte.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Imagens/Manual/Aluno-1.png}
+    \caption{Visualizar Horário.}
+\end{figure}
+=======
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.32]{Imagens/Modelos/gerarHorariosToString.svg.eps}
