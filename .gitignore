@@ -7,3 +7,6 @@
 
 # LaTeX compilation
 *-eps-converted-to.pdf
+
+# IDEs
+.idea
