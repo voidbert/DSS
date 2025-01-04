@@ -132,6 +132,34 @@
     \end{tabular}
 \end{center}
 
+\section{Resultados obtidos}
+
+Neste trabalho prático, completou-se a primeira fase de desenvolvimento, seguindo um processo
+iterativo, de \emph{software} para a gestão dos horários dos alunos da Universidade do Minho.
+A documentação dos diversos passos realizados encontra-se neste relatório, desde as etapas de
+levantamento de requisitos (construção de um modelo de domínio e especificação de casos de uso),
+passando pela modelação do \emph{software} a desenvolver (estrutural e comportamental), e
+finalmente a sua implementação.
+
+A aplicação desenvolvida não só permite a gestão manual das várias entidades relacionadas com os
+horários (alunos, UCs, cursos, \emph{etc.}), como também permite a geração automática de horários,
+através da geração de um modelo de programação inteira, que é resolvido por um \emph{solver}. Esta
+abordagem, por muito que consiga gerar soluções com pouquíssimas sobreposições, é muito pouco
+flexível, pelo que não conseguimos implementar um dos requisitos funcionais propostos: a geração de
+horários tendo em conta as preferências dos regentes das UCs.
+
+Foram duas as principais dificuldades sentidas com o desenvolvimento deste projeto. Em primeiro
+lugar, a divisão das operações da camada de negócio em subsistemas teve de ser refeita várias vezes,
+visto que várias tentativas acabaram como sendo problemáticas de implementar, devido ao elevado de
+grau de interdependência de classes entre os subsistemas. De seguida, também não foi fácil a adição
+da camada de dados. A camada de negócio foi inicialmente pensada sem considerar que implicações as
+mudanças trazidas pelo uso de uma base de dados persistente trariam. Logo, quando a tivemos de
+adicionar, foram necessárias várias mudanças à camada de negócio, e inclusive alterações da sua
+API.
+
+No entanto, o nosso grupo encontra-se bastante satisfeito com a aplicação desenvolvida, e
+acreditamos que esta tenha potencial para ser utilizada num contexto real.
+
 \section{Modelo de Domínio}
 
 \begingroup
@@ -778,6 +806,18 @@ processo de desenvolvimento.
 
         \begin{figure}[H]
             \centering
+            \includegraphics[scale=0.9]{Imagens/Modelos/gerarCredenciaisDeAlunos.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{gerarCredenciaisDeAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
             \includegraphics[scale=0.60]{Imagens/Modelos/notificarAlunos.svg.eps}
             \caption{
                 Diagrama de sequência relativo à operação \texttt{notificarAlunos}.
@@ -1332,6 +1372,18 @@ processo de desenvolvimento.
 
         \begin{figure}[H]
             \centering
+            \includegraphics[scale=0.9]{Imagens/Modelos/gerarCredenciaisDeAlunosDAO.svg.eps}
+            \caption{
+                Diagrama de sequência relativo à operação \texttt{gerarCredenciaisDeAlunos}.
+            }
+        \end{figure}
+
+        \vspace*{\fill}
+        \pagebreak
+        \vspace*{\fill}
+
+        \begin{figure}[H]
+            \centering
             \includegraphics[scale=0.60]{Imagens/Modelos/notificarAlunosDAO.svg.eps}
             \caption{
                 Diagrama de sequência relativo à operação \texttt{notificarAlunos}.
@@ -1684,8 +1736,7 @@ processo de desenvolvimento.
 
 \begin{figure}[H]
     \centering
-    % É igual sem DAO (mas esqueci-me de exportar o ficheiro)
-    \includegraphics[scale=0.32]{Imagens/Modelos/gerarHorariosToString.svg.eps}
+    \includegraphics[scale=0.32]{Imagens/Modelos/gerarHorariosToStringDAO.svg.eps}
     \caption{
         Diagrama de sequência relativo à operação \texttt{GeradorDeHorarios.toString},
         essencial para o funcionamento da operação \texttt{gerarHorarios}.
