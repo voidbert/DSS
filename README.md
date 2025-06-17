@@ -1,6 +1,8 @@
 # DSS
 
-An automatic schedule generator, for our Software Systems Development assignment.
+An automatic schedule generator, for our Software Systems Development assignment (2024/25).
+
+![Application architecture diagram](final/Imagens/Modelos/GeralDAO.svg)
 
 **Grade:** 20 / 20 :star:
 
